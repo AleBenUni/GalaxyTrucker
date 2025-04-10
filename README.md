@@ -1,2 +1,2 @@
 # GalaxyTraker
-# Giornon 10 Aprile
+# Giorno 10 Aprile
