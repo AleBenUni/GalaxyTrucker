@@ -2,5 +2,5 @@ package componenti;
 
 public class Componenti {
 
-	//Test
+	//Test2
 }
