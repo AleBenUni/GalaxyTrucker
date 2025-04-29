@@ -29,23 +29,24 @@ public class Componenti {
 		return null;
 	}
 	
+	public int gradiToRotazioni(int gradi) {
+	    switch (gradi) {
+	        case 90:
+	            return 1;
+	        case 180:
+	            return 2;
+	        case 270:
+	            return 3;
+	        default:
+	            return -1; // Valore di default per gradi non validi
+	    }
+	}
+	
 	public boolean ruotaComponenteOrario(int gradi) {
 		Connettori temp;
-		int nRotazioni;
-
-		switch(gradi){	//Zero gradi??
-		case 90:
-			nRotazioni=1;
-			break;
-		case 180:
-			nRotazioni=2;
-			break;
-		case 270:
-			nRotazioni=3;
-			break;
-		default:
+		int nRotazioni=gradiToRotazioni(gradi);
+		if(nRotazioni==-1)
 			return false;
-		}
 
 		for(int i=0;i<nRotazioni;i++) {
 			temp=up;
