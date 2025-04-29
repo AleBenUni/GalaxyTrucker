@@ -38,10 +38,10 @@ public class Componenti {
 			nRotazioni=1;
 			break;
 		case 180:
-			nRotazioni=1;
+			nRotazioni=2;
 			break;
 		case 270:
-			nRotazioni=1;
+			nRotazioni=3;
 			break;
 		default:
 			return false;
@@ -55,6 +55,5 @@ public class Componenti {
 			dx=temp;
 		}
 		return true;
-
 	}
 }
