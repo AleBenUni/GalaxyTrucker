@@ -28,4 +28,33 @@ public class Componenti {
 		}
 		return null;
 	}
+	
+	public boolean ruotaComponenteOrario(int gradi) {
+		Connettori temp;
+		int nRotazioni;
+
+		switch(gradi){	//Zero gradi??
+		case 90:
+			nRotazioni=1;
+			break;
+		case 180:
+			nRotazioni=1;
+			break;
+		case 270:
+			nRotazioni=1;
+			break;
+		default:
+			return false;
+		}
+
+		for(int i=0;i<nRotazioni;i++) {
+			temp=up;
+			up=sx;
+			sx=dw;
+			dw=dx;
+			dx=temp;
+		}
+		return true;
+
+	}
 }
