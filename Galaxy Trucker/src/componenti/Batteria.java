@@ -34,7 +34,7 @@ public class Batteria extends Componente{
 	}
 	
 	public boolean minusEnergia(int nEnergie) {
-		if((this.nEnergie-nEnergie)>0&&nEnergie>=0) {
+		if((this.nEnergie-nEnergie)>=0&&nEnergie>=0) {
 			this.nEnergie-=nEnergie;
 			return true;
 		}
