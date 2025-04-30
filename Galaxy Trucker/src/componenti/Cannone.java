@@ -25,4 +25,15 @@ public class Cannone extends Componente{
 		}
 		return false;
 	}
+	
+	public float getPotenzaFuoco() {
+		if(posCannoni==Lato.up)
+			return nCannoni;
+		else
+			return nCannoni/2;
+	}
+	
+	public Lato getPosCannoni() {
+		return posCannoni;
+	}
 }
