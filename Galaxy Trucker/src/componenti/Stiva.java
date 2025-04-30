@@ -21,5 +21,6 @@ public class Stiva extends Componente{
 	
 	public int getCarico() {
 		
+		
 	}
 }
