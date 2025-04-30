@@ -14,15 +14,15 @@ public class Componenti {
 		this.dw=dw;
 	}
 	
-	public Connettori getConnettori(String pos) {
+	public Connettori getConnettori(Lato pos) {
 		switch(pos){
-		case "up":
+		case up:
 			return up;
-		case "dx":
+		case dx:
 			return dx;
-		case "sx":
+		case sx:
 			return sx;
-		case "dw":
+		case dw:
 			return dw;
 			
 		}
