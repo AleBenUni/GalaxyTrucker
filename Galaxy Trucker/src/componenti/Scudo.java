@@ -10,6 +10,7 @@ class Scudo extends Componente {
 		latoProtettoDue=Lato.sx;
 	}
 	
+	
 	public boolean ruotaComponenteOrario(int gradi) {
 		if(super.ruotaComponenteOrario(gradi)) {
 			int nRotazioni=gradiToRotazioni(gradi);
