@@ -19,5 +19,7 @@ public class Stiva extends Componente{
 		return stivaSpeciale;
 	}
 	
-	public int getCarico()
+	public int getCarico() {
+		
+	}
 }
