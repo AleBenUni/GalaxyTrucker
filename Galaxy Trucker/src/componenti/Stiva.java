@@ -23,4 +23,13 @@ public class Stiva extends Componente{
 		
 		
 	}
+	
+	public boolean addCarico(Merce merce) {
+		for(int i=0;i<carico.length;i++)
+			if(carico[i]==null) {
+				carico[i]=merce;
+				return true;
+			}
+		return false;	
+	}
 }
