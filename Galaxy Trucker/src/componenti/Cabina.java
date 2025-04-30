@@ -8,7 +8,7 @@ class Cabina extends Componente{
 	public Cabina(int postiEquipaggio, Connettore up, Connettore dx, Connettore sx, Connettore dw) {
 		super(up,dx,sx,dw);
 		this.postiEquipaggio=postiEquipaggio;
-		this.nEquipaggio=nEquipaggio;
+		this.nEquipaggio=postiEquipaggio;
 		this.tipoEquipaggio=Equipaggio.umano;
 	}
 	
@@ -21,8 +21,11 @@ class Cabina extends Componente{
 	}
 	
 	public boolean removeEquipaggio(int nEquipaggio) {
-		if(this.nEquipaggio-nEquipaggio>=0&&nEquipaggio>0)
+		if(this.nEquipaggio-nEquipaggio>=0&&nEquipaggio>0) {
+			this.nEquipaggio-=nEquipaggio;
 			return true;
+		}
+			
 		return false;
 	}
 	

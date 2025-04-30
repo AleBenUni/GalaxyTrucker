@@ -5,6 +5,8 @@ public class Batteria extends Componente{
 	int grandezzaBatteria;
 	public Batteria(int grandezzaBatteria, Connettore up, Connettore dx, Connettore sx, Connettore dw) {
 		super(up,dx,sx,dw);
+		if(grandezzaBatteria<=0)
+	        throw new IllegalArgumentException("La grandezza della batteria deve essere positiva");
 		this.grandezzaBatteria=grandezzaBatteria;
 		this.nEnergie=grandezzaBatteria;
 	}
