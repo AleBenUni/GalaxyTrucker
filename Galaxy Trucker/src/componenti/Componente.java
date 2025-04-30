@@ -1,20 +1,20 @@
 package componenti;
 
-public class Componenti {
+public class Componente {
 
-	private Connettori up;
-	private Connettori dx;
-	private Connettori sx;
-	private Connettori dw;
+	private Connettore up;
+	private Connettore dx;
+	private Connettore sx;
+	private Connettore dw;
 	
-	public Componenti(Connettori up, Connettori dx, Connettori sx, Connettori dw) {
+	public Componente(Connettore up, Connettore dx, Connettore sx, Connettore dw) {
 		this.up=up;
 		this.dx=dx;
 		this.sx=sx;
 		this.dw=dw;
 	}
 	
-	public Connettori getConnettori(Lato pos) {
+	public Connettore getConnettori(Lato pos) {
 		switch(pos){
 		case up:
 			return up;
@@ -43,7 +43,7 @@ public class Componenti {
 	}
 	
 	public boolean ruotaComponenteOrario(int gradi) {
-		Connettori temp;
+		Connettore temp;
 		int nRotazioni=gradiToRotazioni(gradi);
 		if(nRotazioni==-1)
 			return false;

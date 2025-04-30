@@ -1,10 +1,10 @@
 package componenti; 
 
-class Scudo extends Componenti {
+class Scudo extends Componente {
 	
 	private Lato latoProtettoUno, latoProtettoDue;
 	
-	public Scudo(Connettori up, Connettori dx, Connettori sx, Connettori dw) {
+	public Scudo(Connettore up, Connettore dx, Connettore sx, Connettore dw) {
 		super(up,dx,sx,dw);
 		latoProtettoUno=Lato.up;
 		latoProtettoDue=Lato.sx;

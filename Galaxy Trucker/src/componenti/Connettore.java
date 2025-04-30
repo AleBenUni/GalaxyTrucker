@@ -1,5 +1,5 @@
 package componenti;
 
-public enum Connettori {
+public enum Connettore {
 	assente,singolo, doppio, multiplo;
 }

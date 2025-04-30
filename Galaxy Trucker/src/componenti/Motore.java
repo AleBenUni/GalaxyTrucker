@@ -1,5 +1,5 @@
 package componenti;
 
-public class Motore extends Componenti{
+public class Motore extends Componente{
 
 }
