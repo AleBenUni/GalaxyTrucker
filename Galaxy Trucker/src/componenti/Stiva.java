@@ -2,7 +2,7 @@ package componenti;
 
 public class Stiva extends Componente{
 	private int grandezzaStiva;
-	private Merce[] carico;
+	private Merce[] carico;  // File Merce.java modificato. Stiva.java dovrebbe continuare a funzionare nonostante le modifiche
 	boolean stivaSpeciale;
 	public Stiva(int grandezzaStiva, boolean stivaSpeciale, Connettore up, Connettore dx, Connettore sx, Connettore dw) {
 		super(up,dx,sx,dw);

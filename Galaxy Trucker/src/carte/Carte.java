@@ -1,5 +1,7 @@
 package carte;
 
+import componenti.Merce;
+
 public class Carte {
 
 	
@@ -17,7 +19,7 @@ public class Carte {
 	 *      c) Sabotaggio
 	 * 
 	 * 3. Merci: 
-	 *    - Guadagno/Perdita di 4 tipi (priorità nella perdita: VIOLA > ORO > VERDE > BLUE) 
+	 *    - Guadagno/Perdita di 4 tipi (priorità nella perdita: ROSSO > GIALLO > VERDE > BLUE) 
 	 *    		(possibile uso di enum)
 	 *    - Eccezioni (0 merci):
 	 *      a) Nave Abbandonata
@@ -61,4 +63,8 @@ public class Carte {
 	 *	  Presenti in Zona di guerra e Pirati. Hanno una logica dietro l’effetto.
  	 *	  Da valutare se considerare cannonate come comune a tutte le carte o meno.
 	 */
+	
+	private final int giorniVolo; //Ricorda che private < default < protected < public, sarà necessario salire di livello o basta il get?
+	//final da rimuovere per via dell'effeto di "Spazio aperto"?
+	
 }
