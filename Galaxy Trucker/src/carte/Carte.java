@@ -1,6 +1,8 @@
 package carte;
 
 import componenti.Merce;
+import carte.Livello;
+import pezzettini.Pedine;
 
 public class Carte {
 
@@ -66,5 +68,18 @@ public class Carte {
 	
 	private final int giorniVolo; //Ricorda che private < default < protected < public, sarà necessario salire di livello o basta il get?
 	//final da rimuovere per via dell'effeto di "Spazio aperto"?
+	private final int credito; 
+	
+	private Pedine perditeEquipaggio;
+	private Livello livello;
+	
+	
+	public Carte(Livello livello, int giorniVolo, Pedine perditeEquipaggio, int credito) {
+	    this.giorniVolo = giorniVolo;
+	    this.perditeEquipaggio = perditeEquipaggio;
+	    this.livello= livello;
+	    this.credito= credito;
+	    //merci ho deciso di tenerla come ultima. Ha regole che forse non la rendono adatta ad una classe comune
+	}
 	
 }
