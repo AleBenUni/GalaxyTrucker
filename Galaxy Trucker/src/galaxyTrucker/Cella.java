@@ -16,7 +16,7 @@ public class Cella {
 		return posizione;
 	}
 	
-	public Componente getCoponente() {
+	public Componente getComponente() {
 		return componente;
 	}
 	
