@@ -4,7 +4,7 @@ import carte.Livello;
 
 public class main {
 
-	//main di prova, creato per verificare la funzionalita di carta, modificalo senza problemi
+	//main di prova, creato per verificare la funzionalita di carta. Modificalo senza problemi
 	
 	public static void main(String[] args) {
 	        
