@@ -27,7 +27,7 @@ public class Pedine {
 	public void aggiungiUmani(int n) {
 		if (n > 0) 
 			this.umani += n;
-		 throw new IllegalArgumentException("Non puoi aggiungere un numero negativo di umani: " + n); //così e come lo desidera il professore, ma qualcosa non torna, in questo modo constringo al giocatore di rifare la partita, non è una bella cosa da fare. Chiedere cosa intenda per "Permettete le azioni illegali ma segnalatelo con un eccezione" 
+		 throw new IllegalArgumentException("Non puoi aggiungere un numero negativo di umani: " + n); //così e come lo desidera il professore, ma qualcosa non torna, in questo modo constringo al giocatore di rifare la partita, non è una bella cosa da fare. Chiedere cosa intenda per "Permettete le azioni illegali ma segnalatelo con un eccezione"? 
 	}
 
 	public void aggiungiAlieni(int n) {
@@ -44,7 +44,6 @@ public class Pedine {
 	}
 
 	public void rimuoviPedine(int n) {
-		// Rimuove prima umani, poi alieni se necessario
 		int toRemove = n;
 		  if (umani >= toRemove) {
 		        umani -= toRemove;

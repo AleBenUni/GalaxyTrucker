@@ -1,7 +1,7 @@
 package carte;
 
-import componenti.Merce;
-import carte.Livello;
+import componenti.Merce;  //serivà?
+import carte.Livello; // si trovano nello stesso Package, posso fare a meno di questa riga
 import pezzettini.Pedine;
 
 public class Carte {
@@ -70,11 +70,11 @@ public class Carte {
 	//final da rimuovere per via dell'effeto di "Spazio aperto"?
 	private final int credito; 
 	
-	private Pedine perditeEquipaggio;
+	private final int perditeEquipaggio; // conoscere il tipo di pedina non è neccessaria alla. Lo decide il giocatore durante la partita (Rimosso tipo Pedine e aggiunto final)
 	private Livello livello;
 	
 	
-	public Carte(Livello livello, int giorniVolo, Pedine perditeEquipaggio, int credito) {
+	public Carte(Livello livello, int giorniVolo, int perditeEquipaggio, int credito) {
 	    this.giorniVolo = giorniVolo;
 	    this.perditeEquipaggio = perditeEquipaggio;
 	    this.livello= livello;
