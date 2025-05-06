@@ -1,4 +1,4 @@
 package carte;
-public class PioggiaMeteoriti {
+public class PioggiaMeteoriti extends Carte{
 
 }
