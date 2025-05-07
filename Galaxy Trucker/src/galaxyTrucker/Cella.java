@@ -4,12 +4,20 @@ import componenti.Componente;
 
 public class Cella {
 	
-	Posizione posizione;
-	Componente componente;
+	private Posizione posizione;
+	private Componente componente;
+	private boolean utilizzabile;
 
 	public Cella(Componente componente, Posizione posizione) {
 		this.componente=componente;
 		this.posizione=posizione;
+		utilizzabile=true;
+	}
+	
+	public Cella(Posizione posizione) {
+		componente=null;
+		this.posizione=posizione;
+		utilizzabile=false;
 	}
 	
 	public Posizione getPosizione() {
@@ -26,5 +34,9 @@ public class Cella {
 	
 	public void setPosizione(Posizione posizione) {
 		this.posizione=posizione;
+	}
+	
+	public boolean isUtilizzabile() {
+		return utilizzabile;
 	}
 }

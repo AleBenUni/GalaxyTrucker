@@ -1,20 +1,20 @@
 package galaxyTrucker;
 
 public class Posizione {
-	private final int x;
-	private final int y;
+	private final int riga;
+	private final int colonna;
 	
-	public Posizione(int x, int y) {
-		this.x=x;
-		this.y=y;
+	public Posizione(int riga, int colonna) {
+		this.riga=riga;
+		this.colonna=colonna;
 	}
 	
-	public int getX() {
-		return x;
+	public int getRiga() {
+		return riga;
 	}
 	
-	public int getY() {
-		return y;
+	public int getColonna() {
+		return colonna;
 	}
 }
 
