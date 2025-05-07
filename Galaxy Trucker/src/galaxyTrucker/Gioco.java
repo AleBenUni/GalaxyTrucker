@@ -15,7 +15,6 @@ public class Gioco {
 	
 	public Livello getLivello() {
 		return livello;
-		
 	}
 	
 }
