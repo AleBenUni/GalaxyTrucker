@@ -8,7 +8,8 @@ public class main {
         
         Carte Uno = new Carte(Livello.I, 5, 0, 100);    
         System.out.println("Oggetto Carte creato con successo.");      
-        System.out.println(Uno);       
+        System.out.println(Uno);
+        
 }
 
 }
