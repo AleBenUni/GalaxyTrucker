@@ -11,6 +11,7 @@ public class main {
         System.out.println("Oggetto Carte creato con successo.");
         
         System.out.println(Uno);
+        
 }
 
 }
