@@ -13,7 +13,7 @@ public class Carte {
 
 	private Livello livello;
 
-
+//richiama in tabellone un metodo
 	public Carte(Livello livello, int giorniVolo, int perditeEquipaggio, int credito) {
 	    this.giorniVolo = giorniVolo;
 	    this.perditeEquipaggio = perditeEquipaggio;
