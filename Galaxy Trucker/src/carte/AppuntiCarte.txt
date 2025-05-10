@@ -59,4 +59,10 @@
 	 
 	 Merce: Il dubbio riguarda se tenerla come metodo di carte o no: La uso 
 	 come metodo numerico, e richiamera' la funzione necessaria in tabellone. Richiamera' 
-	 quella giusta in base al segno (aggiunta mia) (uguale per equipaggio senza il piu') 
+	 quella giusta in base al segno (aggiunta mia) (uguale per equipaggio senza il piu').
+	 Merce avra una enum, ma nelle carte non ci serve conoscere il tipo di merce, ma solo il numero. 
+	 Le carte con più di quattro merce in automatico sono identificate in pianeti.
+	 
+	 Nome carte: Realizzo una enum che associa ad ogni nome di carta un valore numerico. 
+	  ^w^New idea: Al posto di associare il valore numerico tengo il nome come nome, ma per le carte "speciali" 
+	               realizzo la enum con il loro nome (tema_informatica)
