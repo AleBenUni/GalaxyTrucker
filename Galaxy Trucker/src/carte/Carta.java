@@ -3,24 +3,28 @@ package carte;
 import componenti.Merce;  
 import carte.Livello; 
 import pezzettini.Pedine;
+import carte.NomeSpeciale;
 
-public class Carte {
+public class Carta {
 	
-	private final int giorniVolo; 
+	private final int ggVolo; 
 	private final int credito; 
 	private final int equipaggio;
 	private final int merce;
+	private final String nome;
 	
-
+	private NomeSpeciale effetto; 
 	private Livello livello;
 
 //richiama da tabellone la funzione riguardante la perdita di equipaggio
-	public Carte(Livello livello, int giorniVolo, int merce, int equipaggio, int credito) {
-	    this.giorniVolo = giorniVolo;
+	public Carta(NomeSpeciale effetto,String nome ,Livello livello, int ggVolo, int merce, int equipaggio, int credito) {
+	    this.ggVolo = ggVolo;
 	    this.equipaggio = equipaggio;
 	    this.livello= livello;
 	    this.credito= credito;
 	    this.merce= merce;
+	    this.effetto= effetto;
+	    this.nome= nome;
 	}
 
 	public Livello getLivello() {
@@ -28,7 +32,7 @@ public class Carte {
 	}
 
 	public int getGiorniVolo() {
-		return giorniVolo;
+		return ggVolo;
 	}
 
 	public int getCredito() {
@@ -43,10 +47,17 @@ public class Carte {
 		return merce;
 	}
 
+	public NomeSpeciale getNomeEffetto() {
+		return effetto;
+	}
+
+	public String getNomeCarta() {
+		return nome;
+	}
+
 	@Override
 	public String toString() {
-		return "Carte [ Livello carta=" + livello + ", Giorni di volo=" + giorniVolo + ", Credito guadagnato=" + credito + ", Equipaggio perso=" + equipaggio + ", Merce="
-				+ merce + "]\nIl + indica un guadagno, il - indica una perdita (solo per merce e Giorni di volo).";
+	    return "La Carta " + nome + ( (effetto == NomeSpeciale.NESSUNO) ? " non ha effetti speciali" : " ha effetti speciali" );
 	}
 	
 	

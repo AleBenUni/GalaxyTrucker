@@ -1,0 +1,3 @@
+id,nome,livello,ggVolo,merce,equipaggio,credito,effetto
+151,Oratrice Mecanique d'Analyse Cardinale,III,1000,0,200202,0,NESSUNO
+2,Pioggia di meteoriti,II,0,0,0,0,PIOGGIA_METEORITI

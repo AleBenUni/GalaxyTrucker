@@ -66,3 +66,8 @@
 	 Nome carte: Realizzo una enum che associa ad ogni nome di carta un valore numerico. 
 	  ^w^New idea: Al posto di associare il valore numerico tengo il nome come nome, ma per le carte "speciali" 
 	               realizzo la enum con il loro nome (tema_informatica)
+	               
+	 Mazzo: 150 carte sono tante, realizzero un primo tentativo con un file excel e usando le HashMap https://www.w3schools.com/java/java_hashmap.asp
+	        ID è presente nell'Excel ma non è attributo di carte, serve per HashMap come Key
+	        
+	 Domanda per il prof: Non è che forse, per impedire l'interruzione del programma, serva un try catch con la parolina magica "continue"?
