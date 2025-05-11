@@ -1,6 +1,10 @@
 package galaxyTrucker;
 import carte.Carta;
 import carte.Livello;
+import carte.SpazioAperto;
+import componenti.Connettore;
+import componenti.Motore;
+
 import java.util.Map;
 import java.util.Random;
 
@@ -12,6 +16,8 @@ public class main {
         
 		//questo main è solo una prova del file csv. Può essere modificato senza preavviso
 		
+		
+		Motore m1 = new Motore(20, Connettore.doppio, Connettore.doppio, Connettore.doppio, Connettore.doppio);
 		Random r= new Random();
 		int r1 = r.nextInt(3);
 		
@@ -21,10 +27,17 @@ public class main {
         System.out.printf("Caricate " + mazzo.size() + " carte\n\n");
         
         
-        System.out.printf("Ha pescato--> " + mazzo.get(r1));
-        mazzo.remove(r1);
         
-        System.out.printf("\nCi sono ancora " + mazzo.size() + " carte\n\n");
+        Carta pescata = mazzo.remove(r1);
+        System.out.printf("Ha pescato--> " + pescata);
+        
+       if (pescata instanceof SpazioAperto) // istanceof == è un? 
+       {
+    	   pescata.setGiorniVolo(m1.getNTubiScappamento());
+    	   System.out.printf("\nL'effetto della carta ora è: " + pescata);
+       }
+        
+        System.out.printf("\n\nCi sono ancora " + mazzo.size() + " carte\n\n");
         for (Map.Entry<Integer, Carta> i : mazzo.entrySet()) {
             System.out.printf("ID: " + i.getKey() + " " + i.getValue() + "\n");       
         }
