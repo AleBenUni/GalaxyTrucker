@@ -2,6 +2,8 @@ package galaxyTrucker;
 import carte.Carta;
 import carte.Livello;
 import java.util.Map;
+import java.util.Random;
+
 import carte.CaricaCSV;
 
 public class main {
@@ -10,14 +12,23 @@ public class main {
         
 		//questo main è solo una prova del file csv. Può essere modificato senza preavviso
 		
+		Random r= new Random();
+		int r1 = r.nextInt(3);
+		
 		try {
 		String CSV = "src\\carte\\carte.csv";
 		Map<Integer, Carta> mazzo = CaricaCSV.loadMap(CSV);
         System.out.printf("Caricate " + mazzo.size() + " carte\n\n");
         
+        
+        System.out.printf("Ha pescato--> " + mazzo.get(r1));
+        mazzo.remove(r1);
+        
+        System.out.printf("\nCi sono ancora " + mazzo.size() + " carte\n\n");
         for (Map.Entry<Integer, Carta> i : mazzo.entrySet()) {
-            System.out.printf("ID: " + i.getKey() + " " + i.getValue() + "\n");
+            System.out.printf("ID: " + i.getKey() + " " + i.getValue() + "\n");       
         }
+
 	} catch (Exception e) {
         e.printStackTrace();
     }
