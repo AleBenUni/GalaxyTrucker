@@ -27,7 +27,14 @@ public class CaricaCSV {
 	            int credito = Integer.parseInt(p[6]);
 	            NomeSpeciale effetto = NomeSpeciale.valueOf(p[7]);
 	            
-	            Carta carta = new Carta(effetto, nome , livello, ggVolo, merce, equipaggio, credito);
+	            Carta carta;
+	            switch(effetto) {
+	            case SPAZIO_APERTO:
+	            	 carta = new SpazioAperto(nome, livello, ggVolo, merce, equipaggio, credito);
+                    break;
+                    default:
+                     carta = new Carta(effetto, nome , livello, ggVolo, merce, equipaggio, credito);
+	            }
 	            
 	            mazzo.put(id, carta);
 	        }

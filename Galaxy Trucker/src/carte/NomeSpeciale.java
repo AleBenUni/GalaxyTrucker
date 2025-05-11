@@ -3,5 +3,6 @@ package carte;
 public enum NomeSpeciale {
 	NESSUNO,
     PIOGGIA_METEORITI,
-    SABOTAGGIO;
+    SABOTAGGIO,
+	SPAZIO_APERTO;
 }

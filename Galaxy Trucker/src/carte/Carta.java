@@ -7,13 +7,13 @@ import carte.NomeSpeciale;
 
 public class Carta {
 	
-	private final int ggVolo; 
+	int ggVolo; //Spazio Aperto puo cambiare questo attributo. Non più final 
 	private final int credito; 
 	private final int equipaggio;
 	private final int merce;
-	private final String nome;
+	final String nome; //Rimosso private per le sottoclassi dello stesso pacchetto "Un membro senza modificatore di accesso () è accessibile solo all'interno delle classi nello stesso pacchetto"
 	
-	private NomeSpeciale effetto; 
+	NomeSpeciale effetto; 
 	private Livello livello;
 
 //richiama da tabellone la funzione riguardante la perdita di equipaggio
@@ -33,6 +33,11 @@ public class Carta {
 
 	public int getGiorniVolo() {
 		return ggVolo;
+	}
+	
+
+	public void setGiorniVolo(int ggVolo) {
+		this.ggVolo = ggVolo;
 	}
 
 	public int getCredito() {
