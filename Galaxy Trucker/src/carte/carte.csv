@@ -4,3 +4,5 @@ id,nome,livello,ggVolo,merce,equipaggio,credito,effetto,pianeti
 1,Spazio Aperto,I,0,0,0,0,SPAZIO_APERTO
 3,Pianeti,I,3,0,0,0,PIANETI,"rosso:1,verde:1,blu:3;rosso:1,giallo:1,blu:1;rosso:1,blu:3;rosso:1,verde:1"
 4,Stazione Abbandonata,I,1,0,6,0,STAZIONE_ABBANDONATA,"rosso:2"
+55,Stazione Abbandonata,II,2,0,8,0,STAZIONE_ABBANDONATA,"giallo:2,verde:1"
+101,Pianeti,III,5,0,0,0,PIANETI,"giallo:5;rosso:1,giallo:2;rosso:2"
