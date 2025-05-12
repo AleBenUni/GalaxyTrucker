@@ -55,6 +55,21 @@ public class CaricaCSV {
                                          ggVolo, merce, equipaggio, credito,
                                          pianeti);
                      break;
+	            case STAZIONE_ABBANDONATA:
+	            	String raw2 = p[8];
+	            	raw2 = raw2.replace("\"", "");
+	            	List<Pianeta> merceAbordo = new ArrayList<>();
+	            	String[] coppie = raw2.split(",");
+	            	Map<Merce,Integer> mappa = new EnumMap<>(Merce.class);
+	            	for (String coppia : coppie) {
+	            		String[] kv = coppia.split(":");
+	            		Merce tipo = Merce.valueOf(kv[0]);
+	            		int qta = Integer.parseInt(kv[1].trim());
+	            		mappa.put(tipo, qta);
+	            	}
+	            	merceAbordo.add(new Pianeta(mappa));
+	            	carta = new StazioneAbbandonata(nome, livello, credito, credito, credito, credito, merceAbordo);
+	            	break;
                     default:
                      carta = new Carta(effetto, nome , livello, ggVolo, merce, equipaggio, credito);
 	            }

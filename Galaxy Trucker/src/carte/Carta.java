@@ -15,7 +15,7 @@ public class Carta {
 	NomeSpeciale effetto;
 	private Livello livello;
 
-//richiama da tabellone la funzione riguardante la perdita di equipaggio
+//richiama da "Pesca.java (ancora da realizzare) le funzioni riguardante ogni carta
 	public Carta(NomeSpeciale effetto,String nome ,Livello livello, int ggVolo, int merce, int equipaggio, int credito) {
 	    this.ggVolo = ggVolo;
 	    this.equipaggio = equipaggio;

@@ -3,8 +3,6 @@ package carte;
 import java.util.List;
 
 public class Pianeti extends Carta{
-// servira extends carta?
-	// sì, altrimenti non sarà possibile creare il mazzo
 	private final List<Pianeta> pianeti; // per quanto volessi evitare di usare le liste, non ho pensato ad un'alternativa migliore
 	
 	public Pianeti(String nome, Livello livello, int ggVolo, int merce, int equipaggio,
@@ -19,7 +17,7 @@ public class Pianeti extends Carta{
 
 	@Override
 	public String toString() {
-		return " Ci sono " + pianeti.size() + " pianeti." +pianeti + "]";
+		return " Ci sono " + pianeti.size() + " pianeti. Abbiamo" + pianeti + "]";
 	}
 	
 }
