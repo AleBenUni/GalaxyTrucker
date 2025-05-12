@@ -4,5 +4,6 @@ public enum NomeSpeciale {
 	NESSUNO,
     PIOGGIA_METEORITI,
     SABOTAGGIO,
-	SPAZIO_APERTO;
+	SPAZIO_APERTO,
+	PIANETI;
 }

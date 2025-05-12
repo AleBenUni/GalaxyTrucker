@@ -1,6 +1,5 @@
 package carte;
 
-import componenti.Merce;  
 import carte.Livello; 
 import pezzettini.Pedine;
 import carte.NomeSpeciale;
@@ -13,7 +12,7 @@ public class Carta {
 	private final int merce;
 	final String nome; //Rimosso private per le sottoclassi dello stesso pacchetto "Un membro senza modificatore di accesso () è accessibile solo all'interno delle classi nello stesso pacchetto"
 	
-	NomeSpeciale effetto; 
+	NomeSpeciale effetto;
 	private Livello livello;
 
 //richiama da tabellone la funzione riguardante la perdita di equipaggio

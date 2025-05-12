@@ -1,6 +1,9 @@
 package carte;
 
+import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.io.*;
 import carte.Livello;
@@ -30,8 +33,29 @@ public class CaricaCSV {
 	            Carta carta;
 	            switch(effetto) {
 	            case SPAZIO_APERTO:
-	            	 carta = new SpazioAperto(nome, livello, ggVolo, merce, equipaggio, credito);
+	            	carta = new SpazioAperto(nome, livello, ggVolo, merce, equipaggio, credito);
                     break;
+	            case PIANETI:
+	            	 String raw = p[8].trim(); // parte di codice che ho dovuto cercare.
+                     if (raw.startsWith("\"") && raw.endsWith("\"")) {
+                         raw = raw.substring(1, raw.length() - 1);
+                     } 
+                     List<Pianeta> pianeti = new ArrayList<>();
+                     for (String pianetaStr : raw.split(";")) {
+                         String[] coppie = pianetaStr.split(",");
+                         Map<Merce,Integer> mappa = new EnumMap<>(Merce.class);
+                         for (String coppia : coppie) {
+                             String[] kv = coppia.split(":");
+                             Merce tipo = Merce.valueOf(kv[0].trim().toLowerCase());
+                             int qta    = Integer.parseInt(kv[1].trim());
+                             mappa.put(tipo, qta);
+                         }// cercata fino a qua
+                         pianeti.add(new Pianeta(mappa));
+                     }
+                     carta = new Pianeti(nome, livello,
+                                         ggVolo, merce, equipaggio, credito,
+                                         pianeti);
+                     
                     default:
                      carta = new Carta(effetto, nome , livello, ggVolo, merce, equipaggio, credito);
 	            }
