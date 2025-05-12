@@ -1,4 +1,4 @@
-package carte;
+package componenti;
 
 public enum Merce {
 	rosso (4), 

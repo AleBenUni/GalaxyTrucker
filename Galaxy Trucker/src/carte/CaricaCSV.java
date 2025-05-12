@@ -8,6 +8,7 @@ import java.util.Map;
 import java.io.*;
 import carte.Livello;
 import carte.NomeSpeciale;
+import componenti.Merce;
 
 //questo file potrebbe presentare eccezioni non previsti, controllare gli errori dopo averne verificato il corretto funzionamento
 
@@ -19,7 +20,7 @@ public class CaricaCSV {
 	        br.readLine();
 	        String riga="-1";
 	        while ((riga = br.readLine()) != null) {
-	            String[] p = riga.split(",", -1);
+	            String[] p = riga.split(",", 9);
 	            
 	            int id = Integer.parseInt(p[0]);
 	            String nome = p[1];
@@ -37,16 +38,14 @@ public class CaricaCSV {
                     break;
 	            case PIANETI:
 	            	 String raw = p[8].trim(); // parte di codice che ho dovuto cercare.
-                     if (raw.startsWith("\"") && raw.endsWith("\"")) {
-                         raw = raw.substring(1, raw.length() - 1);
-                     } 
+	            	 raw = raw.replace("\"", "");
                      List<Pianeta> pianeti = new ArrayList<>();
                      for (String pianetaStr : raw.split(";")) {
                          String[] coppie = pianetaStr.split(",");
                          Map<Merce,Integer> mappa = new EnumMap<>(Merce.class);
                          for (String coppia : coppie) {
                              String[] kv = coppia.split(":");
-                             Merce tipo = Merce.valueOf(kv[0].trim().toLowerCase());
+                             Merce tipo = Merce.valueOf(kv[0]);
                              int qta    = Integer.parseInt(kv[1].trim());
                              mappa.put(tipo, qta);
                          }// cercata fino a qua
@@ -55,7 +54,7 @@ public class CaricaCSV {
                      carta = new Pianeti(nome, livello,
                                          ggVolo, merce, equipaggio, credito,
                                          pianeti);
-                     
+                     break;
                     default:
                      carta = new Carta(effetto, nome , livello, ggVolo, merce, equipaggio, credito);
 	            }

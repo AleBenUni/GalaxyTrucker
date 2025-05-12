@@ -19,7 +19,7 @@ public class Pianeti extends Carta{
 
 	@Override
 	public String toString() {
-		return "Pianeti [pianeti=" + pianeti + "]";
+		return " Ci sono " + pianeti.size() + " pianeti." +pianeti + "]";
 	}
 	
 }

@@ -1,7 +1,5 @@
 package componenti;
 
-import carte.Merce;
-
 public class Stiva extends Componente{
 	private int grandezzaStiva;
 	private Merce[] carico;  // File Merce.java modificato. Stiva.java dovrebbe continuare a funzionare nonostante le modifiche

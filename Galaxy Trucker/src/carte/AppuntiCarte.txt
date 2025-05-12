@@ -72,3 +72,5 @@
 	 Domanda per il prof: Non è che forse, per impedire l'interruzione del programma, serva un try catch con la parolina magica "continue"?
 	 
 	 Pesca: Dovrebbe nascere un file Pesca.java che gestisce la pesca come nell'esempio git #f9425e9 
+	 
+	 Pianeti: Ha una lista di pianeti, se ne fa vedere uno e si chiede ao giocatori (a turno) chi è interessato, poi si chiede per il prossimo pianeta.
