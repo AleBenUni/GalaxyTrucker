@@ -70,6 +70,9 @@ public class CaricaCSV {
 	            	merceAbordo.add(new Pianeta(mappa));
 	            	carta = new StazioneAbbandonata(nome, livello, credito, credito, credito, credito, merceAbordo);
 	            	break;
+	            case SCHIAVISTI:
+	            	carta = new Schiavista(nome, livello, ggVolo, merce, equipaggio, credito);
+                    break;
                     default:
                      carta = new Carta(effetto, nome , livello, ggVolo, merce, equipaggio, credito);
 	            }
