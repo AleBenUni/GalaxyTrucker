@@ -9,7 +9,7 @@ public class Carta {
 	int ggVolo; //Spazio Aperto puo cambiare questo attributo. Non più final 
 	private final int credito; 
 	private final int equipaggio;
-	private final int merce;
+	private int merce; //Non più final in quanto il dato sarà azzerato dalla carta Schiavisti
 	final String nome; //Rimosso private per le sottoclassi dello stesso pacchetto "Un membro senza modificatore di accesso () è accessibile solo all'interno delle classi nello stesso pacchetto"
 	
 	NomeSpeciale effetto;
@@ -49,6 +49,10 @@ public class Carta {
 
 	public int getMerce() {
 		return merce;
+	}
+
+	public void setMerce(int merce) {
+		this.merce = merce;
 	}
 
 	public NomeSpeciale getNomeEffetto() {

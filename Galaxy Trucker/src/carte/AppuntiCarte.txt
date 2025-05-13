@@ -22,7 +22,7 @@
 	 *      d) Spazio Aperto
 	 * 
 	 * 4. Equipaggio (umani e alieni): 
-	 *    - Solo perdita (si perde con il meno . in caso di solo int diventa solo una richiesta di equipaggio per 
+	 *    - Solo perdita (si perde con il meno (-). in caso di solo int diventa solo una richiesta di equipaggio per 
 	 			risolvere la carta).
 	 *    - Eccezioni (0 perdite):
 	 *      a) Pioggia di Meteoriti
@@ -72,7 +72,13 @@
 	        
 	 Domanda per il prof: Non è che forse, per impedire l'interruzione del programma, serva un try catch con la parolina magica "continue"?
 	 
-	 Pesca: Dovrebbe nascere un file Pesca.java che gestisce la pesca come nell'esempio git #f9425e9 . Le azioni per ogni carta sarà gestito da questo file pesca
+	 Pesca: Dovrebbe nascere un file Pesca.java che gestisce la pesca come nell'esempio git #f9425e9 . Le azioni per ogni carta sarà gestito da questo file pesca. 
+	 		Il numero di giocatori coinvolti da un effetto sono gestite da questo file (idea temporanea)
 	 
 	 Pianeti: Ha una lista di pianeti, se ne fa vedere uno e si chiede ai giocatori (a turno) chi è interessato, poi si chiede per il prossimo pianeta.
 	 -_- Non si puo fare in quanto il lider sceglie per primo
+	 
+	 Schiavisti: Per riutilizzo delle parole chiavi in carte.csv
+	 			 popolo merce (dato non usato) come cannoni richiesti alla vittoria. 
+	 			 Nel file schiavista.java aggiungo l'attributo cannonate richieste che prende il valore da merce e lo setta a
+	 			 0.
