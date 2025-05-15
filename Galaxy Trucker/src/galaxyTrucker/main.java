@@ -4,6 +4,7 @@ import carte.Livello;
 import carte.SpazioAperto;
 import componenti.Connettore;
 import componenti.Motore;
+import carte.Mazzo;
 
 import java.util.Map;
 import java.util.Random;
@@ -18,19 +19,14 @@ public class main {
 		
 		
 		Motore m1 = new Motore(20, Connettore.doppio, Connettore.doppio, Connettore.doppio, Connettore.doppio);
-		Random r= new Random();
-		int r1 = r.nextInt(3);
 		
 		try {
-		String CSV = "src\\carte\\carte.csv";
-		Map<Integer, Carta> mazzo = CaricaCSV.loadMap(CSV);
-        System.out.printf("Caricate " + mazzo.size() + " carte\n\n");
+
+		Mazzo mazzo = new Mazzo();
         
-        
-        
-        Carta pescata = mazzo.remove(r1);
+        Carta pescata = mazzo.pescadalMazzo();
         System.out.printf("Ha pescato--> " + pescata);
-        
+        /*
        if (pescata instanceof SpazioAperto) // istanceof == è un? 
        {
     	   pescata.setGiorniVolo(m1.getNTubiScappamento());
@@ -41,11 +37,11 @@ public class main {
         for (Map.Entry<Integer, Carta> i : mazzo.entrySet()) {
             System.out.printf("ID: " + i.getKey() + " " + i.getValue() + "\n");       
         }
-
+*/ 
 	} catch (Exception e) {
         e.printStackTrace();
     }
-        
+       
 }
 
 }
