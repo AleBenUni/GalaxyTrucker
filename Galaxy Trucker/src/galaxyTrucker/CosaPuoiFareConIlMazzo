@@ -1,0 +1,14 @@
+Nota: Mazzo mazzo = new Mazzo(); è d'obbligo. Le 150 carte vengono preparate, e da esse inizierai a prepare il gioco.
+(Nella confezione di Galaxy Trucker abbiamo 150 carte [= 1 solo new Mazzo()], un nuovo new Mazzo() comporta aver comprato il gioco due volte)
+
+Mazzo mazzo = new Mazzo(); -> Il mazzo da cui costrire il gioco.
+
+Mazzo empty = new MazzoVuoto(); -> Genera un Mazzo assente di carte, se pesci da esso ti darà NULL.
+
+Carta pescata = mazzo.pescadalMazzo(); -> Pesca una carta casuale dal mazzo.
+
+mazzo.rivelaCarteMazzo(); -> Rivela tutte le carte del mazzo.
+Commento: Al momento le Carte rivelate mostrano l'ID sul terminale, verrà rimosso dalla stampa in seguito.
+
+empty.trasferisciCartaDaMazzo(Livello.III, mazzo); -> Trasferisci UNA carta da mazzo a empty di un livello specifico
+Commento: Nota che questo metodo non ha ancora avuto abbastanza test, potrebbe dare errori.

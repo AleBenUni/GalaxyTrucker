@@ -5,6 +5,7 @@ import carte.SpazioAperto;
 import componenti.Connettore;
 import componenti.Motore;
 import carte.Mazzo;
+import carte.MazzoVuoto;
 
 import java.util.Map;
 import java.util.Random;
@@ -17,7 +18,7 @@ public class main {
         
 		//questo main è solo una prova del file csv. Può essere modificato senza preavviso
 		
-		
+		String c="Vuoto";
 		Motore m1 = new Motore(20, Connettore.doppio, Connettore.doppio, Connettore.doppio, Connettore.doppio);
 		
 		try {
@@ -26,6 +27,18 @@ public class main {
         
         Carta pescata = mazzo.pescadalMazzo();
         System.out.printf("Ha pescato--> " + pescata);
+        mazzo.rivelaCarteMazzo();
+        Mazzo empty = new MazzoVuoto(); // Qualcosa qui non quadra
+
+        empty.rivelaCarteMazzo();
+        pescata = empty.pescadalMazzo();
+        System.out.printf("Ha pescato--> " + pescata);
+        empty.trasferisciCartaDaMazzo(Livello.III, mazzo);
+        empty.rivelaCarteMazzo();
+        pescata = empty.pescadalMazzo();
+        System.out.println("Ha pescato--> " + pescata);
+        System.out.println("Il mazzo principale ora: " );
+        mazzo.rivelaCarteMazzo();
         /*
        if (pescata instanceof SpazioAperto) // istanceof == è un? 
        {
