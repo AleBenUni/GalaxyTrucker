@@ -9,6 +9,7 @@ import java.util.Random;
 import carte.CaricaCSV;
 
 public class Mazzo {
+	//La classe è stata costruita prima di aggiungere il parametro ID alle carte, potrebbe essere necessaria una ristrutturazione della classe
 	String CSV = "src\\carte\\carte.csv";
 	Map<Integer, Carta> mazzo;
 	private Random r = new Random();
@@ -37,6 +38,10 @@ public class Mazzo {
             return null;
         }
 		 return mazzo.remove(Casuale ());
+	}
+	
+	public void aggiungiAlMazzo(Carta pescata) {
+		mazzo.put(pescata.getId(), pescata);
 	}
 	
 	public void rivelaCarteMazzo() {
@@ -82,6 +87,11 @@ public class Mazzo {
 		} else {
 			System.out.println("Non ci sono carte che soddisfano il livello richiesto. Operazione annulata");
 		}
+	}
+	
+	public void unisciMazzi(Mazzo dacuiTrasferire) {
+		 mazzo.putAll(dacuiTrasferire.mazzo);
+		 dacuiTrasferire.mazzo.clear(); //Ecco cosa sbagliavo, per i mazzi trasferiti come parametro va inserita .mazzo
 	}
 }
 

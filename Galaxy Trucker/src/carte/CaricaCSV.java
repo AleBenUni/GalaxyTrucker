@@ -34,7 +34,7 @@ public class CaricaCSV {
 	            Carta carta;
 	            switch(effetto) {
 	            case SPAZIO_APERTO:
-	            	carta = new SpazioAperto(nome, livello, ggVolo, merce, equipaggio, credito);
+	            	carta = new SpazioAperto(id, nome, livello, ggVolo, merce, equipaggio, credito);
                     break;
 	            case PIANETI:
 	            	 String raw = p[8].trim(); // parte di codice che ho dovuto cercare.
@@ -51,9 +51,7 @@ public class CaricaCSV {
                          }// cercata fino a qua
                          pianeti.add(new Pianeta(mappa));
                      }
-                     carta = new Pianeti(nome, livello,
-                                         ggVolo, merce, equipaggio, credito,
-                                         pianeti);
+                     carta = new Pianeti(id, nome, livello, ggVolo, merce, equipaggio, credito, pianeti);
                      break;
 	            case STAZIONE_ABBANDONATA:
 	            	String raw2 = p[8];
@@ -68,13 +66,13 @@ public class CaricaCSV {
 	            		mappa.put(tipo, qta);
 	            	}
 	            	merceAbordo.add(new Pianeta(mappa));
-	            	carta = new StazioneAbbandonata(nome, livello, credito, credito, credito, credito, merceAbordo);
+	            	carta = new StazioneAbbandonata(id, nome, livello, credito, credito, credito, credito, merceAbordo);
 	            	break;
 	            case SCHIAVISTI:
-	            	carta = new Schiavista(nome, livello, ggVolo, merce, equipaggio, credito);
+	            	carta = new Schiavista(id, nome, livello, ggVolo, merce, equipaggio, credito);
                     break;
                     default:
-                     carta = new Carta(effetto, nome , livello, ggVolo, merce, equipaggio, credito);
+                     carta = new Carta(id, effetto, nome , livello, ggVolo, merce, equipaggio, credito);
 	            }
 	            
 	            mazzo.put(id, carta);

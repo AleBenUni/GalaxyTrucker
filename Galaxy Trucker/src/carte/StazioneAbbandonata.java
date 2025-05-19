@@ -6,9 +6,9 @@ public class StazioneAbbandonata extends Carta{
 	
 	private final List<Pianeta> casse;
 
-	public StazioneAbbandonata(String nome, Livello livello, int ggVolo, int merce,
+	public StazioneAbbandonata(Integer id, String nome, Livello livello, int ggVolo, int merce,
 			int equipaggio, int credito, List<Pianeta> casse) {
-		super(NomeSpeciale.STAZIONE_ABBANDONATA, nome, livello, ggVolo, merce, equipaggio, credito);
+		super(id, NomeSpeciale.STAZIONE_ABBANDONATA, nome, livello, ggVolo, merce, equipaggio, credito);
 		this.casse = casse;
 	}
 

@@ -2,9 +2,9 @@ package carte;
 
 public class SpazioAperto extends Carta{
 
-	public SpazioAperto(String nome, Livello livello, int ggVolo, int merce, int equipaggio,
+	public SpazioAperto(Integer id, String nome, Livello livello, int ggVolo, int merce, int equipaggio,
 			int credito) {
-		super(NomeSpeciale.SPAZIO_APERTO, nome, livello, ggVolo, merce, equipaggio, credito);
+		super(id, NomeSpeciale.SPAZIO_APERTO, nome, livello, ggVolo, merce, equipaggio, credito);
 	}
 	
 	@Override

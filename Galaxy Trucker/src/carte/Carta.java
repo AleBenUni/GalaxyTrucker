@@ -6,6 +6,7 @@ import carte.NomeSpeciale;
 
 public class Carta {
 	
+	private final int id; 
 	int ggVolo; //Spazio Aperto puo cambiare questo attributo. Non più final 
 	private final int credito; 
 	private final int equipaggio;
@@ -15,9 +16,9 @@ public class Carta {
 	NomeSpeciale effetto;
 	private Livello livello;
 
-//richiama da "Pesca.java (ancora da realizzare) le funzioni riguardante ogni carta
-	public Carta(NomeSpeciale effetto,String nome ,Livello livello, int ggVolo, int merce, int equipaggio, int credito) {
-	    this.ggVolo = ggVolo;
+	public Carta(Integer id, NomeSpeciale effetto,String nome ,Livello livello, int ggVolo, int merce, int equipaggio, int credito) {
+		this.id = id; 
+		this.ggVolo = ggVolo;
 	    this.equipaggio = equipaggio;
 	    this.livello= livello;
 	    this.credito= credito;
@@ -25,6 +26,10 @@ public class Carta {
 	    this.effetto= effetto;
 	    this.nome= nome;
 	}
+	
+	public int getId() {
+        return id;
+    }
 
 	public Livello getLivello() {
 		return livello;
