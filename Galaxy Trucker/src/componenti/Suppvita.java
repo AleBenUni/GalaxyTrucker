@@ -57,7 +57,7 @@ public class Suppvita {
 		puntiVita -= danno;
 		if (puntiVita < 0) {
 			
-			puntivita = 0;
+			puntiVita = 0;
 			
 		}
 		
