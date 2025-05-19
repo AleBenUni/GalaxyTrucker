@@ -1,8 +1,7 @@
 package componenti;
 
 public class Suppvita {
-<<<<<<< HEAD
-=======
+
 
 	private String id; //nome del personaggio
 	private Equipaggio tipo; //umano o alieno (giallo o viola)
