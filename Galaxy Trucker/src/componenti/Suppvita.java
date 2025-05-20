@@ -1,5 +1,8 @@
 package componenti;
 
+//Bisogna aggiungere nel costruttore i connettori (vedi Cabina)
+//A che servono i punti vita e l'id?
+
 public class Suppvita {
 
 
@@ -69,7 +72,6 @@ public class Suppvita {
 		System.out.println("ID: " + id + ", tipo: " + tipo + ", Vita: " + puntiVita);
 		
 	}
->>>>>>> branch 'main' of https://github.com/AleBenUni/GalaxyTrucker.git
 	
 }
 
