@@ -5,8 +5,9 @@ import carte.Livello;
 public class Nave {
 	
 	private Cella[][] celle;
-	private int nRighe;		//Controllarne utilità
+	private int nRighe;
 	private int nColonne;
+	private int giorniVolo;
 	
 	
 	public Nave(Livello livello) {
@@ -14,6 +15,7 @@ public class Nave {
 			case I:
 				this.nRighe=5;
 				this.nColonne=5;
+				this.giorniVolo=0;
 				this.celle=new Cella[nRighe][nColonne];
 				for(int i=0;i<nRighe;i++)
 					for(int j=0;j<nColonne;j++)
@@ -56,6 +58,24 @@ public class Nave {
 	
 	public int getNColonne() {
 		return nColonne;
+	}
+	
+	public int getGiorniVolo() {
+		return giorniVolo;
+	}
+	
+	public void setGiorniVolo(int giorni) {
+		giorniVolo=giorni;
+	}
+	
+	public void addGiorniVolo(int giorni) {
+		if(giorni>=0)
+			giorniVolo+=giorni;
+	}
+	
+	public void minusGiorniVolo(int giorni) {
+		if(giorni<=0)
+			giorniVolo-=giorni;
 	}
 	
 	public Cella getCella(Posizione posizione) {
