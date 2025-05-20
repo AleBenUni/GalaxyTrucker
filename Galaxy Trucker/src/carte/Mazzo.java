@@ -86,6 +86,9 @@ public class Mazzo {
 		 dacuiTrasferire.mazzo.clear(); //Ecco cosa sbagliavo, per i mazzi trasferiti come parametro va inserita .mazzo
 	}
 	
+	public void svuotaMazzo() {
+		mazzo.clear();
+	}
 
 }
 
