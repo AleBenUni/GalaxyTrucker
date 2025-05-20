@@ -22,7 +22,10 @@ public class Mazzo {
         }
 	}
 	 
-	public Mazzo() {
+	public Mazzo(boolean vuoto) {
+		if(vuoto==true)
+			mazzo = new HashMap<>();
+		else
 	        caricaMazzo(CSV);
 	    }
 	
@@ -82,5 +85,13 @@ public class Mazzo {
 		 mazzo.putAll(dacuiTrasferire.mazzo);
 		 dacuiTrasferire.mazzo.clear(); //Ecco cosa sbagliavo, per i mazzi trasferiti come parametro va inserita .mazzo
 	}
+	
+	public void shuffle() {
+		
+	}
+	
+	public void shuffle(Livello livello) {	//La prima carta del mazzo deve essere del livello passato come parametro
+			
+		}
 }
 
