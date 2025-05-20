@@ -28,6 +28,7 @@ public class Interfaccia extends Application{
 	private int nRighe;
 	private int nColonne;
 	private Nave nave;
+	private Plancia plancia;
 	private HBox controlloOrientamento;
 	private HBox componentiDisponibili;
 	private HBox areaComponenti;
@@ -35,6 +36,7 @@ public class Interfaccia extends Application{
 	@Override
     public void start(Stage primaryStage) {
 		Gioco gioco=new Gioco(1,Livello.III);
+		plancia=gioco.getPlancia();
 		
 		primaryStage.setTitle("Galaxy Trucker");
 		
@@ -63,31 +65,6 @@ public class Interfaccia extends Application{
 			areaComponenti.getChildren().add(areaSingoloComponente[i]);
 		}
 		
-		
-		/*controlloOrientamento=new HBox(10);
-		controlloOrientamento.setAlignment(Pos.CENTER);
-		controlloOrientamento.setPrefHeight(aPulsanteRuota);
-		
-		Button[] pulsantiRuota=new Button[nComponentiDisponibili];
-		for(int i=0;i<nComponentiDisponibili;i++) {
-			pulsantiRuota[i]=new Button("Ruota");
-			controlloOrientamento.getChildren().add(pulsantiRuota[i]);
-		}
-		
-		componentiDisponibili=new HBox(10);
-		componentiDisponibili.setAlignment(Pos.CENTER);
-		componentiDisponibili.setPrefHeight(gComponentiDisponibili);
-		componentiDisponibili.setStyle("-fx-background-color: lightgreen; -fx-border-color: black; -fx-padding: 5px;");
-		
-		Rectangle[] componenti=new Rectangle[nComponentiDisponibili];
-		for(int i=0;i<nComponentiDisponibili;i++) {
-			componenti[i]=new Rectangle(gComponentiDisponibili,gComponentiDisponibili);
-			componenti[i].setFill(Color.LIGHTCYAN);
-			componenti[i].setStroke(Color.DIMGRAY);
-			componentiDisponibili.getChildren().add(componenti[i]);
-		}
-		
-		areaComponenti.getChildren().addAll(controlloOrientamento, componentiDisponibili);*/
 		finestra.setTop(areaComponenti);	
 		
 		GridPane grigliaNave=new GridPane();
