@@ -20,10 +20,10 @@ public class main {
 		
 		Mazzo mazzo = new Mazzo();
         
-        Carta pescata = mazzo.pescadalMazzo();
-        System.out.printf("\nHa pescato--> " + pescata);
+  //      Carta pescata = mazzo.pescadalMazzo();
+       // System.out.printf("\nHa pescato--> " + pescata);
         mazzo.rivelaCarteMazzo();
-        Mazzo empty = new MazzoVuoto(); // Qualcosa qui non quadra, da Caricate 8 carte quando ne carica 0
+   /*     Mazzo empty = new MazzoVuoto();
 empty.aggiungiAlMazzo(pescata);
         empty.rivelaCarteMazzo();
         
@@ -42,7 +42,7 @@ empty.aggiungiAlMazzo(pescata);
         empty.rivelaCarteMazzo();
         System.out.println("\nMentre nel mazzo prinicipale : " );
         mazzo.rivelaCarteMazzo();
-       
+       */
 }
 
 }

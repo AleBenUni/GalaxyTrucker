@@ -1,8 +1,6 @@
 package carte;
 
 public class Schiavista extends Carta{
-
-	
 	//i cannoni per questo file sono merce, che verra settato a 0 (parlo di merce)
 	int cannonateRichieste;
 	public Schiavista(Integer id, String nome ,Livello livello, int ggVolo, int merce, int equipaggio, int credito) {

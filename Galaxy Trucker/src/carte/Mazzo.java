@@ -65,7 +65,7 @@ public class Mazzo {
 	        } else {
 	        	contatore++;
 	        }
-		}while(contatore<200);
+		}while(contatore<2000);
 		return null;
 	}
 	
