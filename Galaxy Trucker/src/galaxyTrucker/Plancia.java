@@ -2,17 +2,22 @@ package galaxyTrucker;
 
 import carte.Carta;
 import carte.Livello;
+import carte.Mazzo;
 
 public class Plancia {
 
 	private int giorni;
 	private int startPos[];
-	private Carta mazzo[]
+	private Mazzo mazzo[];
 	
 	public Plancia(Livello livello) {
 		
 		
+		Mazzo mainMazzo=new Mazzo(false);
+		for(int i=0;i<4;i++)
+			mazzo[i]=new Mazzo(true);
 		startPos=new int[4];
+		mazzo=new Mazzo[4];
 		switch(livello) {
 			case I:
 				giorni=18;
@@ -20,6 +25,11 @@ public class Plancia {
 				startPos[1]=2;
 				startPos[2]=1;
 				startPos[3]=0;
+				
+				for(int i=0;i<4;i++) {
+					mazzo[i].trasferisciCartaDaMazzo(Livello.I, mainMazzo);
+					mazzo[i].trasferisciCartaDaMazzo(Livello.I, mainMazzo);
+				}
 				break;
 				
 			case II:
@@ -28,6 +38,13 @@ public class Plancia {
 				startPos[1]=3;
 				startPos[2]=1;
 				startPos[3]=0;
+				
+				for(int i=0;i<4;i++) {
+					mazzo[i].trasferisciCartaDaMazzo(Livello.I, mainMazzo);
+					mazzo[i].trasferisciCartaDaMazzo(Livello.II, mainMazzo);
+					mazzo[i].trasferisciCartaDaMazzo(Livello.II, mainMazzo);
+				}
+
 				break;
 				
 			case III:
@@ -36,6 +53,13 @@ public class Plancia {
 				startPos[1]=5;
 				startPos[2]=2;
 				startPos[3]=0;
+				
+				for(int i=0;i<4;i++) {
+					mazzo[i].trasferisciCartaDaMazzo(Livello.I, mainMazzo);
+					mazzo[i].trasferisciCartaDaMazzo(Livello.II, mainMazzo);
+					mazzo[i].trasferisciCartaDaMazzo(Livello.III, mainMazzo);
+					mazzo[i].trasferisciCartaDaMazzo(Livello.III, mainMazzo);
+				}
 				break;
 			
 		}
@@ -52,5 +76,11 @@ public class Plancia {
 
 	public void setStartPos(int startPos[]) {
 		this.startPos = startPos;
+	}
+	
+	public Mazzo getMazzo(int nMazzo) {
+		if(nMazzo>0||nMazzo<=4)
+			return mazzo[nMazzo];
+		return null;
 	}
 }

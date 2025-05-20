@@ -86,12 +86,6 @@ public class Mazzo {
 		 dacuiTrasferire.mazzo.clear(); //Ecco cosa sbagliavo, per i mazzi trasferiti come parametro va inserita .mazzo
 	}
 	
-	public void shuffle() {
-		
-	}
-	
-	public void shuffle(Livello livello) {	//La prima carta del mazzo deve essere del livello passato come parametro
-			
-		}
+
 }
 
