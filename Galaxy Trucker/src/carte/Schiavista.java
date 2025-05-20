@@ -20,6 +20,4 @@ public class Schiavista extends Carta{
 		return " Per difenderti avrai bisogno di almeno " + getCannonateRichieste() + " o più cannoni. " + getMerce() + " merce sara' coinvolta in questo attacco";
 	}
 	
-	
-	
 }

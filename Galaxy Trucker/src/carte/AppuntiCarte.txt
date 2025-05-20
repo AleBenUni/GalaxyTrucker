@@ -82,3 +82,7 @@
 	 			 popolo merce (dato non usato) come cannoni richiesti alla vittoria. 
 	 			 Nel file schiavista.java aggiungo l'attributo cannonate richieste che prende il valore da merce e lo setta a
 	 			 0.
+	 			 
+	 Logica:	Nella logioca di gioco controlla se il giocatore ha possibilità di rispondere agli effetti in base alla nave.
+	 			 Non ha metodi. 
+	 			 
