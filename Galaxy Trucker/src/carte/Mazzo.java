@@ -9,29 +9,28 @@ import java.util.Random;
 import carte.CaricaCSV;
 
 public class Mazzo {
-	//La classe è stata costruita prima di aggiungere il parametro ID alle carte, potrebbe essere necessaria una ristrutturazione della classe
 	String CSV = "src\\carte\\carte.csv";
 	Map<Integer, Carta> mazzo;
 	private Random r = new Random();
+	
+	private void caricaMazzo(String CSV) {
+		try {
+            mazzo = CaricaCSV.loadMap(CSV);
+            System.out.printf("Il mazzo è pronto");
+        } catch (IOException e) {
+        	 e.printStackTrace();
+        }
+	}
+	 
+	public Mazzo() {
+	        caricaMazzo(CSV);
+	    }
 	
 	private int Casuale () {
 		Integer[] listaIDMazzo = mazzo.keySet().toArray(new Integer[0]); 
 		Integer idCasuale = listaIDMazzo[r.nextInt(listaIDMazzo.length)];
 		return idCasuale;
     }
-	
-	 public Mazzo() {
-	        caricaMazzo(CSV);
-	    }
-	
-	private void caricaMazzo(String CSV) {
-		try {
-            mazzo = CaricaCSV.loadMap(CSV);
-            System.out.printf("Caricate " + mazzo.size() + " carte\n\n");
-        } catch (IOException e) {
-        	 e.printStackTrace();
-        }
-	}
 	
 	public Carta pescadalMazzo() {
 		if (mazzo.isEmpty()) {
@@ -51,7 +50,7 @@ public class Mazzo {
 	    }
 	}
 	
-	private Integer pescaPerLivello(Livello livello) {
+	private Carta pescaPerLivello(Livello livello) {
 		if (mazzo.isEmpty()) {
             return null;
         }
@@ -62,7 +61,7 @@ public class Mazzo {
 			idCasuale = Casuale();
 			carta = mazzo.get(idCasuale);
 			if (carta.getLivello() == livello) {
-	            return idCasuale;
+	            return mazzo.remove(idCasuale);
 	        } else {
 	        	contatore++;
 	        }
@@ -70,20 +69,10 @@ public class Mazzo {
 		return null;
 	}
 	
-	private Carta getCartaDaID(Integer ID) { 
-		 return mazzo.get(ID);
-	}
-	
-	private void rimuoviCartaDaID(Integer ID) {
-		mazzo.remove(ID);
-	}
-	
 	public void trasferisciCartaDaMazzo(Livello carta, Mazzo dacuiTrasferire) {
-		 Integer IDinMovimento = dacuiTrasferire.pescaPerLivello(carta);
-		 Carta inMovimento = dacuiTrasferire.getCartaDaID(IDinMovimento);
+		Carta inMovimento  = dacuiTrasferire.pescaPerLivello(carta);
 		if (inMovimento != null) {
-			this.mazzo.put(IDinMovimento, inMovimento);
-			dacuiTrasferire.rimuoviCartaDaID(IDinMovimento);
+			this.mazzo.put(inMovimento.getId(), inMovimento);
 		} else {
 			System.out.println("Non ci sono carte che soddisfano il livello richiesto. Operazione annulata");
 		}

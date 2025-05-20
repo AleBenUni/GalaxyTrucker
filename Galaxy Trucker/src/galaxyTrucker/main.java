@@ -18,15 +18,10 @@ public class main {
         
 		//questo main è solo una prova del file csv. Può essere modificato senza preavviso
 		
-		String c="Vuoto";
-		Motore m1 = new Motore(20, Connettore.doppio, Connettore.doppio, Connettore.doppio, Connettore.doppio);
-		
-		try {
-
 		Mazzo mazzo = new Mazzo();
         
         Carta pescata = mazzo.pescadalMazzo();
-        System.out.printf("Ha pescato--> " + pescata);
+        System.out.printf("\nHa pescato--> " + pescata);
         mazzo.rivelaCarteMazzo();
         Mazzo empty = new MazzoVuoto(); // Qualcosa qui non quadra, da Caricate 8 carte quando ne carica 0
 empty.aggiungiAlMazzo(pescata);
@@ -35,7 +30,7 @@ empty.aggiungiAlMazzo(pescata);
         empty.trasferisciCartaDaMazzo(Livello.III, mazzo);
         empty.rivelaCarteMazzo();
         pescata = empty.pescadalMazzo();
-        System.out.println("Ha pescato--> " + pescata);
+        System.out.println("\nHa pescato--> " + pescata);
         empty.aggiungiAlMazzo(pescata);
         System.out.println("Il mazzo principale ora: " );
         mazzo.rivelaCarteMazzo();
@@ -47,21 +42,6 @@ empty.aggiungiAlMazzo(pescata);
         empty.rivelaCarteMazzo();
         System.out.println("\nMentre nel mazzo prinicipale : " );
         mazzo.rivelaCarteMazzo();
-        /*
-       if (pescata instanceof SpazioAperto) // istanceof == è un? 
-       {
-    	   pescata.setGiorniVolo(m1.getNTubiScappamento());
-    	   System.out.printf("\nL'effetto della carta ora è: " + pescata);
-       }
-        
-        System.out.printf("\n\nCi sono ancora " + mazzo.size() + " carte\n\n");
-        for (Map.Entry<Integer, Carta> i : mazzo.entrySet()) {
-            System.out.printf("ID: " + i.getKey() + " " + i.getValue() + "\n");       
-        }
-*/ 
-	} catch (Exception e) {
-        e.printStackTrace();
-    }
        
 }
 
