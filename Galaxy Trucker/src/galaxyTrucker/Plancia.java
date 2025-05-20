@@ -14,10 +14,10 @@ public class Plancia {
 		
 		
 		Mazzo mainMazzo=new Mazzo(false);
+		mazzo=new Mazzo[4];
 		for(int i=0;i<4;i++)
 			mazzo[i]=new Mazzo(true);
 		startPos=new int[4];
-		mazzo=new Mazzo[4];
 		switch(livello) {
 			case I:
 				giorni=18;
@@ -79,7 +79,7 @@ public class Plancia {
 	}
 	
 	public Mazzo getMazzo(int nMazzo) {
-		if(nMazzo>0||nMazzo<=4)
+		if(nMazzo>0&&nMazzo<=4)
 			return mazzo[nMazzo];
 		return null;
 	}

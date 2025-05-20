@@ -25,6 +25,8 @@ public class main {
         mazzo.rivelaCarteMazzo();
         mazzo.svuotaMazzo();
         mazzo.rivelaCarteMazzo();
+        
+        new Plancia(Livello.I);
    /*     Mazzo empty = new MazzoVuoto();
 empty.aggiungiAlMazzo(pescata);
         empty.rivelaCarteMazzo();
