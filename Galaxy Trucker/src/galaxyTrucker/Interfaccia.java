@@ -3,6 +3,7 @@ package galaxyTrucker;
 import carte.Livello;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D; // Per gestire coordinate
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
@@ -21,6 +22,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Interfaccia extends Application {
 
@@ -32,11 +35,13 @@ public class Interfaccia extends Application {
     private int nComponentiDisponibili = 5;
 
     // Dimensioni e Stile Plancia
-    private double altezzaPreferitaPlanciaPane = 400; // Aumentata leggermente per più spazio
-    private double rCerchioGiorno = 12; // Raggio dei cerchi che rappresentano i giorni
-    private double laMazzoPlancia = 75; // Larghezza Mazzo
-    private double aMazzoPlancia = 105; // Altezza Mazzo
-    private double paddingPlanciaInterno = 30; // Aumentato per dare più respiro
+    private double altezzaPreferitaPlanciaPane = 450;
+    private double rCerchioGiorno = 12;
+    // Queste ora rappresentano le dimensioni LOGICHE di un mazzo "in piedi"
+    // Per la visualizzazione orizzontale, le useremo scambiate.
+    private double laMazzoLogica = 75; // Larghezza logica (se verticale)
+    private double aMazzoLogica = 105; // Altezza logica (se verticale)
+    private double paddingPlanciaInterno = 30;
 
 
     // Riferimenti Logica di Gioco
@@ -45,8 +50,6 @@ public class Interfaccia extends Application {
 
     // Riferimenti UI
     private Pane panePlanciaGrafica;
-    // private Button[] arrayPulsantiRuota; // Se servono per interazioni complesse
-    // private Rectangle[] arrayComponentiPlaceholder;
 
 
     @Override
@@ -66,8 +69,9 @@ public class Interfaccia extends Application {
         finestraLayoutPrincipale.setStyle("-fx-background-color: #2A2A2A;");
 
         // --- ZONA SUPERIORE: PLANCIA ---
-        panePlanciaGrafica = creaPanePlanciaGrafica(this.plancia, lFinestra - 30, altezzaPreferitaPlanciaPane); // Passa dimensioni disponibili
+        panePlanciaGrafica = creaPanePlanciaGrafica(this.plancia, lFinestra - 30, altezzaPreferitaPlanciaPane);
         BorderPane.setMargin(panePlanciaGrafica, new Insets(15, 15, 10, 15));
+        BorderPane.setAlignment(panePlanciaGrafica, Pos.CENTER);
         finestraLayoutPrincipale.setTop(panePlanciaGrafica);
 
         // --- ZONA INTERMEDIA: COMPONENTI DISPONIBILI ---
@@ -113,7 +117,6 @@ public class Interfaccia extends Application {
 
         // --- ZONA INFERIORE: GRIGLIA NAVE ---
         GridPane grigliaNave = new GridPane();
-        // ... (configurazione grigliaNave come prima) ...
         grigliaNave.setPadding(new Insets(10));
         grigliaNave.setAlignment(Pos.CENTER);
         grigliaNave.setStyle("-fx-background-color: #1C1C1C; -fx-border-color: #404040; -fx-border-width: 1; -fx-background-radius: 8; -fx-border-radius: 8;");
@@ -132,16 +135,17 @@ public class Interfaccia extends Application {
                 Cella cellaLogica = nave.getCella(new Posizione(i, j));
 
                 if (cellaLogica != null && cellaLogica.isUtilizzabile()) {
-                    cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0,1,1,0.75));
-                    cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0,1,1,0.5));
+                    cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1, 1, 0.75));
+                    cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1, 1, 0.5));
                     cellaGrafica.setStrokeWidth(1);
                 } else {
                     cellaGrafica.setFill(Color.valueOf("#2E2E2E"));
                     cellaGrafica.setStroke(Color.valueOf("#202020"));
                 }
-                final int r = i; final int c = j;
+                final int r = i;
+                final int c = j;
                 cellaGrafica.setOnMouseClicked(event -> {
-                    System.out.println("Click su cella nave ("+r+","+c+")");
+                    System.out.println("Click su cella nave (" + r + "," + c + ")");
                 });
                 grigliaNave.add(cellaGrafica, j, i);
             }
@@ -152,6 +156,8 @@ public class Interfaccia extends Application {
         contenitoreCentraleVBox.setAlignment(Pos.TOP_CENTER);
         contenitoreCentraleVBox.getChildren().addAll(areaComponentiHBox, grigliaNave);
         finestraLayoutPrincipale.setCenter(contenitoreCentraleVBox);
+        BorderPane.setAlignment(contenitoreCentraleVBox, Pos.CENTER);
+
 
         // --- SCENA E STAGE ---
         Scene scena = new Scene(finestraLayoutPrincipale, lFinestra, aFinestra, false, SceneAntialiasing.BALANCED);
@@ -161,9 +167,9 @@ public class Interfaccia extends Application {
         primaryStage.show();
     }
 
-    private Pane creaPanePlanciaGrafica(Plancia planciaLogica, double larghezzaDisponibilePerPane, double altezzaDisponibilePerPane) {
+    private Pane creaPanePlanciaGrafica(Plancia planciaLogica, double larghezzaTotalePane, double altezzaTotalePane) {
         Pane layoutPlancia = new Pane();
-        layoutPlancia.setPrefSize(larghezzaDisponibilePerPane, altezzaDisponibilePerPane);
+        layoutPlancia.setPrefSize(larghezzaTotalePane, altezzaTotalePane);
         layoutPlancia.setStyle(
             "-fx-background-color: #383838; " +
             "-fx-border-color: #585858; " +
@@ -172,92 +178,145 @@ public class Interfaccia extends Application {
             "-fx-border-radius: 12;"
         );
 
-        // Area di disegno effettiva all'interno del Pane, dopo aver applicato il padding interno
-        double W_contenuto = larghezzaDisponibilePerPane - (2 * paddingPlanciaInterno);
-        double H_contenuto = altezzaDisponibilePerPane - (2 * paddingPlanciaInterno);
+        double W_contenuto = larghezzaTotalePane - (2 * paddingPlanciaInterno);
+        double H_contenuto = altezzaTotalePane - (2 * paddingPlanciaInterno);
 
-        if (W_contenuto <= 0 || H_contenuto <= 0 || planciaLogica.getGiorni() <= 0) {
-            Label infoLabel = new Label("Plancia non visualizzabile (spazio insuff. o 0 giorni)");
+        int numGiorni = planciaLogica.getGiorni();
+
+        if (W_contenuto <= rCerchioGiorno * 6 || H_contenuto <= rCerchioGiorno * 6 || numGiorni <= 0) {
+            Label infoLabel = new Label("Plancia non visualizzabile (spazio/giorni insuff.)");
             infoLabel.setTextFill(Color.WHITE);
             infoLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
             StackPane placeholder = new StackPane(infoLabel);
-            placeholder.setPrefSize(larghezzaDisponibilePerPane, altezzaDisponibilePerPane); // Occupa tutto il pane
+            placeholder.prefWidthProperty().bind(layoutPlancia.widthProperty());
+            placeholder.prefHeightProperty().bind(layoutPlancia.heightProperty());
             layoutPlancia.getChildren().add(placeholder);
             return layoutPlancia;
         }
 
-        // Centro dell'area di contenuto (dove verrà centrata l'ellisse)
-        // Le coordinate sono relative all'angolo superiore sinistro del Pane layoutPlancia
         double centroX_contenuto = paddingPlanciaInterno + W_contenuto / 2;
         double centroY_contenuto = paddingPlanciaInterno + H_contenuto / 2;
 
-        // Spazio disponibile per l'ellisse DEI CENTRI dei cerchi-giorno,
-        // DOPO aver allocato spazio per i mazzi e per il raggio dei cerchi-giorno stessi.
-        // W_spazio_ellisse è la larghezza tra i bordi interni dei mazzi verticali.
-        // H_spazio_ellisse è l'altezza tra i bordi interni dei mazzi orizzontali.
-        double W_spazio_ellisse = W_contenuto - (2 * laMazzoPlancia) - (2 * rCerchioGiorno); // Sottrae larghezza mazzi e diametro cerchio
-        double H_spazio_ellisse = H_contenuto - (2 * aMazzoPlancia) - (2 * rCerchioGiorno); // Sottrae altezza mazzi e diametro cerchio
+        // Dimensioni VISUALI dei mazzi (ora orizzontali)
+        double mazzoVisualWidth = this.aMazzoLogica; // Altezza logica diventa larghezza visuale
+        double mazzoVisualHeight = this.laMazzoLogica; // Larghezza logica diventa altezza visuale
+
+        // Spazio disponibile per l'ellisse DEI CENTRI dei cerchi, tra i mazzi
+        // I mazzi laterali (Ovest, Est) ora hanno larghezza 'mazzoVisualWidth'
+        // I mazzi superiore/inferiore (Nord, Sud) ora hanno altezza 'mazzoVisualHeight'
+        double spazioPerEllisseOrizz = W_contenuto - (2 * mazzoVisualWidth);
+        double spazioPerEllisseVert = H_contenuto - (2 * mazzoVisualHeight);
+
+        double targetSemiA = (spazioPerEllisseOrizz / 2) - rCerchioGiorno;
+        double targetSemiB = (spazioPerEllisseVert / 2) - rCerchioGiorno;
+
+        if (targetSemiA < rCerchioGiorno) targetSemiA = rCerchioGiorno;
+        if (targetSemiB < rCerchioGiorno) targetSemiB = rCerchioGiorno;
         
-        // I semi-assi sono la metà di questo spazio disponibile
-        double semiasseA = W_spazio_ellisse / 2;
-        double semiasseB = H_spazio_ellisse / 2;
+        double semiasseA = targetSemiA;
+        double semiasseB = targetSemiB;
+        
+        double absoluteMinSemiAxis = rCerchioGiorno * 1.5; 
+        if (numGiorni > 20) absoluteMinSemiAxis = rCerchioGiorno * 1.8;
+        if (numGiorni > 30) absoluteMinSemiAxis = rCerchioGiorno * 2.2;
 
-        // Controllo di sicurezza per evitare semi-assi negativi o troppo piccoli
-        double minSemiAsse = rCerchioGiorno * 1.5; // Minimo per evitare sovrapposizioni estreme
-        if (semiasseA < minSemiAsse) semiasseA = minSemiAsse;
-        if (semiasseB < minSemiAsse) semiasseB = minSemiAsse;
-        if (planciaLogica.getGiorni() > 15 && semiasseA < rCerchioGiorno * 2.5) semiasseA = rCerchioGiorno * 2.5; // Più spazio se molti giorni
-        if (planciaLogica.getGiorni() > 15 && semiasseB < rCerchioGiorno * 2.5) semiasseB = rCerchioGiorno * 2.5;
+        if (semiasseA < absoluteMinSemiAxis) semiasseA = absoluteMinSemiAxis;
+        if (semiasseB < absoluteMinSemiAxis) semiasseB = absoluteMinSemiAxis;
 
+        if ((semiasseA + rCerchioGiorno) * 2 > spazioPerEllisseOrizz) {
+            semiasseA = (spazioPerEllisseOrizz / 2) - rCerchioGiorno;
+            if (semiasseA < rCerchioGiorno * 0.5) semiasseA = rCerchioGiorno * 0.5; 
+        }
+        if ((semiasseB + rCerchioGiorno) * 2 > spazioPerEllisseVert) {
+            semiasseB = (spazioPerEllisseVert / 2) - rCerchioGiorno;
+            if (semiasseB < rCerchioGiorno * 0.5) semiasseB = rCerchioGiorno * 0.5; 
+        }
+        
+        double h = Math.pow(semiasseA - semiasseB, 2) / Math.pow(semiasseA + semiasseB, 2);
+        double perimetroApprossimato = Math.PI * (semiasseA + semiasseB) * (1 + (3 * h) / (10 + Math.sqrt(4 - 3 * h)));
+        
+        if (Double.isNaN(perimetroApprossimato) || perimetroApprossimato <=0 || numGiorni == 0) {
+            perimetroApprossimato = 2 * Math.PI * Math.sqrt((semiasseA*semiasseA + semiasseB*semiasseB)/2);
+            if (numGiorni == 0 && perimetroApprossimato <=0) perimetroApprossimato = 1;
+        }
 
-        int numGiorni = planciaLogica.getGiorni();
-        for (int i = 0; i < numGiorni; i++) {
-            double angolo = (2 * Math.PI * i / numGiorni) - (Math.PI / 2); // Inizia dall'alto
-            double x_centro_cerchio = centroX_contenuto + semiasseA * Math.cos(angolo);
-            double y_centro_cerchio = centroY_contenuto + semiasseB * Math.sin(angolo);
+        double distanzaTargetTraGiorni = (numGiorni > 0) ? (perimetroApprossimato / numGiorni) : 0;
+        List<Point2D> puntiGiorni = new ArrayList<>();
 
+        if (numGiorni > 0) {
+            double angoloCorrente = -Math.PI / 2; 
+            Point2D puntoPrecedente = new Point2D(
+                    centroX_contenuto + semiasseA * Math.cos(angoloCorrente),
+                    centroY_contenuto + semiasseB * Math.sin(angoloCorrente)
+            );
+            puntiGiorni.add(puntoPrecedente);
+            double deltaAngoloMoltoPiccolo = 0.001; 
+
+            for (int i = 1; i < numGiorni; i++) {
+                double lunghezzaArcoAccumulata = 0;
+                Point2D prossimoPuntoCalcolato = puntoPrecedente; 
+                Point2D ultimoPuntoStep = puntoPrecedente;
+
+                while(lunghezzaArcoAccumulata < distanzaTargetTraGiorni) {
+                    angoloCorrente += deltaAngoloMoltoPiccolo;
+                    Point2D puntoTestCorrente = new Point2D(
+                        centroX_contenuto + semiasseA * Math.cos(angoloCorrente),
+                        centroY_contenuto + semiasseB * Math.sin(angoloCorrente)
+                    );
+                    lunghezzaArcoAccumulata += ultimoPuntoStep.distance(puntoTestCorrente);
+                    ultimoPuntoStep = puntoTestCorrente;
+
+                    if (lunghezzaArcoAccumulata >= distanzaTargetTraGiorni || angoloCorrente > 3 * Math.PI) { 
+                        prossimoPuntoCalcolato = ultimoPuntoStep;
+                        break;
+                    }
+                }
+                puntiGiorni.add(prossimoPuntoCalcolato);
+                puntoPrecedente = prossimoPuntoCalcolato;
+            }
+        }
+
+        for (int i = 0; i < puntiGiorni.size(); i++) {
+            Point2D p = puntiGiorni.get(i);
             Circle cerchioGiornoShape = new Circle(rCerchioGiorno);
             cerchioGiornoShape.setSmooth(true);
             cerchioGiornoShape.setFill(Color.ORANGERED.deriveColor(0, 1.1, 0.9, 0.95));
             cerchioGiornoShape.setStroke(Color.DARKRED.darker());
             cerchioGiornoShape.setStrokeWidth(1.5);
-            
+
             Text numeroGiornoText = new Text(String.valueOf(i + 1));
-            numeroGiornoText.setFont(Font.font("Arial", FontWeight.BOLD, rCerchioGiorno * 0.85));
+            numeroGiornoText.setFont(Font.font("Arial", FontWeight.BOLD, rCerchioGiorno * 0.80));
             numeroGiornoText.setFill(Color.WHITE);
-            
+
             StackPane cerchioConTesto = new StackPane(cerchioGiornoShape, numeroGiornoText);
-            cerchioConTesto.setLayoutX(x_centro_cerchio - rCerchioGiorno); 
-            cerchioConTesto.setLayoutY(y_centro_cerchio - rCerchioGiorno);
+            cerchioConTesto.setLayoutX(p.getX() - rCerchioGiorno);
+            cerchioConTesto.setLayoutY(p.getY() - rCerchioGiorno);
             layoutPlancia.getChildren().add(cerchioConTesto);
         }
-
-        // Posizionamento dei Mazzi
+        
         Color coloreMazzoFill = Color.SADDLEBROWN.deriveColor(0, 0.7, 0.6, 0.9);
-        Color coloreMazzoStroke = Color.BLACK.deriveColor(0,1,1,0.5);
+        Color coloreMazzoStroke = Color.BLACK.deriveColor(0, 1, 1, 0.5);
 
-        // Mazzo Superiore: al bordo superiore del contenuto, centrato orizzontalmente
-        creaMazzoGrafico(layoutPlancia, "Mazzo N", 
-                         centroX_contenuto - laMazzoPlancia / 2, paddingPlanciaInterno, 
-                         coloreMazzoFill, coloreMazzoStroke);
-        // Mazzo Inferiore: al bordo inferiore del contenuto, centrato orizzontalmente
-        creaMazzoGrafico(layoutPlancia, "Mazzo S", 
-                         centroX_contenuto - laMazzoPlancia / 2, paddingPlanciaInterno + H_contenuto - aMazzoPlancia, 
-                         coloreMazzoFill, coloreMazzoStroke);
-        // Mazzo Sinistro: al bordo sinistro del contenuto, centrato verticalmente
-        creaMazzoGrafico(layoutPlancia, "Mazzo O", 
-                         paddingPlanciaInterno, centroY_contenuto - aMazzoPlancia / 2, 
-                         coloreMazzoFill, coloreMazzoStroke);
-        // Mazzo Destro: al bordo destro del contenuto, centrato verticalmente
-        creaMazzoGrafico(layoutPlancia, "Mazzo E", 
-                         paddingPlanciaInterno + W_contenuto - laMazzoPlancia, centroY_contenuto - aMazzoPlancia / 2, 
-                         coloreMazzoFill, coloreMazzoStroke);
+        // Posizionamento dei Mazzi Orizzontali
+        // Mazzo Superiore
+        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo N", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno, coloreMazzoFill, coloreMazzoStroke);
+        // Mazzo Inferiore
+        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo S", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno + H_contenuto - mazzoVisualHeight, coloreMazzoFill, coloreMazzoStroke);
+        // Mazzo Sinistro
+        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo O", paddingPlanciaInterno, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
+        // Mazzo Destro
+        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo E", paddingPlanciaInterno + W_contenuto - mazzoVisualWidth, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
 
         return layoutPlancia;
     }
 
-    private void creaMazzoGrafico(Pane contenitore, String etichetta, double x, double y, Color fill, Color stroke) {
-        Rectangle mazzoRect = new Rectangle(laMazzoPlancia, aMazzoPlancia);
+    // Modificato per creare mazzi orizzontali
+    private void creaMazzoGraficoOrizzontale(Pane contenitore, String etichetta, double x, double y, Color fill, Color stroke) {
+        // Per i mazzi orizzontali, la larghezza visuale è l'altezza logica, e viceversa
+        double mazzoVisualWidth = this.aMazzoLogica; 
+        double mazzoVisualHeight = this.laMazzoLogica;
+
+        Rectangle mazzoRect = new Rectangle(mazzoVisualWidth, mazzoVisualHeight);
         mazzoRect.setSmooth(true);
         mazzoRect.setFill(fill);
         mazzoRect.setStroke(stroke);
@@ -277,7 +336,10 @@ public class Interfaccia extends Application {
     
     private void mostraErroreEChiudi(String titolo, String messaggio) {
         System.err.println(titolo + ": " + messaggio);
-        // In una GUI reale, useresti javafx.scene.control.Alert e Platform.exit()
+        // Alert alert = new Alert(Alert.AlertType.ERROR);
+        // alert.setTitle(titolo); alert.setHeaderText(null); alert.setContentText(messaggio);
+        // alert.showAndWait();
+        // javafx.application.Platform.exit();
     }
 
     public static void main(String[] args) {

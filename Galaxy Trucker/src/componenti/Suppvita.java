@@ -1,18 +1,13 @@
 package componenti;
-
-//Bisogna aggiungere nel costruttore i connettori (vedi Cabina)
-//A che servono i punti vita e l'id?
+import componenti.Equipaggio;
 
 public class Suppvita {
 
-
-	private String id; //nome del personaggio
 	private Equipaggio tipo; //umano o alieno (giallo o viola)
-	private int puntiVita; //(vita dell'equipaggio)
+	private int puntiVita; 
 	
 	public Suppvita(String id, Equipaggio tipo) {
 		
-		this.id = id;
 		this.tipo = tipo;
 		this.puntiVita = inizializzaPuntiVita(tipo);
 		
@@ -38,12 +33,6 @@ public class Suppvita {
 		
 	}
 	
-	public String getId() {
-		
-		return id;
-		
-	}
-	
 	public Equipaggio getTipo() {
 			
 			return tipo;
@@ -66,12 +55,5 @@ public class Suppvita {
 		}
 		
 	}
-	
-	public void stampaInfo() {
-		
-		System.out.println("ID: " + id + ", tipo: " + tipo + ", Vita: " + puntiVita);
-		
-	}
-	
 }
 

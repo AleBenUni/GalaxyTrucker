@@ -86,3 +86,8 @@
 	 Logica:	Nella logioca di gioco controlla se il giocatore ha possibilità di rispondere agli effetti in base alla nave.
 	 			 Non ha metodi. 
 	 			 
+	 Meteoriti: Ed eccoci al tasto dolente.
+	 			Ogni carta ha quattro direzioni in cui può colpire. In ogni direzione c'è un quantitativo e una grandezza.
+	 			Quindi servono: Direzione, Quantità per direzione e dimensione. Devo favorire il riutilizzo nel file Excel.
+	 			Idea 1: Tratto le quattro direzioni con un pianeta, Con rosso intendo un meteorite grande e con blu intendo un meteorite piccolo. Ci saranno sempre 
+	 					quattro pianeti, si parte dal nord e si va in senso orario.

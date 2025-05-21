@@ -1,4 +1,4 @@
-package galaxyTrucker;
+/*package galaxyTrucker;
 
 import carte.Livello;
 import javafx.application.Application;
@@ -116,4 +116,4 @@ public class Interfaccia extends Application{
 		launch(args);
 	}
 
-}
+}*/

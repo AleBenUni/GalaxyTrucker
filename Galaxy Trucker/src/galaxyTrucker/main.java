@@ -18,7 +18,7 @@ public class main {
         
 		//questo main è solo una prova del file csv. Può essere modificato senza preavviso
 		
-		Mazzo mazzo = new Mazzo(false);
+		/*Mazzo mazzo = new Mazzo(false);
         
   //      Carta pescata = mazzo.pescadalMazzo();
        // System.out.printf("\nHa pescato--> " + pescata);
@@ -27,7 +27,7 @@ public class main {
         mazzo.rivelaCarteMazzo();
         
         new Plancia(Livello.I);
-   /*     Mazzo empty = new MazzoVuoto();
+        Mazzo empty = new MazzoVuoto();
 empty.aggiungiAlMazzo(pescata);
         empty.rivelaCarteMazzo();
         
