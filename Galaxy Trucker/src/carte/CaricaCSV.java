@@ -14,9 +14,10 @@ import componenti.Merce;
 
 public class CaricaCSV {
 	public static Map<Integer, Carta> loadMap(String path) throws IOException {
-	    Map<Integer, Carta> mazzo = new HashMap<>(); // int non funziona, sostituita con Integer
+	    Map<Integer, Carta> mazzo = new HashMap<>();
 	    
 	    try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+	        br.readLine();
 	        br.readLine();
 	        String riga="-1";
 	        while ((riga = br.readLine()) != null) {

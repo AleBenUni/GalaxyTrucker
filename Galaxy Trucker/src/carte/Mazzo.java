@@ -77,7 +77,7 @@ public class Mazzo {
 		if (inMovimento != null) {
 			this.mazzo.put(inMovimento.getId(), inMovimento);
 		} else {
-			System.out.println("Non ci sono carte che soddisfano il livello richiesto. Operazione annulata");
+			System.out.println(" Non ci sono carte che soddisfano il livello richiesto. Operazione annullata");
 		}
 	}
 	
