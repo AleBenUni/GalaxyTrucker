@@ -1,5 +1,7 @@
 package componenti;
 
+import componenti.Equipaggio;
+
 public class Suppvita {
 
 	private Equipaggio tipo; //umano o alieno (giallo o viola)
