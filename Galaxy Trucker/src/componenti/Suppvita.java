@@ -1,16 +1,12 @@
 package componenti;
 
 public class Suppvita {
-<<<<<<< HEAD
-=======
 
-	private String id; //nome del personaggio
 	private Equipaggio tipo; //umano o alieno (giallo o viola)
-	private int puntiVita; //(vita dell'equipaggio)
+	private int puntiVita; 
 	
 	public Suppvita(String id, Equipaggio tipo) {
 		
-		this.id = id;
 		this.tipo = tipo;
 		this.puntiVita = inizializzaPuntiVita(tipo);
 		
@@ -33,12 +29,6 @@ public class Suppvita {
 				return 100;
 		
 		}
-		
-	}
-	
-	public String getId() {
-		
-		return id;
 		
 	}
 	
@@ -70,7 +60,7 @@ public class Suppvita {
 		System.out.println("ID: " + id + ", tipo: " + tipo + ", Vita: " + puntiVita);
 		
 	}
->>>>>>> branch 'main' of https://github.com/AleBenUni/GalaxyTrucker.git
+
 	
 }
 
