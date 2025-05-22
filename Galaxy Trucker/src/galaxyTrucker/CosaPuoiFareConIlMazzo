@@ -22,5 +22,3 @@ empty.trasferisciCartaDaMazzo(Livello.III, mazzo); -> Trasferisci UNA carta da m
 empty.unisciMazzi(mazzo); -> Sposta tutte le carte di mazzo in empty
 
 mazzo.svuotaMazzo(); -> Libera il mazzo dalle carte
-
-empty.eliminaMazzodaMemoria(); -> Elimina definitivamente un mazzo dalla memoria

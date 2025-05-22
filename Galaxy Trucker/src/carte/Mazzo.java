@@ -91,11 +91,6 @@ public class Mazzo {
 	public void svuotaMazzo() {
 		mazzo.clear();
 	}
-	
-	public void eliminaMazzodaMemoria() {
-		mazzo = null;
-	//	System.gc();
-	}
 
 }
 

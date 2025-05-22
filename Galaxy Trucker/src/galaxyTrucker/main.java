@@ -25,31 +25,6 @@ public class main {
         mazzo.rivelaCarteMazzo();
         mazzo.svuotaMazzo();
         mazzo.rivelaCarteMazzo();
-        
-     //   new Plancia(Livello.I);
-    //    Mazzo empty = new Mazzo(true);
-        mazzo.eliminaMazzodaMemoria();
-        mazzo.rivelaCarteMazzo();
-        pescata = mazzo.pescadalMazzo();
-      /*  empty.aggiungiAlMazzo(pescata);
-        empty.rivelaCarteMazzo();
-        
-        empty.trasferisciCartaDaMazzo(Livello.III, mazzo);
-        /*empty.rivelaCarteMazzo();
-        pescata = empty.pescadalMazzo();
-        System.out.println("\nHa pescato--> " + pescata);
-        empty.aggiungiAlMazzo(pescata);
-        System.out.println("Il mazzo principale ora: " );
-        mazzo.rivelaCarteMazzo();
-        
-        
-        System.out.println("\nSposto tutte le in empty: " );
-        empty.unisciMazzi(mazzo);
-        System.out.println("\nOra in Empty : " );
-        empty.rivelaCarteMazzo();
-        System.out.println("\nMentre nel mazzo prinicipale : " );
-        mazzo.rivelaCarteMazzo();*/
-       
 }
 
 }
