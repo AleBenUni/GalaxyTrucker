@@ -18,7 +18,7 @@ public class main {
         
 		//questo main è solo una prova del file csv. Può essere modificato senza preavviso
 		
-		/*Mazzo mazzo = new Mazzo(false);
+		Mazzo mazzo = new Mazzo(false);
         
   //      Carta pescata = mazzo.pescadalMazzo();
        // System.out.printf("\nHa pescato--> " + pescata);
@@ -26,13 +26,13 @@ public class main {
         mazzo.svuotaMazzo();
         mazzo.rivelaCarteMazzo();
         
-        new Plancia(Livello.I);
+        /*new Plancia(Livello.I);
         Mazzo empty = new MazzoVuoto();
-empty.aggiungiAlMazzo(pescata);
+        empty.aggiungiAlMazzo(pescata);
         empty.rivelaCarteMazzo();
         
         empty.trasferisciCartaDaMazzo(Livello.III, mazzo);
-        empty.rivelaCarteMazzo();
+        /*empty.rivelaCarteMazzo();
         pescata = empty.pescadalMazzo();
         System.out.println("\nHa pescato--> " + pescata);
         empty.aggiungiAlMazzo(pescata);
@@ -45,8 +45,8 @@ empty.aggiungiAlMazzo(pescata);
         System.out.println("\nOra in Empty : " );
         empty.rivelaCarteMazzo();
         System.out.println("\nMentre nel mazzo prinicipale : " );
-        mazzo.rivelaCarteMazzo();
-       */
+        mazzo.rivelaCarteMazzo();*/
+       
 }
 
 }
