@@ -28,8 +28,8 @@ import java.util.List;
 public class Interfaccia extends Application {
 
     // Dimensioni Finestra e UI
-    private int lFinestra = 1050;
-    private int aFinestra = 1250;
+    private int lFinestra = 1080;
+    private int aFinestra = 720;
     private int gCelleNave = 70;
     private int gComponentiDisponibili = 70;
     private int nComponentiDisponibili = 5;
@@ -54,8 +54,8 @@ public class Interfaccia extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Gioco gioco = new Gioco(1, Livello.III);
-        this.plancia = new Plancia(Livello.III);
+        Gioco gioco = new Gioco(1, Livello.I);
+        this.plancia = new Plancia(Livello.I);
         this.nave = gioco.getNave(0);
 
         if (this.nave == null || this.plancia == null) {
@@ -69,10 +69,10 @@ public class Interfaccia extends Application {
         finestraLayoutPrincipale.setStyle("-fx-background-color: #2A2A2A;");
 
         // --- ZONA SUPERIORE: PLANCIA ---
-        panePlanciaGrafica = creaPanePlanciaGrafica(this.plancia, lFinestra - 30, altezzaPreferitaPlanciaPane);
+        panePlanciaGrafica = creaPanePlanciaGrafica(this.plancia, (lFinestra/3)*2 - 30, altezzaPreferitaPlanciaPane);
         BorderPane.setMargin(panePlanciaGrafica, new Insets(15, 15, 10, 15));
         BorderPane.setAlignment(panePlanciaGrafica, Pos.CENTER);
-        finestraLayoutPrincipale.setTop(panePlanciaGrafica);
+        finestraLayoutPrincipale.setLeft(panePlanciaGrafica);
 
         // --- ZONA INTERMEDIA: COMPONENTI DISPONIBILI ---
         HBox areaComponentiHBox = new HBox(15);
@@ -280,7 +280,7 @@ public class Interfaccia extends Application {
             Point2D p = puntiGiorni.get(i);
             Circle cerchioGiornoShape = new Circle(rCerchioGiorno);
             cerchioGiornoShape.setSmooth(true);
-            cerchioGiornoShape.setFill(Color.ORANGERED.deriveColor(0, 1.1, 0.9, 0.95));
+            cerchioGiornoShape.setFill(Color.LIGHTGRAY.deriveColor(0, 1.1, 0.9, 0.95));
             cerchioGiornoShape.setStroke(Color.DARKRED.darker());
             cerchioGiornoShape.setStrokeWidth(1.5);
 
@@ -331,7 +331,7 @@ public class Interfaccia extends Application {
         StackPane mazzoPane = new StackPane(mazzoRect, labelMazzo);
         mazzoPane.setLayoutX(x);
         mazzoPane.setLayoutY(y);
-        contenitore.getChildren().add(mazzoPane);
+       contenitore.getChildren().add(mazzoPane);
     }
     
     private void mostraErroreEChiudi(String titolo, String messaggio) {
