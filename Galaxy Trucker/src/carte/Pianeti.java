@@ -3,7 +3,7 @@ package carte;
 import java.util.List;
 
 public class Pianeti extends Carta{
-	private final List<Pianeta> pianeti; // per quanto volessi evitare di usare le liste, non ho pensato ad un'alternativa migliore
+	private final List<Pianeta> pianeti;
 	
 	public Pianeti(Integer id, String nome, Livello livello, int ggVolo, int merce, int equipaggio,
 			int credito, List<Pianeta> pianeti) {

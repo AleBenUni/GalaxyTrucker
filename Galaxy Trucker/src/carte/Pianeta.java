@@ -21,7 +21,7 @@ public class Pianeta {
 	public int getnMercexPianeta(){
 		int totale = 0;
 	    if (mercexPianeta != null) {
-	        for (Integer quantita : mercexPianeta.values()) { //fai per ogni Integer chiamato quantita delle cose per ogni singolo valore che trovi in questa collezione
+	        for (Integer quantita : mercexPianeta.values()) {
 	            totale += quantita;
 	        }
 	    }
