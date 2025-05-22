@@ -20,3 +20,7 @@ Commento: Al momento le Carte rivelate mostrano l'ID sul terminale, verrà rimos
 empty.trasferisciCartaDaMazzo(Livello.III, mazzo); -> Trasferisci UNA carta da mazzo a empty di un livello specifico
 
 empty.unisciMazzi(mazzo); -> Sposta tutte le carte di mazzo in empty
+
+mazzo.svuotaMazzo(); -> Libera il mazzo dalle carte
+
+empty.eliminaMazzodaMemoria(); -> Elimina definitivamente un mazzo dalla memoria

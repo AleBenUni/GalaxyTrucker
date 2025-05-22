@@ -20,15 +20,18 @@ public class main {
 		
 		Mazzo mazzo = new Mazzo(false);
         
-  //      Carta pescata = mazzo.pescadalMazzo();
+       Carta pescata = mazzo.pescadalMazzo();
        // System.out.printf("\nHa pescato--> " + pescata);
         mazzo.rivelaCarteMazzo();
         mazzo.svuotaMazzo();
         mazzo.rivelaCarteMazzo();
         
-        /*new Plancia(Livello.I);
-        Mazzo empty = new MazzoVuoto();
-        empty.aggiungiAlMazzo(pescata);
+     //   new Plancia(Livello.I);
+    //    Mazzo empty = new Mazzo(true);
+        mazzo.eliminaMazzodaMemoria();
+        mazzo.rivelaCarteMazzo();
+        pescata = mazzo.pescadalMazzo();
+      /*  empty.aggiungiAlMazzo(pescata);
         empty.rivelaCarteMazzo();
         
         empty.trasferisciCartaDaMazzo(Livello.III, mazzo);

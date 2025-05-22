@@ -16,9 +16,10 @@ public class Mazzo {
 	private void caricaMazzo(String CSV) {
 		try {
             mazzo = CaricaCSV.loadMap(CSV);
-            System.out.printf("Il mazzo è pronto");
+            System.out.printf("Il mazzo di 150 carte è pronto\n");
         } catch (IOException e) {
         	 e.printStackTrace();
+        	 System.out.printf("Il mazzo di 0 carte è pronto\n");
         }
 	}
 	 
@@ -76,8 +77,9 @@ public class Mazzo {
 		Carta inMovimento  = dacuiTrasferire.pescaPerLivello(carta);
 		if (inMovimento != null) {
 			this.mazzo.put(inMovimento.getId(), inMovimento);
+			System.out.println(" Trasferimento avvenuto con successo");
 		} else {
-			System.out.println(" Non ci sono carte che soddisfano il livello richiesto. Operazione annullata");
+			System.out.println(" Sono terminate le carte del Livello "+carta+". Trasferimento annullato");
 		}
 	}
 	
@@ -88,6 +90,11 @@ public class Mazzo {
 	
 	public void svuotaMazzo() {
 		mazzo.clear();
+	}
+	
+	public void eliminaMazzodaMemoria() {
+		mazzo = null;
+	//	System.gc();
 	}
 
 }
