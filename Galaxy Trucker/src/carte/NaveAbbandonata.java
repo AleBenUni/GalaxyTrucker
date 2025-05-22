@@ -7,4 +7,10 @@ public class NaveAbbandonata extends Carta {
 		super(id, NomeSpeciale.NAVE_ABBANDONATA, nome, livello, ggVolo, merce, equipaggio, credito);
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + "che ti fa guadagnare"; 
+	}
+	
+	
 }
