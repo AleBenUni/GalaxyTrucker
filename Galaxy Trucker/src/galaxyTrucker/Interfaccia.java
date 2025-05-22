@@ -28,14 +28,14 @@ import java.util.List;
 public class Interfaccia extends Application {
 
     // Dimensioni Finestra e UI
-    private int lFinestra = 1080;
-    private int aFinestra = 720;
+    private int lFinestra = 1300;
+    private int aFinestra = 750;
     private int gCelleNave = 70;
     private int gComponentiDisponibili = 70;
     private int nComponentiDisponibili = 5;
 
     // Dimensioni e Stile Plancia
-    private double altezzaPreferitaPlanciaPane = 450;
+    private double altezzaPreferitaPlanciaPane = 700;
     private double rCerchioGiorno = 12;
     // Queste ora rappresentano le dimensioni LOGICHE di un mazzo "in piedi"
     // Per la visualizzazione orizzontale, le useremo scambiate.
@@ -55,7 +55,7 @@ public class Interfaccia extends Application {
     @Override
     public void start(Stage primaryStage) {
         Gioco gioco = new Gioco(1, Livello.I);
-        this.plancia = new Plancia(Livello.I);
+        this.plancia = gioco.getPlancia();
         this.nave = gioco.getNave(0);
 
         if (this.nave == null || this.plancia == null) {
@@ -69,7 +69,7 @@ public class Interfaccia extends Application {
         finestraLayoutPrincipale.setStyle("-fx-background-color: #2A2A2A;");
 
         // --- ZONA SUPERIORE: PLANCIA ---
-        panePlanciaGrafica = creaPanePlanciaGrafica(this.plancia, (lFinestra/3)*2 - 30, altezzaPreferitaPlanciaPane);
+        panePlanciaGrafica = creaPanePlanciaGrafica(this.plancia, (lFinestra/5)*2 - 30, altezzaPreferitaPlanciaPane);
         BorderPane.setMargin(panePlanciaGrafica, new Insets(15, 15, 10, 15));
         BorderPane.setAlignment(panePlanciaGrafica, Pos.CENTER);
         finestraLayoutPrincipale.setLeft(panePlanciaGrafica);
