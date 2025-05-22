@@ -72,6 +72,9 @@ public class CaricaCSV {
 	            case SCHIAVISTI:
 	            	carta = new Schiavista(id, nome, livello, ggVolo, merce, equipaggio, credito);
                     break;
+	            case NAVE_ABBANDONATA: 
+	            	carta = new NaveAbbandonata(id, nome, livello, ggVolo, merce, equipaggio, credito);
+                    break;
                     default:
                      carta = new Carta(id, effetto, nome , livello, ggVolo, merce, equipaggio, credito);
 	            }
