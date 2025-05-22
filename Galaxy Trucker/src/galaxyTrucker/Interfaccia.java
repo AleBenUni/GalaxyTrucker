@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -54,7 +55,7 @@ public class Interfaccia extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Gioco gioco = new Gioco(1, Livello.I);
+        Gioco gioco = new Gioco(1, Livello.III);
         this.plancia = gioco.getPlancia();
         this.nave = gioco.getNave(0);
 
@@ -78,7 +79,12 @@ public class Interfaccia extends Application {
         HBox areaComponentiHBox = new HBox(15);
         areaComponentiHBox.setPadding(new Insets(10));
         areaComponentiHBox.setAlignment(Pos.CENTER);
-
+        
+        HBox areaScarti=new HBox(15);
+        areaScarti.setPadding(new Insets(10));
+        areaScarti.setAlignment(Pos.CENTER);
+        Rectangle[] arrayScarti = new Rectangle[2];
+        
         Button[] arrayPulsantiRuota = new Button[nComponentiDisponibili];
         Rectangle[] arrayComponentiPlaceholder = new Rectangle[nComponentiDisponibili];
 
@@ -299,14 +305,14 @@ public class Interfaccia extends Application {
 
         // Posizionamento dei Mazzi Orizzontali
         // Mazzo Superiore
-        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo N", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno, coloreMazzoFill, coloreMazzoStroke);
+        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo N", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno/2, coloreMazzoFill, coloreMazzoStroke);
         // Mazzo Inferiore
-        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo S", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno + H_contenuto - mazzoVisualHeight, coloreMazzoFill, coloreMazzoStroke);
+        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo S", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno+paddingPlanciaInterno/2 + H_contenuto - mazzoVisualHeight, coloreMazzoFill, coloreMazzoStroke);
         // Mazzo Sinistro
-        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo O", paddingPlanciaInterno, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
+        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo O", paddingPlanciaInterno/2, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
         // Mazzo Destro
-        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo E", paddingPlanciaInterno + W_contenuto - mazzoVisualWidth, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
-
+        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo E", paddingPlanciaInterno+paddingPlanciaInterno/2 + W_contenuto - mazzoVisualWidth, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
+        
         return layoutPlancia;
     }
 
