@@ -9,6 +9,7 @@ id,nome,livello,0,0,0,0,"N;E;S;O" <--- (solo per Pioggia di Meteoriti. Ad ogni p
 6,Nave Abbandonata,I,1,0,-2,3,NAVE_ABBANDONATA
 7,Nave Abbandonata,I,1,0,-3,4,NAVE_ABBANDONATA
 8,Polvere Stellare,I,0,0,0,0,POLVERE_STELLARE
+9,Sabotaggio,I,0,0,0,0,SABOTAGGIO
 54,Pioggia di meteoriti,II,0,0,0,0,PIOGGIA_METEORITI,"blu:2;blu:0;blu:0;rosso:1,blu:2"
 55,Stazione Abbandonata,II,2,0,8,0,STAZIONE_ABBANDONATA,"giallo:2,verde:1"
 101,Pianeti,III,5,0,0,0,PIANETI,"giallo:5;rosso:1,giallo:2;rosso:2"

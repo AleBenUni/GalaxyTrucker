@@ -75,6 +75,10 @@ public class CaricaCSV {
 	            case NAVE_ABBANDONATA: 
 	            	carta = new NaveAbbandonata(id, nome, livello, ggVolo, merce, equipaggio, credito);
                     break;
+	            case POLVERE_STELLARE:
+	            	carta = new PolvereStellare(id, nome, livello, ggVolo, merce, equipaggio, credito);
+	            case SABOTAGGIO:
+	            	carta = new Sabotaggio(id, nome, livello, ggVolo, merce, equipaggio, credito);
                     default:
                      carta = new Carta(id, effetto, nome , livello, ggVolo, merce, equipaggio, credito);
 	            }
