@@ -9,7 +9,7 @@ public class NaveAbbandonata extends Carta {
 
 	@Override
 	public String toString() {
-		return super.toString() + "che ti fa guadagnare"; 
+		return super.toString(); 
 	}
 	
 	
