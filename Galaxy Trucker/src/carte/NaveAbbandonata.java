@@ -12,5 +12,4 @@ public class NaveAbbandonata extends Carta {
 		return super.toString(); 
 	}
 	
-	
 }
