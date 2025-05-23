@@ -77,8 +77,13 @@ public class CaricaCSV {
                     break;
 	            case POLVERE_STELLARE:
 	            	carta = new PolvereStellare(id, nome, livello, ggVolo, merce, equipaggio, credito);
+	            	break;
 	            case SABOTAGGIO:
 	            	carta = new Sabotaggio(id, nome, livello, ggVolo, merce, equipaggio, credito);
+	            	break;
+	            case EPIDEMIA:
+	            	carta = new Epidemia(id, nome, livello, ggVolo, merce, equipaggio, credito);
+	            	break;
                     default:
                      carta = new Carta(id, effetto, nome , livello, ggVolo, merce, equipaggio, credito);
 	            }
