@@ -32,7 +32,7 @@ public class Pianeta {
 
 	@Override
 	public String toString() {
-		return " un pianeta con " + getnMercexPianeta() + " merci " + getMercexPianeta()  ;
+		return "un pianeta con " + getnMercexPianeta() + " merci " + getMercexPianeta()  ;
 	}
 	
 }

@@ -17,7 +17,7 @@ public class Pianeti extends Carta{
 
 	@Override
 	public String toString() {
-		return " Ci sono " + pianeti.size() + " pianeti. Abbiamo" + pianeti + "]";
+		return " Ci sono " + pianeti.size() + " pianeti. Abbiamo " + pianeti + "]";
 	}
 	
 }

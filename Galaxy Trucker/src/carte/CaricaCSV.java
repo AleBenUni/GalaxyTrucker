@@ -54,6 +54,23 @@ public class CaricaCSV {
                      }
                      carta = new Pianeti(id, nome, livello, ggVolo, merce, equipaggio, credito, pianeti);
                      break;
+	            case PIOGGIA_METEORITI:
+	            	String raw1 = p[8];
+	            	raw1 = raw1.replace("\"", "");
+	            	List<Pianeta> meteoriteinArrivo = new ArrayList<>();
+	            	for (String pianetaStr : raw1.split(";")) {
+	            	String[] coppi = pianetaStr.split(",");
+	            	Map<Merce,Integer> mapp = new EnumMap<>(Merce.class);
+	            	for (String coppia : coppi) {
+	            		String[] kv = coppia.split(":");
+	            		Merce tipo = Merce.valueOf(kv[0]);
+	            		int qta = Integer.parseInt(kv[1].trim());
+	            		mapp.put(tipo, qta);
+	            	}
+	            	meteoriteinArrivo.add(new Pianeta(mapp));
+	            	}          	
+	            	carta = new PioggiaMeteoriti(id, nome, livello, credito, credito, credito, credito, meteoriteinArrivo);
+	            	break;
 	            case STAZIONE_ABBANDONATA:
 	            	String raw2 = p[8];
 	            	raw2 = raw2.replace("\"", "");

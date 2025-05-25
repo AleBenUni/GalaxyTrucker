@@ -1,16 +1,6 @@
 package galaxyTrucker;
 import carte.Carta;
-import carte.Livello;
-import carte.SpazioAperto;
-import componenti.Connettore;
-import componenti.Motore;
 import carte.Mazzo;
-import carte.MazzoVuoto;
-
-import java.util.Map;
-import java.util.Random;
-
-import carte.CaricaCSV;
 
 public class main {
 
