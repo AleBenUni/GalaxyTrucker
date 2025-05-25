@@ -20,8 +20,6 @@ public class Modstru {
 	        return lati[mioLato].puoConnettersi(altro.lati[latoAltro]);
 	    }
 
-	   
-
 	    // Restituisce il connettore su un lato specifico
 	    public Connettore getConnettore(int lato) {
 	        return lati[lato];
