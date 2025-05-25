@@ -28,7 +28,7 @@ public class Pianeta {
 	    return totale;
 	}
 	
-	//realizza una get del valore per ogni pianeta (in futuro)
+	//realizza una get del valore per ogni pianeta (in futuro)  <--- Forse non serve
 
 	@Override
 	public String toString() {
