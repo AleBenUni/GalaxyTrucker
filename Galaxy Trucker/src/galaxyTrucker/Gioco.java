@@ -33,11 +33,17 @@ public class Gioco {
 		
 		Gioco gioco=new Gioco(nGiocatori,livello);		//Revisionare
 		
-		while(true) {
+		while(true) {	//Gestisce turni costruzione navi
 			
-			
+			break;
 			
 		}
+		
+		while(true) {	//Gestisce pescaggio carte
+			break;
+		}
+		
+		
 		
 		
 	}
