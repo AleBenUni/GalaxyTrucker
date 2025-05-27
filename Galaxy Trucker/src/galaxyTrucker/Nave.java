@@ -1,6 +1,7 @@
 package galaxyTrucker;
 
 import carte.Livello;
+import componenti.*;
 
 public class Nave {
 	
@@ -80,6 +81,36 @@ public class Nave {
 	
 	public Cella getCella(Posizione posizione) {
 		return celle[posizione.getRiga()][posizione.getColonna()];
+	}
+	
+	public int getEnergiaNave() {
+		int nEnergia=0;
+		Componente tmp;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Batteria)
+					nEnergia+=((Batteria) tmp).getNEnergie();
+			}
+				
+		return nEnergia;
+	}
+	
+	public void minusEnergiaNave(int nEnergia) {
+		Componente tmp;
+		int energia;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Batteria) {
+					energia=((Batteria) tmp).getNEnergie();
+					if(energia>0) {
+						energia=nEnergia-energia>0 ? energia : nEnergia;
+						((Batteria) tmp).minusEnergia(energia);
+						nEnergia-=energia;
+					}	
+				}
+			}	
 	}
 	
 	public void visualizzaNave() {
