@@ -1,20 +1,45 @@
 package galaxyTrucker;
 import carte.Livello;
+import java.util.Scanner;
+
 
 public class Gioco {
 	
 	private Nave[] nave;
 	private Plancia plancia;
-	private Livello livello;
+	private Livello livello=null;
 	private int nGiocatori;
 	
-	public Gioco(int nGiocatori, Livello livello) {
-		this.livello=livello;
-		this.nGiocatori=nGiocatori;
+	private Gioco(int nGiocatori, Livello livello) {
 		nave=new Nave[nGiocatori];
 		plancia=new Plancia(livello);
 		for(int i=0;i<nGiocatori;i++)
 			nave[i]=new Nave(livello);
+	}
+	
+	public void gioca() {
+		Scanner scanner=new Scanner(System.in);
+		do {
+			scanner.nextLine();
+			System.out.println("Inserire numero giocatori");
+			nGiocatori = scanner.nextInt();
+		}while(nGiocatori<=1||nGiocatori>4);
+		
+		do {
+			scanner.nextLine();
+			System.out.println("Inserire Livello");
+			livello=Livello.toLivello(scanner.nextLine());
+		}while(livello==null);
+		
+		Gioco gioco=new Gioco(nGiocatori,livello);		//Revisionare
+		
+		while(true) {
+			
+			
+			
+		}
+		
+		
 	}
 	
 	public Livello getLivello() {
@@ -31,7 +56,5 @@ public class Gioco {
 	public Plancia getPlancia() {
 		return plancia;
 	}
-	
-	
 	
 }
