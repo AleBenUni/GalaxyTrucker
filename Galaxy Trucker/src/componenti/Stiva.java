@@ -1,8 +1,10 @@
 package componenti;
 
+import java.util.Arrays;
+
 public class Stiva extends Componente{
 	private int grandezzaStiva;
-	private Merce[] carico;  // File Merce.java modificato. Stiva.java dovrebbe continuare a funzionare nonostante le modifiche
+	private Merce[] carico;
 	boolean stivaSpeciale;
 	public Stiva(int grandezzaStiva, boolean stivaSpeciale, Connettore up, Connettore dx, Connettore sx, Connettore dw) {
 		super(up,dx,sx,dw);
@@ -19,8 +21,8 @@ public class Stiva extends Componente{
 		return stivaSpeciale;
 	}
 	
-	public int getCarico() {
-		
+	public 	Merce[] getCarico() {
+		return Arrays.copyOf(this.carico, this.carico.length);
 		
 	}
 	
