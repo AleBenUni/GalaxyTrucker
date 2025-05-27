@@ -18,6 +18,7 @@ public class Gioco {
 	}
 	
 	public void gioca() {
+		int difesa=0;
 		Scanner scanner=new Scanner(System.in);
 		do {
 			scanner.nextLine();
@@ -35,11 +36,34 @@ public class Gioco {
 		
 		while(true) {	//Gestisce turni costruzione navi
 			
+			
+			
 			break;
 			
 		}
 		
 		while(true) {	//Gestisce pescaggio carte
+			
+			//Viene pescata una carta dalla quale posso difendermi e  mi dice dove mi colpirebbe
+			int costoDifesa=0;
+			for(int i=0;i<nGiocatori;i++) {
+				do {
+					scanner.nextLine();
+					System.out.println("Vuoi difenderti? (0 || 1)");
+					difesa = scanner.nextInt();
+				}while(difesa<0||difesa>1);
+				if(difesa==1) {
+					int energiaDisponibile=nave[i].getEnergiaNave();
+					if(energiaDisponibile>costoDifesa) {
+						//Componente distrutto
+						System.out.println("Non hai abbastanza energia per difenderti");
+					}
+					else
+						nave[i].minusEnergiaNave(costoDifesa);
+				}
+			}
+				
+			
 			break;
 		}
 		
