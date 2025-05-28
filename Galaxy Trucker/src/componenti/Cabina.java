@@ -1,6 +1,6 @@
 package componenti;
 
-class Cabina extends Componente{
+public class Cabina extends Componente{
 	private int nEquipaggio;
 	private Equipaggio tipoEquipaggio;
 	private int postiEquipaggio;
