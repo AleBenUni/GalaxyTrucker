@@ -39,4 +39,8 @@ public class Cella {
 	public boolean isUtilizzabile() {
 		return utilizzabile;
 	}
+	
+	public void setNotUtilizzabile() {
+		utilizzabile=false;
+	}
 }
