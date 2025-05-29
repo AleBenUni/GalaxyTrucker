@@ -1,6 +1,6 @@
 package componenti; 
 
-class Scudo extends Componente {
+public class Scudo extends Componente {
 	
 	private Lato latoProtettoUno, latoProtettoDue;
 	
