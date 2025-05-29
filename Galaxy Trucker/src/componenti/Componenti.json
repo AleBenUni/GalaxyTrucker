@@ -1,0 +1,147 @@
+[
+    {
+        "Tipo": "Batteria",
+        "ConnettoreUp": "assente",
+        "ConnettoreDx": "singolo",
+        "ConnettoreSx": "doppio",
+        "ConnettoreDw": "multiplo",
+        "Capacita": 2
+    },
+    {
+        "Tipo": "Stiva",
+        "ConnettoreUp": "multiplo",
+        "ConnettoreDx": "doppio",
+        "ConnettoreSx": "singolo",
+        "ConnettoreDw": "assente",
+        "Capacita": 4,
+        "Speciale": true
+    },
+    {
+        "Tipo": "Cannone",
+        "ConnettoreUp": "singolo",
+        "ConnettoreDx": "multiplo",
+        "ConnettoreSx": "assente",
+        "ConnettoreDw": "doppio",
+        "Capacita": 3
+    },
+    {
+        "Tipo": "Motore",
+        "ConnettoreUp": "multiplo",
+        "ConnettoreDx": "assente",
+        "ConnettoreSx": "doppio",
+        "ConnettoreDw": "singolo",
+        "Capacita": 3
+    },
+    {
+        "Tipo": "Scudo",
+        "ConnettoreUp": "doppio",
+        "ConnettoreDx": "singolo",
+        "ConnettoreSx": "multiplo",
+        "ConnettoreDw": "assente"
+    },
+    {
+        "Tipo": "Stiva",
+        "ConnettoreUp": "doppio",
+        "ConnettoreDx": "assente",
+        "ConnettoreSx": "multiplo",
+        "ConnettoreDw": "singolo",
+        "Capacita": 3,
+        "Speciale": false
+    },
+    {
+        "Tipo": "Batteria",
+        "ConnettoreUp": "multiplo",
+        "ConnettoreDx": "singolo",
+        "ConnettoreSx": "assente",
+        "ConnettoreDw": "doppio",
+        "Capacita": 4
+    },
+    {
+        "Tipo": "Cannone",
+        "ConnettoreUp": "doppio",
+        "ConnettoreDx": "assente",
+        "ConnettoreSx": "singolo",
+        "ConnettoreDw": "multiplo",
+        "Capacita": 2
+    },
+    {
+        "Tipo": "Scudo",
+        "ConnettoreUp": "singolo",
+        "ConnettoreDx": "multiplo",
+        "ConnettoreSx": "doppio",
+        "ConnettoreDw": "assente"
+    },
+    {
+        "Tipo": "Motore",
+        "ConnettoreUp": "assente",
+        "ConnettoreDx": "doppio",
+        "ConnettoreSx": "multiplo",
+        "ConnettoreDw": "singolo",
+        "Capacita": 4
+    },
+    {
+        "Tipo": "Stiva",
+        "ConnettoreUp": "multiplo",
+        "ConnettoreDx": "singolo",
+        "ConnettoreSx": "assente",
+        "ConnettoreDw": "doppio",
+        "Capacita": 2,
+        "Speciale": true
+    },
+    {
+        "Tipo": "Batteria",
+        "ConnettoreUp": "doppio",
+        "ConnettoreDx": "multiplo",
+        "ConnettoreSx": "singolo",
+        "ConnettoreDw": "assente",
+        "Capacita": 3
+    },
+    {
+        "Tipo": "Cannone",
+        "ConnettoreUp": "assente",
+        "ConnettoreDx": "singolo",
+        "ConnettoreSx": "multiplo",
+        "ConnettoreDw": "doppio",
+        "Capacita": 4
+    },
+    {
+        "Tipo": "Scudo",
+        "ConnettoreUp": "multiplo",
+        "ConnettoreDx": "doppio",
+        "ConnettoreSx": "assente",
+        "ConnettoreDw": "singolo"
+    },
+    {
+        "Tipo": "Motore",
+        "ConnettoreUp": "singolo",
+        "ConnettoreDx": "assente",
+        "ConnettoreSx": "doppio",
+        "ConnettoreDw": "multiplo",
+        "Capacita": 3
+    },
+    {
+        "Tipo": "Stiva",
+        "ConnettoreUp": "doppio",
+        "ConnettoreDx": "multiplo",
+        "ConnettoreSx": "singolo",
+        "ConnettoreDw": "assente",
+        "Capacita": 4,
+        "Speciale": false
+    },
+    {
+        "Tipo": "Batteria",
+        "ConnettoreUp": "assente",
+        "ConnettoreDx": "doppio",
+        "ConnettoreSx": "multiplo",
+        "ConnettoreDw": "singolo",
+        "Capacita": 2
+    },
+    {
+        "Tipo": "Cannone",
+        "ConnettoreUp": "multiplo",
+        "ConnettoreDx": "singolo",
+        "ConnettoreSx": "doppio",
+        "ConnettoreDw": "assente",
+        "Capacita": 3
+    }
+]
