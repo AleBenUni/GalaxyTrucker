@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Interfaccia extends Application {
 
@@ -51,11 +52,12 @@ public class Interfaccia extends Application {
 
     // Riferimenti UI
     private Pane panePlanciaGrafica;
+    private Gioco gioco;
 
 
     @Override
     public void start(Stage primaryStage) {
-        Gioco gioco = new Gioco(1, Livello.III);
+        gioco = new Gioco(1, Livello.III);
         this.plancia = gioco.getPlancia();
         this.nave = gioco.getNave(0);
 
@@ -71,55 +73,12 @@ public class Interfaccia extends Application {
 
         // --- ZONA SUPERIORE: PLANCIA ---
         panePlanciaGrafica = creaPanePlanciaGrafica(this.plancia, (lFinestra/5)*2 - 30, altezzaPreferitaPlanciaPane);
-        BorderPane.setMargin(panePlanciaGrafica, new Insets(15, 15, 10, 15));
+        BorderPane.setMargin(panePlanciaGrafica, new Insets(15, 15, 15, 15));
         BorderPane.setAlignment(panePlanciaGrafica, Pos.CENTER);
         finestraLayoutPrincipale.setLeft(panePlanciaGrafica);
 
         // --- ZONA INTERMEDIA: COMPONENTI DISPONIBILI ---
-        HBox areaComponentiHBox = new HBox(15);
-        areaComponentiHBox.setPadding(new Insets(10));
-        areaComponentiHBox.setAlignment(Pos.CENTER);
-        
-        HBox areaScarti=new HBox(15);
-        areaScarti.setPadding(new Insets(10));
-        areaScarti.setAlignment(Pos.CENTER);
-        Rectangle[] arrayScarti = new Rectangle[2];
-        
-        Button[] arrayPulsantiRuota = new Button[nComponentiDisponibili];
-        Rectangle[] arrayComponentiPlaceholder = new Rectangle[nComponentiDisponibili];
-
-        for (int i = 0; i < nComponentiDisponibili; i++) {
-            VBox areaSingoloComponenteVBox = new VBox(5);
-            areaSingoloComponenteVBox.setAlignment(Pos.CENTER);
-
-            arrayPulsantiRuota[i] = new Button("Ruota");
-            arrayPulsantiRuota[i].setMinWidth(gComponentiDisponibili);
-            final int indice = i;
-            arrayPulsantiRuota[i].setOnAction(event -> {
-                if (arrayComponentiPlaceholder[indice] != null) {
-                    arrayComponentiPlaceholder[indice].setRotate((arrayComponentiPlaceholder[indice].getRotate() + 90) % 360);
-                }
-            });
-            areaSingoloComponenteVBox.getChildren().add(arrayPulsantiRuota[i]);
-
-            arrayComponentiPlaceholder[i] = new Rectangle(gComponentiDisponibili, gComponentiDisponibili);
-            arrayComponentiPlaceholder[i].setSmooth(true);
-            arrayComponentiPlaceholder[i].setFill(Color.LIGHTSKYBLUE.deriveColor(0, 1, 1, 0.85));
-            arrayComponentiPlaceholder[i].setStroke(Color.STEELBLUE);
-            arrayComponentiPlaceholder[i].setStrokeWidth(1.5);
-            arrayComponentiPlaceholder[i].setArcWidth(15);
-            arrayComponentiPlaceholder[i].setArcHeight(15);
-            arrayComponentiPlaceholder[i].setOnMouseClicked(event -> {
-                for (Rectangle rect : arrayComponentiPlaceholder) {
-                    rect.setStroke(Color.STEELBLUE);
-                    rect.setStrokeWidth(1.5);
-                }
-                arrayComponentiPlaceholder[indice].setStroke(Color.GOLD);
-                arrayComponentiPlaceholder[indice].setStrokeWidth(2.5);
-            });
-            areaSingoloComponenteVBox.getChildren().add(arrayComponentiPlaceholder[i]);
-            areaComponentiHBox.getChildren().add(areaSingoloComponenteVBox);
-        }
+        HBox areaComponentiHBox=areaComponentiHBox();
 
         // --- ZONA INFERIORE: GRIGLIA NAVE ---
         GridPane grigliaNave = new GridPane();
@@ -172,7 +131,83 @@ public class Interfaccia extends Application {
         primaryStage.setMinHeight(aFinestra * 0.85);
         primaryStage.show();
     }
+    
+    
+    
+    
+    
+    
+    // --- COMPONENTI PESCATI ---
+    private HBox areaComponentiHBox() {
+    	HBox areaComponentiHBox = new HBox(15);
+        areaComponentiHBox.setPadding(new Insets(10));
+        areaComponentiHBox.setAlignment(Pos.CENTER);
+        
+        HBox areaScarti=new HBox(15);
+        areaScarti.setPadding(new Insets(10));
+        areaScarti.setAlignment(Pos.CENTER);
+        Rectangle[] arrayScarti = new Rectangle[2];
+        
+        Random random = new Random();
+        nComponentiDisponibili=random.nextInt(4)+2;
+        Button[] arrayPulsantiRuota = new Button[nComponentiDisponibili];
+        Rectangle[] arrayComponentiPlaceholder = new Rectangle[nComponentiDisponibili];
 
+        for (int i = 0; i < nComponentiDisponibili; i++) {
+            VBox areaSingoloComponenteVBox = new VBox(5);
+            areaSingoloComponenteVBox.setAlignment(Pos.CENTER);
+
+            arrayPulsantiRuota[i] = new Button("Ruota");
+            arrayPulsantiRuota[i].setMinWidth(gComponentiDisponibili);
+            final int indice = i;
+            arrayPulsantiRuota[i].setOnAction(event -> {
+                if (arrayComponentiPlaceholder[indice] != null) {
+                    arrayComponentiPlaceholder[indice].setRotate((arrayComponentiPlaceholder[indice].getRotate() + 90) % 360);
+                }
+            });
+            areaSingoloComponenteVBox.getChildren().add(arrayPulsantiRuota[i]);
+
+            arrayComponentiPlaceholder[i] = new Rectangle(gComponentiDisponibili, gComponentiDisponibili);
+            arrayComponentiPlaceholder[i].setSmooth(true);
+            arrayComponentiPlaceholder[i].setFill(Color.LIGHTSKYBLUE.deriveColor(0, 1, 1, 0.85));
+            arrayComponentiPlaceholder[i].setStroke(Color.STEELBLUE);
+            arrayComponentiPlaceholder[i].setStrokeWidth(1.5);
+            arrayComponentiPlaceholder[i].setArcWidth(15);
+            arrayComponentiPlaceholder[i].setArcHeight(15);
+            arrayComponentiPlaceholder[i].setOnMouseClicked(event -> {
+                for (Rectangle rect : arrayComponentiPlaceholder) {
+                    rect.setStroke(Color.STEELBLUE);
+                    rect.setStrokeWidth(1.5);
+                }
+                arrayComponentiPlaceholder[indice].setStroke(Color.GOLD);
+                arrayComponentiPlaceholder[indice].setStrokeWidth(2.5);
+            });
+            areaSingoloComponenteVBox.getChildren().add(arrayComponentiPlaceholder[i]);
+            areaComponentiHBox.getChildren().add(areaSingoloComponenteVBox);
+        }
+        
+        return areaComponentiHBox;
+    }
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private Pane creaPanePlanciaGrafica(Plancia planciaLogica, double larghezzaTotalePane, double altezzaTotalePane) {
         Pane layoutPlancia = new Pane();
         layoutPlancia.setPrefSize(larghezzaTotalePane, altezzaTotalePane);
