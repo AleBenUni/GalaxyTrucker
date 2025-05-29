@@ -94,11 +94,16 @@ public class Nave {
 		return celle[posizione.getRiga()][posizione.getColonna()];
 	}
 	
-	public void setCella(Posizione posizione, Componente componente) {
-		if(celle[posizione.getRiga()][posizione.getColonna()].isUtilizzabile()&&celle[posizione.getRiga()][posizione.getColonna()].getComponente()==null) {
-			celle[posizione.getRiga()][posizione.getColonna()].setComponente(componente);
-			if(!verificaConnessioni(posizione))
-			celle[posizione.getRiga()][posizione.getColonna()].setNotUtilizzabile();
+	public void setCella(Posizione pos, Componente componente) {
+		int riga=pos.getRiga();
+		int col=pos.getColonna();
+		if(celle[riga][col].isUtilizzabile()&&celle[riga][col].getComponente()==null) {
+			celle[riga][col].setComponente(componente);
+			if(!verificaConnessioni(pos)) {
+				celle[riga][col].setNotUtilizzabile();
+				
+			}
+				
 		}
 			
 		
@@ -108,8 +113,12 @@ public class Nave {
 	private boolean verificaConnessioni(Posizione pos) {
 		int riga=pos.getRiga();
 		int col=pos.getColonna();
+		if(riga>=nRighe||riga<0||col>=nColonne||col<0)
+			return false;
 		boolean connesso=true;
 		Componente componente=celle[riga][col].getComponente();
+		if(componente==null)
+			return false;
 
 		if(col-1>=0&&celle[riga][col-1].getComponente()!=null)
 			if(celle[riga][col-1].isUtilizzabile() && componente.getConnettori(Lato.sx)!=celle[riga][col-1].getComponente().getConnettori(Lato.dx)) {
@@ -117,6 +126,7 @@ public class Nave {
 					celle[riga][col-1].setNotUtilizzabile();
 				connesso=false;
 			}
+			
 				
 		if(col+1<nColonne&&celle[riga][col+1].getComponente()!=null)
 			if(celle[riga][col+1].isUtilizzabile() && componente.getConnettori(Lato.dx)!=celle[riga][col+1].getComponente().getConnettori(Lato.sx)) {
@@ -131,6 +141,7 @@ public class Nave {
 					celle[riga-1][col].setNotUtilizzabile();
 				connesso=false;
 			}
+
 
 		if(riga+1<nRighe&&celle[riga+1][col].getComponente()!=null)
 			if(celle[riga+1][col].isUtilizzabile() && componente.getConnettori(Lato.dw)!=celle[riga+1][col].getComponente().getConnettori(Lato.up)) {
@@ -147,10 +158,18 @@ public class Nave {
 		if(celle[riga][col].isUtilizzabile()&&celle[riga][col].getComponente()!=null) {
 			celle[riga][col].setNotUtilizzabile();
 			celle[riga][col].setComponente(null);
-			verificaConnessioni(new Posizione(riga+1,col));
-			verificaConnessioni(new Posizione(riga-1,col));
-			verificaConnessioni(new Posizione(riga,col+1));
-			verificaConnessioni(new Posizione(riga,col-1));
+			if(riga+1<nRighe)
+				if(verificaConnessioni(new Posizione(riga+1,col))==false)
+				celle[riga+1][col].setNotUtilizzabile();
+			if(riga-1>=0)
+				if(verificaConnessioni(new Posizione(riga-1,col))==false)
+					celle[riga-1][col].setNotUtilizzabile();
+			if(col+1<nColonne)
+				if(verificaConnessioni(new Posizione(riga,col+1))==false)
+					celle[riga][col+1].setNotUtilizzabile();
+			if(col-1>=0)
+				if(verificaConnessioni(new Posizione(riga,col-1))==false)
+					celle[riga][col-1].setNotUtilizzabile();
 			
 		}
 	}
