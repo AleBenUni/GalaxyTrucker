@@ -37,7 +37,6 @@ public class Interfaccia extends Application {
     private int aFinestra = 750;
     private int gCelleNave = 70;
     private int gComponentiDisponibili = 70;
-    private int nComponentiDisponibili = 5;
 
     // Dimensioni e Stile Plancia
     private double altezzaPreferitaPlanciaPane = 700;
@@ -164,7 +163,7 @@ public class Interfaccia extends Application {
     	Mucchio mano=new Mucchio();
     	Mucchio mucchio=gioco.getMucchio();
     	Random random = new Random();
-        nComponentiDisponibili=random.nextInt(4)+2;
+        int nComponentiDisponibili=random.nextInt(4)+2;
         if(!mucchio.isEmpty()) {
         	if(mucchio.dimensione()-nComponentiDisponibili<0)
         		nComponentiDisponibili=mucchio.dimensione();
@@ -178,6 +177,8 @@ public class Interfaccia extends Application {
     // --- COMPONENTI PESCATI ---
     private void popolaAreaComponentiHBox(HBox areaComponentiHBox, int gCoponentiDisponibili, Gioco gioco) {
     	areaComponentiHBox.getChildren().clear();
+    	
+    	int nComponentiDisponibili=mano.dimensione();
         
         HBox areaScarti=new HBox(15);
         areaScarti.setPadding(new Insets(10));
@@ -188,7 +189,7 @@ public class Interfaccia extends Application {
         Button[] arrayPulsantiRuota = new Button[nComponentiDisponibili];
         Rectangle[] arrayComponentiPlaceholder = new Rectangle[nComponentiDisponibili];
 
-        for (int i = 0; i < mano.dimensione(); i++) {
+        for (int i=0;i<nComponentiDisponibili;i++) {
             VBox areaSingoloComponenteVBox = new VBox(5);
             areaSingoloComponenteVBox.setAlignment(Pos.CENTER);
 
@@ -251,14 +252,49 @@ public class Interfaccia extends Application {
                 cellaGrafica.setArcHeight(12);
                 Cella cellaLogica = nave.getCella(new Posizione(i, j));
 
-                if (cellaLogica != null && cellaLogica.isUtilizzabile()) {
-                    cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1, 1, 0.75));
-                    cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1, 1, 0.5));
-                    cellaGrafica.setStrokeWidth(1);
-                } else {
-                    cellaGrafica.setFill(Color.valueOf("#2E2E2E"));
-                    cellaGrafica.setStroke(Color.valueOf("#202020"));
-                }
+                if(cellaLogica != null)
+	                /*if(cellaLogica.isUtilizzabile() && cellaLogica.getComponente()==null) {
+	                    cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1, 1, 0.75));
+	                    cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1, 1, 0.5));
+	                    cellaGrafica.setStrokeWidth(1);
+	                } else if(cellaLogica.isUtilizzabile() && cellaLogica.getComponente()!=null){
+	                	cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1, 1, 0.75));
+	                    cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1, 1, 0.5));
+	                }else if(!cellaLogica.isUtilizzabile() && cellaLogica.getComponente()!=null) {
+	                	cellaGrafica.setFill(Color.RED);
+	                    cellaGrafica.setStroke(Color.valueOf("#202020"));
+	                }else {
+		                	cellaGrafica.setFill(Color.valueOf("#2E2E2E"));
+		                    cellaGrafica.setStroke(Color.valueOf("#202020"));
+	                }*/
+                	if (cellaLogica.isUtilizzabile()) {
+                        if (cellaLogica.getComponente() == null) {
+                            // 4. SPAZIO DISPONIBILE: Utilizzabile e senza componente
+                            cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1.0, 0.9, 0.6)); // Un po' più trasparente/chiaro
+                            cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1.0, 0.8, 0.7));
+                            cellaGrafica.setStrokeWidth(1.0);
+                        } else {
+                            // 3. UTILIZZABILE CON COMPONENTE: Lo vuoi VERDE
+                            cellaGrafica.setFill(Color.LIMEGREEN.deriveColor(0, 1.0, 0.85, 0.75)); // Un verde brillante ma non troppo acceso
+                            cellaGrafica.setStroke(Color.DARKGREEN.deriveColor(0, 1.0, 0.6, 0.8));
+                            cellaGrafica.setStrokeWidth(1.5); // Magari un bordo più evidente per i componenti piazzati
+                            // Qui potresti anche voler disegnare qualcosa che rappresenti il componente (testo, icona)
+                            // sopra la cellaGrafica, magari usando uno StackPane per cellaPane.
+                        }
+                    } else { // Cella NON è utilizzabile
+                        if (cellaLogica.getComponente() != null) {
+                            // 2. NON UTILIZZABILE MA CON COMPONENTE: Lo vuoi ROSSO (indica un problema?)
+                            cellaGrafica.setFill(Color.INDIANRED.deriveColor(0, 1.0, 0.9, 0.75)); // Un rosso non troppo aggressivo
+                            cellaGrafica.setStroke(Color.FIREBRICK.deriveColor(0, 1.0, 0.7, 0.8));
+                            cellaGrafica.setStrokeWidth(1.5);
+                            // Anche qui, potresti voler visualizzare il componente problematico.
+                        } else {
+                            // 1. FUORI DALLA NAVE (NON UTILIZZABILE e SENZA COMPONENTE)
+                            cellaGrafica.setFill(Color.valueOf("#2E2E2E")); // Grigio scuro, come avevi
+                            cellaGrafica.setStroke(Color.valueOf("#202020")); // Bordo ancora più scuro
+                            cellaGrafica.setStrokeWidth(0.5);
+                        }
+                    }
                 final int r = i;
                 final int c = j;
                 cellaGrafica.setOnMouseClicked(event -> {
@@ -269,6 +305,7 @@ public class Interfaccia extends Application {
                 			popolaAreaComponentiHBox(this.areaComponentiHBox, gComponentiDisponibili, gioco);
                 			popolaGrigliaNave(grigliaNave, nave, gCelleNave);
                 			nave.visualizzaNave();
+                			nave.visualizzaUtilizzabileNave();
                 			componenteLogico=null;
                 			indiceCorrente=null;
                 		//}
