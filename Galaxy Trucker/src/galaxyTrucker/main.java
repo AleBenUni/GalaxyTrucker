@@ -9,6 +9,8 @@ public class main {
         
 		Nave nave=new Nave(Livello.II);
 		nave.visualizzaNave();
+		Mazzo empty = new Mazzo(false);
+		empty.rivelaCarteMazzo();
 }
 
 }
