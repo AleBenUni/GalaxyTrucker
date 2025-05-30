@@ -1,15 +1,16 @@
 package galaxyTrucker;
-import componenti.*;
-import carte.*;
+import carte.Carta;
+import carte.Livello;
+import carte.Mazzo;
 
 public class main {
 
 	public static void main(String[] args) {
         
-		Gioco gioco=new Gioco(1,Livello.I);
-		gioco.getMucchio();
-		
-		
+		Nave nave=new Nave(Livello.II);
+		nave.visualizzaNave();
+		Mazzo empty = new Mazzo(false);
+		empty.rivelaCarteMazzo();
 }
 
 }
