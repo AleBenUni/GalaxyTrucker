@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Interfaccia extends Application {
 
@@ -48,19 +49,40 @@ public class Interfaccia extends Application {
     private double paddingPlanciaInterno = 30;
 
 
-    // Riferimenti Logica di Gioco
-    private Nave nave;
-    private Plancia plancia;
-
     // Riferimenti UI
     private Pane panePlanciaGrafica;
+    
     private Gioco gioco;
+    private Nave nave;
+    private Plancia plancia;
     private int giocatoreCorrente=0;
+    
+    private HBox areaComponentiHBox;
+    private GridPane grigliaNave;
+    
+    private Componente componenteLogico=null;
+    private Mucchio mano;
+    private Integer indiceCorrente=null;
 
 
     @Override
     public void start(Stage primaryStage) {
-        gioco = new Gioco(1, Livello.III);
+    	int nGiocatori=1;
+    	Livello livello=Livello.I;
+    	/*Scanner scanner=new Scanner(System.in);
+		do {
+			//scanner.nextLine();
+			System.out.println("Inserire numero giocatori");
+			nGiocatori = scanner.nextInt();
+		}while(nGiocatori<=1||nGiocatori>4);
+		
+		do {
+			scanner.nextLine();
+			System.out.println("Inserire Livello");
+			livello=Livello.toLivello(scanner.nextLine());
+		}while(livello==null);*/
+		
+        this.gioco = new Gioco(nGiocatori, livello);
         this.plancia = gioco.getPlancia();
         this.nave = gioco.getNave(giocatoreCorrente);
 
@@ -81,10 +103,20 @@ public class Interfaccia extends Application {
         finestraLayoutPrincipale.setLeft(panePlanciaGrafica);
 
         // --- ZONA INTERMEDIA: COMPONENTI DISPONIBILI ---
-        HBox areaComponentiHBox=areaComponentiHBox(gComponentiDisponibili, gioco);
+        areaComponentiHBox = new HBox(15);
+        areaComponentiHBox.setPadding(new Insets(10));
+        areaComponentiHBox.setAlignment(Pos.CENTER);
+        mano=generaMano();
+        popolaAreaComponentiHBox(this.areaComponentiHBox, gComponentiDisponibili, this.gioco);
 
         // --- ZONA INFERIORE: GRIGLIA NAVE ---
-        GridPane grigliaNave=grigliaNave(nave, gCelleNave);
+        grigliaNave=new GridPane();
+        grigliaNave.setPadding(new Insets(10));
+        grigliaNave.setAlignment(Pos.CENTER);
+        grigliaNave.setStyle("-fx-background-color: #1C1C1C; -fx-border-color: #404040; -fx-border-width: 1; -fx-background-radius: 8; -fx-border-radius: 8;");
+        grigliaNave.setHgap(3);
+        grigliaNave.setVgap(3);
+        popolaGrigliaNave(grigliaNave, nave, gCelleNave);
         
         
         
@@ -101,9 +133,13 @@ public class Interfaccia extends Application {
         	else
         		giocatoreCorrente+=1;
         	
+        	while(!mano.isEmpty())
+        		gioco.getMucchio().add(mano.pesca());
+        	
         	nave=gioco.getNave(giocatoreCorrente);
-        	areaComponentiHBox=areaComponentiHBox(gComponentiDisponibili, gioco);
-        	grigliaNave=grigliaNave(nave, gCelleNave);
+        	mano=generaMano();
+        	popolaAreaComponentiHBox(this.areaComponentiHBox, gComponentiDisponibili, gioco);
+        	popolaGrigliaNave(this.grigliaNave, nave, gCelleNave);
         });
         contenitorePulsanti.getChildren().add(passaTurno);
         
@@ -124,38 +160,51 @@ public class Interfaccia extends Application {
     
     
     
-    
+    private Mucchio generaMano() {
+    	Mucchio mano=new Mucchio();
+    	Mucchio mucchio=gioco.getMucchio();
+    	Random random = new Random();
+        nComponentiDisponibili=random.nextInt(4)+2;
+        if(!mucchio.isEmpty()) {
+        	if(mucchio.dimensione()-nComponentiDisponibili<0)
+        		nComponentiDisponibili=mucchio.dimensione();
+        }else
+        	return null;
+        for(int i=0;i<nComponentiDisponibili;i++)
+        	mano.add(mucchio.pesca());
+        return mano;
+    }
     
     // --- COMPONENTI PESCATI ---
-    private HBox areaComponentiHBox(int gCoponentiDisponibili, Gioco gioco) {
-    	Mucchio mucchio=gioco.getMucchio();
-    	HBox areaComponentiHBox = new HBox(15);
-        areaComponentiHBox.setPadding(new Insets(10));
-        areaComponentiHBox.setAlignment(Pos.CENTER);
+    private void popolaAreaComponentiHBox(HBox areaComponentiHBox, int gCoponentiDisponibili, Gioco gioco) {
+    	areaComponentiHBox.getChildren().clear();
         
         HBox areaScarti=new HBox(15);
         areaScarti.setPadding(new Insets(10));
         areaScarti.setAlignment(Pos.CENTER);
         Rectangle[] arrayScarti = new Rectangle[2];
         
-        Random random = new Random();
-        nComponentiDisponibili=random.nextInt(4)+2;
+        
         Button[] arrayPulsantiRuota = new Button[nComponentiDisponibili];
         Rectangle[] arrayComponentiPlaceholder = new Rectangle[nComponentiDisponibili];
-        Componente[] componentiDisponibili=new Componente[nComponentiDisponibili];
 
-        for (int i = 0; i < nComponentiDisponibili; i++) {
+        for (int i = 0; i < mano.dimensione(); i++) {
             VBox areaSingoloComponenteVBox = new VBox(5);
             areaSingoloComponenteVBox.setAlignment(Pos.CENTER);
 
             arrayPulsantiRuota[i] = new Button("Ruota");
             arrayPulsantiRuota[i].setMinWidth(gComponentiDisponibili);
+            
+            
             final int indice = i;
             arrayPulsantiRuota[i].setOnAction(event -> {
                 if (arrayComponentiPlaceholder[indice] != null) {
                     arrayComponentiPlaceholder[indice].setRotate((arrayComponentiPlaceholder[indice].getRotate() + 90) % 360);
+                    if(mano.getComponenteAt(indice)!=null)
+                    	mano.getComponenteAt(indice).ruotaComponenteOrario(90);
                 }
             });
+            
             areaSingoloComponenteVBox.getChildren().add(arrayPulsantiRuota[i]);
 
             arrayComponentiPlaceholder[i] = new Rectangle(gComponentiDisponibili, gComponentiDisponibili);
@@ -165,6 +214,7 @@ public class Interfaccia extends Application {
             arrayComponentiPlaceholder[i].setStrokeWidth(1.5);
             arrayComponentiPlaceholder[i].setArcWidth(15);
             arrayComponentiPlaceholder[i].setArcHeight(15);
+            
             arrayComponentiPlaceholder[i].setOnMouseClicked(event -> {
                 for (Rectangle rect : arrayComponentiPlaceholder) {
                     rect.setStroke(Color.STEELBLUE);
@@ -172,28 +222,24 @@ public class Interfaccia extends Application {
                 }
                 arrayComponentiPlaceholder[indice].setStroke(Color.GOLD);
                 arrayComponentiPlaceholder[indice].setStrokeWidth(2.5);
+                componenteLogico=mano.getComponenteAt(indice);
+                indiceCorrente=indice;
             });
             areaSingoloComponenteVBox.getChildren().add(arrayComponentiPlaceholder[i]);
             areaComponentiHBox.getChildren().add(areaSingoloComponenteVBox);
             
-            componentiDisponibili[i]=mucchio.pesca();
         }
         
-        return areaComponentiHBox;
     }
     
     
     
 
     
-    private GridPane grigliaNave(Nave nave, int gCelleNave) {
-    	GridPane grigliaNave = new GridPane();
-        grigliaNave.setPadding(new Insets(10));
-        grigliaNave.setAlignment(Pos.CENTER);
-        grigliaNave.setStyle("-fx-background-color: #1C1C1C; -fx-border-color: #404040; -fx-border-width: 1; -fx-background-radius: 8; -fx-border-radius: 8;");
-        grigliaNave.setHgap(3);
-        grigliaNave.setVgap(3);
-
+    private void popolaGrigliaNave(GridPane grigliaNave, Nave nave, int gCelleNave) {
+    	
+    	grigliaNave.getChildren().clear();
+    	
         int nRighe = nave.getNRighe();
         int nColonne = nave.getNColonne();
 
@@ -216,12 +262,25 @@ public class Interfaccia extends Application {
                 final int r = i;
                 final int c = j;
                 cellaGrafica.setOnMouseClicked(event -> {
+                	if(componenteLogico!=null) {
+                		//if(nave.setCella(new Posizione(r,c), componenteLogico)) {
+                		nave.setCella(new Posizione(r,c), componenteLogico);
+                			mano.removeComponenteAt(indiceCorrente);
+                			popolaAreaComponentiHBox(this.areaComponentiHBox, gComponentiDisponibili, gioco);
+                			popolaGrigliaNave(grigliaNave, nave, gCelleNave);
+                			nave.visualizzaNave();
+                			componenteLogico=null;
+                			indiceCorrente=null;
+                		//}
+                		
+                		
+                	}
+                		
                     System.out.println("Click su cella nave (" + r + "," + c + ")");
                 });
                 grigliaNave.add(cellaGrafica, j, i);
             }
         }
-        return grigliaNave;
     }
     
     
