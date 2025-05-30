@@ -304,4 +304,16 @@ public class Nave {
 			System.out.print("\n");	
 		}
 	}
+	
+	public void visualizzaUtilizzabileNave() {
+		for(int i=0;i<nRighe;i++) {
+			for(int j=0;j<nColonne;j++)
+				if(celle[i][j].isUtilizzabile()) {
+					System.out.print("O");
+				}
+				else
+					System.out.print(" ");
+			System.out.print("\n");	
+		}
+	}
 }
