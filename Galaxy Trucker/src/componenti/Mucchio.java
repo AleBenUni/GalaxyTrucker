@@ -22,7 +22,7 @@ public class Mucchio {
 		ObjectMapper objectMapper = new ObjectMapper();
         try {
             List<Map<String, Object>> jsonDataList = objectMapper.readValue(
-                    new File("componenti/Componenti.json"),
+                    new File("src/componenti/Componenti.json"),
                     new TypeReference<List<Map<String, Object>>>() {}
             );
             String conUpStr;
@@ -122,10 +122,30 @@ public class Mucchio {
     	shuffle(mucchio);
     }
     
+    public void removeComponenteAt(int indice) {
+    	if(indice>=0&&indice<mucchio.size())
+    		mucchio.remove(indice);
+    }
+    
     public Componente pesca() {
     	if(!mucchio.isEmpty()) {
     		return ((LinkedList<Componente>)this.mucchio).removeFirst();
     	}
     	return null;
+    }
+    
+    public int dimensione() {
+    	return mucchio.size();
+    }
+    
+    public boolean isEmpty() {
+    	return mucchio.isEmpty();
+    }
+    
+    public Componente getComponenteAt(int indice) {
+        if(indice>=0&&indice<mucchio.size())
+            return mucchio.get(indice);
+        else
+            return null;
     }
 }
