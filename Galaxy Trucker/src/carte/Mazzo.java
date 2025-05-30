@@ -16,7 +16,15 @@ public class Mazzo {
 	private void caricaMazzo(String CSV) {
 		try {
             mazzo = CaricaCSV.loadMap(CSV);
+            if (mazzo == null) {
+            	System.err.printf("Verra generato un mazzo vuoto\n");
+            	Empty();
+            } else { 
+            	mazzo = CaricaCSV.loadMap(CSV);
             System.out.printf("Il mazzo di 150 carte è pronto\n");
+            }
+            
+           
         } catch (IOException e) {
         	 e.printStackTrace();
         	 System.out.printf("Il mazzo di 0 carte è pronto\n");
@@ -25,10 +33,15 @@ public class Mazzo {
 	 
 	public Mazzo(boolean vuoto) {
 		if(vuoto==true)
-			mazzo = new HashMap<>();
+			Empty();
 		else
 	        caricaMazzo(CSV);
 	    }
+	
+	private void Empty() {
+		mazzo = new HashMap<>();
+		System.out.printf("Il mazzo di 0 carte è pronto\n");
+	}
 	
 	private int Casuale () {
 		Integer[] listaIDMazzo = mazzo.keySet().toArray(new Integer[0]); 

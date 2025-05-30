@@ -13,7 +13,7 @@ import componenti.Merce;
 //questo file potrebbe presentare eccezioni non previsti, controllare gli errori dopo averne verificato il corretto funzionamento
 
 public class CaricaCSV {
-	public static Map<Integer, Carta> loadMap(String path) throws IOException {
+	public static Map<Integer, Carta> loadMap(String path) throws IOException { // ?
 	    Map<Integer, Carta> mazzo = new HashMap<>();
 	    
 	    try (BufferedReader br = new BufferedReader(new FileReader(path))) {
@@ -107,11 +107,11 @@ public class CaricaCSV {
 	            mazzo.put(id, carta);
 	        }
         }
-	 /*   catch (NumberFormatException e) {
-	        System.err.println("La riga: " + riga + "presenta problemi. Sicuro di aver messo la virgola nel file carte.csv?");
-	        continue;
+	  catch (FileNotFoundException e) {
+	        System.err.println("Non trovo il file, hai toccato il codice?");
+	        return null;
 	    }
-     */   return mazzo;
+       return mazzo;
     }
 	
 }
