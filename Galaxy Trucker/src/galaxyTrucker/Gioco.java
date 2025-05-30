@@ -130,6 +130,7 @@ public class Gioco {
 	}
 	
 	 public Mucchio getMucchio() { return this.mucchio; }
-	    public int getNGiocatori() { return this.nGiocatori; }
+	 
+	 public int getNGiocatori() { return this.nGiocatori; }
 	
 }
