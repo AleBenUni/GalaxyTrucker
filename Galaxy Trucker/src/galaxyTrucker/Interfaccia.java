@@ -1,6 +1,8 @@
 package galaxyTrucker;
 
 import carte.Livello;
+import componenti.Componente;
+import componenti.Mucchio;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D; // Per gestire coordinate
@@ -53,13 +55,14 @@ public class Interfaccia extends Application {
     // Riferimenti UI
     private Pane panePlanciaGrafica;
     private Gioco gioco;
+    private int giocatoreCorrente=0;
 
 
     @Override
     public void start(Stage primaryStage) {
         gioco = new Gioco(1, Livello.III);
         this.plancia = gioco.getPlancia();
-        this.nave = gioco.getNave(0);
+        this.nave = gioco.getNave(giocatoreCorrente);
 
         if (this.nave == null || this.plancia == null) {
             mostraErroreEChiudi("Errore Inizializzazione", "Impossibile caricare i dati di gioco.");
@@ -78,10 +81,113 @@ public class Interfaccia extends Application {
         finestraLayoutPrincipale.setLeft(panePlanciaGrafica);
 
         // --- ZONA INTERMEDIA: COMPONENTI DISPONIBILI ---
-        HBox areaComponentiHBox=areaComponentiHBox();
+        HBox areaComponentiHBox=areaComponentiHBox(gComponentiDisponibili, gioco);
 
         // --- ZONA INFERIORE: GRIGLIA NAVE ---
-        GridPane grigliaNave = new GridPane();
+        GridPane grigliaNave=grigliaNave(nave, gCelleNave);
+        
+        
+        
+        // --- ASSEMBLAGGIO CENTRALE ---
+        VBox contenitoreCentraleVBox = new VBox(20);
+        HBox contenitorePulsanti=new HBox(15);
+        contenitorePulsanti.setPadding(new Insets(10));
+        contenitorePulsanti.setAlignment(Pos.CENTER);
+        Button passaTurno=new Button("PassaTurno");
+        
+        passaTurno.setOnAction(event -> {
+        	if(giocatoreCorrente+1==gioco.getNGiocatori())
+        		giocatoreCorrente=0;
+        	else
+        		giocatoreCorrente+=1;
+        	
+        	nave=gioco.getNave(giocatoreCorrente);
+        	areaComponentiHBox=areaComponentiHBox(gComponentiDisponibili, gioco);
+        	grigliaNave=grigliaNave(nave, gCelleNave);
+        });
+        contenitorePulsanti.getChildren().add(passaTurno);
+        
+        contenitoreCentraleVBox.setAlignment(Pos.TOP_CENTER);
+        contenitoreCentraleVBox.getChildren().addAll(areaComponentiHBox, grigliaNave, contenitorePulsanti);
+        finestraLayoutPrincipale.setCenter(contenitoreCentraleVBox);
+        BorderPane.setAlignment(contenitoreCentraleVBox, Pos.CENTER);
+
+
+        // --- SCENA E STAGE ---
+        Scene scena = new Scene(finestraLayoutPrincipale, lFinestra, aFinestra, false, SceneAntialiasing.BALANCED);
+        primaryStage.setScene(scena);
+        primaryStage.setMinWidth(lFinestra * 0.85);
+        primaryStage.setMinHeight(aFinestra * 0.85);
+        primaryStage.show();
+    }
+    
+    
+    
+    
+    
+    
+    // --- COMPONENTI PESCATI ---
+    private HBox areaComponentiHBox(int gCoponentiDisponibili, Gioco gioco) {
+    	Mucchio mucchio=gioco.getMucchio();
+    	HBox areaComponentiHBox = new HBox(15);
+        areaComponentiHBox.setPadding(new Insets(10));
+        areaComponentiHBox.setAlignment(Pos.CENTER);
+        
+        HBox areaScarti=new HBox(15);
+        areaScarti.setPadding(new Insets(10));
+        areaScarti.setAlignment(Pos.CENTER);
+        Rectangle[] arrayScarti = new Rectangle[2];
+        
+        Random random = new Random();
+        nComponentiDisponibili=random.nextInt(4)+2;
+        Button[] arrayPulsantiRuota = new Button[nComponentiDisponibili];
+        Rectangle[] arrayComponentiPlaceholder = new Rectangle[nComponentiDisponibili];
+        Componente[] componentiDisponibili=new Componente[nComponentiDisponibili];
+
+        for (int i = 0; i < nComponentiDisponibili; i++) {
+            VBox areaSingoloComponenteVBox = new VBox(5);
+            areaSingoloComponenteVBox.setAlignment(Pos.CENTER);
+
+            arrayPulsantiRuota[i] = new Button("Ruota");
+            arrayPulsantiRuota[i].setMinWidth(gComponentiDisponibili);
+            final int indice = i;
+            arrayPulsantiRuota[i].setOnAction(event -> {
+                if (arrayComponentiPlaceholder[indice] != null) {
+                    arrayComponentiPlaceholder[indice].setRotate((arrayComponentiPlaceholder[indice].getRotate() + 90) % 360);
+                }
+            });
+            areaSingoloComponenteVBox.getChildren().add(arrayPulsantiRuota[i]);
+
+            arrayComponentiPlaceholder[i] = new Rectangle(gComponentiDisponibili, gComponentiDisponibili);
+            arrayComponentiPlaceholder[i].setSmooth(true);
+            arrayComponentiPlaceholder[i].setFill(Color.LIGHTSKYBLUE.deriveColor(0, 1, 1, 0.85));
+            arrayComponentiPlaceholder[i].setStroke(Color.STEELBLUE);
+            arrayComponentiPlaceholder[i].setStrokeWidth(1.5);
+            arrayComponentiPlaceholder[i].setArcWidth(15);
+            arrayComponentiPlaceholder[i].setArcHeight(15);
+            arrayComponentiPlaceholder[i].setOnMouseClicked(event -> {
+                for (Rectangle rect : arrayComponentiPlaceholder) {
+                    rect.setStroke(Color.STEELBLUE);
+                    rect.setStrokeWidth(1.5);
+                }
+                arrayComponentiPlaceholder[indice].setStroke(Color.GOLD);
+                arrayComponentiPlaceholder[indice].setStrokeWidth(2.5);
+            });
+            areaSingoloComponenteVBox.getChildren().add(arrayComponentiPlaceholder[i]);
+            areaComponentiHBox.getChildren().add(areaSingoloComponenteVBox);
+            
+            componentiDisponibili[i]=mucchio.pesca();
+        }
+        
+        return areaComponentiHBox;
+    }
+    
+    
+    
+
+    
+    private GridPane grigliaNave(Nave nave, int gCelleNave) {
+    	GridPane grigliaNave = new GridPane();
         grigliaNave.setPadding(new Insets(10));
         grigliaNave.setAlignment(Pos.CENTER);
         grigliaNave.setStyle("-fx-background-color: #1C1C1C; -fx-border-color: #404040; -fx-border-width: 1; -fx-background-radius: 8; -fx-border-radius: 8;");
@@ -115,85 +221,8 @@ public class Interfaccia extends Application {
                 grigliaNave.add(cellaGrafica, j, i);
             }
         }
-        
-        // --- ASSEMBLAGGIO CENTRALE ---
-        VBox contenitoreCentraleVBox = new VBox(20);
-        contenitoreCentraleVBox.setAlignment(Pos.TOP_CENTER);
-        contenitoreCentraleVBox.getChildren().addAll(areaComponentiHBox, grigliaNave);
-        finestraLayoutPrincipale.setCenter(contenitoreCentraleVBox);
-        BorderPane.setAlignment(contenitoreCentraleVBox, Pos.CENTER);
-
-
-        // --- SCENA E STAGE ---
-        Scene scena = new Scene(finestraLayoutPrincipale, lFinestra, aFinestra, false, SceneAntialiasing.BALANCED);
-        primaryStage.setScene(scena);
-        primaryStage.setMinWidth(lFinestra * 0.85);
-        primaryStage.setMinHeight(aFinestra * 0.85);
-        primaryStage.show();
+        return grigliaNave;
     }
-    
-    
-    
-    
-    
-    
-    // --- COMPONENTI PESCATI ---
-    private HBox areaComponentiHBox() {
-    	HBox areaComponentiHBox = new HBox(15);
-        areaComponentiHBox.setPadding(new Insets(10));
-        areaComponentiHBox.setAlignment(Pos.CENTER);
-        
-        HBox areaScarti=new HBox(15);
-        areaScarti.setPadding(new Insets(10));
-        areaScarti.setAlignment(Pos.CENTER);
-        Rectangle[] arrayScarti = new Rectangle[2];
-        
-        Random random = new Random();
-        nComponentiDisponibili=random.nextInt(4)+2;
-        Button[] arrayPulsantiRuota = new Button[nComponentiDisponibili];
-        Rectangle[] arrayComponentiPlaceholder = new Rectangle[nComponentiDisponibili];
-
-        for (int i = 0; i < nComponentiDisponibili; i++) {
-            VBox areaSingoloComponenteVBox = new VBox(5);
-            areaSingoloComponenteVBox.setAlignment(Pos.CENTER);
-
-            arrayPulsantiRuota[i] = new Button("Ruota");
-            arrayPulsantiRuota[i].setMinWidth(gComponentiDisponibili);
-            final int indice = i;
-            arrayPulsantiRuota[i].setOnAction(event -> {
-                if (arrayComponentiPlaceholder[indice] != null) {
-                    arrayComponentiPlaceholder[indice].setRotate((arrayComponentiPlaceholder[indice].getRotate() + 90) % 360);
-                }
-            });
-            areaSingoloComponenteVBox.getChildren().add(arrayPulsantiRuota[i]);
-
-            arrayComponentiPlaceholder[i] = new Rectangle(gComponentiDisponibili, gComponentiDisponibili);
-            arrayComponentiPlaceholder[i].setSmooth(true);
-            arrayComponentiPlaceholder[i].setFill(Color.LIGHTSKYBLUE.deriveColor(0, 1, 1, 0.85));
-            arrayComponentiPlaceholder[i].setStroke(Color.STEELBLUE);
-            arrayComponentiPlaceholder[i].setStrokeWidth(1.5);
-            arrayComponentiPlaceholder[i].setArcWidth(15);
-            arrayComponentiPlaceholder[i].setArcHeight(15);
-            arrayComponentiPlaceholder[i].setOnMouseClicked(event -> {
-                for (Rectangle rect : arrayComponentiPlaceholder) {
-                    rect.setStroke(Color.STEELBLUE);
-                    rect.setStrokeWidth(1.5);
-                }
-                arrayComponentiPlaceholder[indice].setStroke(Color.GOLD);
-                arrayComponentiPlaceholder[indice].setStrokeWidth(2.5);
-            });
-            areaSingoloComponenteVBox.getChildren().add(arrayComponentiPlaceholder[i]);
-            areaComponentiHBox.getChildren().add(areaSingoloComponenteVBox);
-        }
-        
-        return areaComponentiHBox;
-    }
-    
-    
-    
-
-    
-    
     
     
     
