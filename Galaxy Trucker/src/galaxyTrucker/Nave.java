@@ -94,7 +94,7 @@ public class Nave {
 		return celle[posizione.getRiga()][posizione.getColonna()];
 	}
 	
-	public void setCella(Posizione pos, Componente componente) {
+	public boolean setCella(Posizione pos, Componente componente) {
 		int riga=pos.getRiga();
 		int col=pos.getColonna();
 		if(celle[riga][col].isUtilizzabile()&&celle[riga][col].getComponente()==null) {
@@ -103,8 +103,9 @@ public class Nave {
 				celle[riga][col].setNotUtilizzabile();
 				
 			}
-				
-		}
+			return true;
+		}else
+			return false;
 			
 		
 			
@@ -292,8 +293,10 @@ public class Nave {
 				if(celle[i][j].isUtilizzabile()) {
 					if(celle[i][j].getComponente() instanceof Cabina)
 						System.out.print("C");
-					else
+					else if(celle[i][j].getComponente()!=null)
 						System.out.print("X");
+					else
+						System.out.print("O");
 				}
 					
 				else
