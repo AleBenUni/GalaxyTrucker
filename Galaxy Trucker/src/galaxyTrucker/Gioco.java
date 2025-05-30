@@ -17,12 +17,15 @@ public class Gioco {
 	public Gioco(int nGiocatori, Livello livello) {
 		this.nGiocatori=nGiocatori;
 		this.livello=livello;
-		//mucchio=new Mucchio();
+		mucchio=new Mucchio();
+		mucchio.riempiMucchio();
 		nave=new Nave[nGiocatori];
 		plancia=new Plancia(livello);
 		for(int i=0;i<nGiocatori;i++)
 			nave[i]=new Nave(livello);
 	}
+	
+	
 	
 	public void gioca() {
 		int difesa=0;
