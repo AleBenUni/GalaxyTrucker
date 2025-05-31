@@ -1,10 +1,12 @@
 package carte;
 
 import java.util.List;
+import java.util.Map;
+
+import componenti.Lato;
 
 public class PioggiaMeteoriti extends Carta{
-	// private final List
-	private final List<Meteorite> meteoriti;
+	private final Map<Lato, List<Meteorite>> meteoriti;
 
 	public PioggiaMeteoriti(Integer id, String nome, Livello livello, int ggVolo, int merce,
 			int equipaggio, int credito, List<Meteorite> meteoriti) {
