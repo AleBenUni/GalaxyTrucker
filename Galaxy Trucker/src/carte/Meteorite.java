@@ -5,6 +5,7 @@ import componenti.Lato;
 public class Meteorite {
 	 private final Dimensione dimensione;
 	 private final Lato lato;
+
 	
 	 public Meteorite(Dimensione dimensione, Lato lato) {
 	        this.dimensione = dimensione;
@@ -14,14 +15,14 @@ public class Meteorite {
 	 public Dimensione getDimensione() {
 	        return dimensione;
 	    }
-
-	    public Lato getLato() {
+	 
+	 public Lato getLato() {
 	        return lato;
 	    }
 
 	    @Override
 	    public String toString() {
-	        return "Meteorite [dimensione=" + dimensione + ", lato=" + lato + "]";
+	        return "un meteorite " + dimensione + " da " + lato.stampaLato();
 	    }
 	
 	

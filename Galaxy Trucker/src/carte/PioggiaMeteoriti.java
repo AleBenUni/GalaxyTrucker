@@ -1,12 +1,9 @@
 package carte;
 
 import java.util.List;
-import java.util.Map;
-
-import componenti.Lato;
 
 public class PioggiaMeteoriti extends Carta{
-	private final Map<Lato, List<Meteorite>> meteoriti;
+	private final List<Meteorite> meteoriti;
 
 	public PioggiaMeteoriti(Integer id, String nome, Livello livello, int ggVolo, int merce,
 			int equipaggio, int credito, List<Meteorite> meteoriti) {
@@ -16,7 +13,7 @@ public class PioggiaMeteoriti extends Carta{
 	
 	@Override
 	public String toString() {
-		return super.toString() + " Che prevede " + meteoriti;
+		return super.toString() + " Che prevede (in ordine di arrivo) " + meteoriti;
 	}
 //questa classe ha ancora senso di esistere dopo aver creato l'enum NomeSpeciale?
 	//2,Pioggia di meteoriti,II,0,0,0,0,PIOGGIA_METEORITI

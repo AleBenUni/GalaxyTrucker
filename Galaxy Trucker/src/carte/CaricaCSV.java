@@ -8,6 +8,7 @@ import java.util.Map;
 import java.io.*;
 import carte.Livello;
 import carte.NomeSpeciale;
+import componenti.Lato;
 import componenti.Merce;
 
 //questo file potrebbe presentare eccezioni non previsti, controllare gli errori dopo averne verificato il corretto funzionamento
@@ -54,23 +55,7 @@ public class CaricaCSV {
                      }
                      carta = new Pianeti(id, nome, livello, ggVolo, merce, equipaggio, credito, pianeti);
                      break;
-	      /*      case PIOGGIA_METEORITI:
-	            	String raw1 = p[8];
-	            	raw1 = raw1.replace("\"", "");
-	            	String[] coppi = raw1.split(",");
-	            	List<Meteorite> meteoriteinArrivo = new ArrayList<>();
-	            	for (String coppia : coppi) {
-	            		String[] kv = coppia.split(":");
-	            		Dimensione tipo = Dimensione.valueOf(kv[0]);
-	            		int qta = Integer.parseInt(kv[1].trim());
-	            		
-	            		meteoriteinArrivo.add(new Meteorite(tipo,qta));
-	            	}
-	            	
-	            	}          	
-	            	carta = new PioggiaMeteoriti(id, nome, livello, credito, credito, credito, credito, meteoriteinArrivo);
-	            	break;
-	        */    case STAZIONE_ABBANDONATA:
+	            case STAZIONE_ABBANDONATA:
 	            	String raw2 = p[8];
 	            	raw2 = raw2.replace("\"", "");
 	            	List<Pianeta> merceAbordo = new ArrayList<>();
@@ -99,6 +84,19 @@ public class CaricaCSV {
 	            	break;
 	            case EPIDEMIA:
 	            	carta = new Epidemia(id, nome, livello, ggVolo, merce, equipaggio, credito);
+	            	break;
+	            case PIOGGIA_METEORITI:      	
+	            	String raw3 = p[8];
+	            	raw3 = raw3.replace("\"", "");
+	            	List<Meteorite> meteora = new ArrayList<Meteorite>(); // Da Java 7+ List<Meteorite> meteora = new ArrayList<>(); equivale a ciò che ho gia scritto, viene dato per scontato
+	            	String[] coppie2 = raw3.split(",");
+	            	for (String coppia : coppie2) {
+	            		String[] kv = coppia.split(":");
+	            		Dimensione dimensione = Dimensione.valueOf(kv[0]);
+	            		Lato lato = Lato.valueOf(kv[1]);
+	            		meteora.add(new Meteorite(dimensione, lato));
+	            	}
+	            	carta = new PioggiaMeteoriti(id, nome, livello, credito, credito, credito, credito, meteora);
 	            	break;
                     default:
                      carta = new Carta(id, effetto, nome , livello, ggVolo, merce, equipaggio, credito);
