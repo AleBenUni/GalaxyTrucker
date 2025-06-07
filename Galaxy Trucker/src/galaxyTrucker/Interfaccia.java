@@ -31,7 +31,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Interfaccia extends Application {
-	
     // Dimensioni Finestra e UI
     private int lFinestra = 1300;
     private int aFinestra = 750;
@@ -509,6 +508,7 @@ public class Interfaccia extends Application {
     }
 
     public static void main(String[] args) {
-	    	launch(args);
+        launch(args);
     }
+    
 }
