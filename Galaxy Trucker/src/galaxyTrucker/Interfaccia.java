@@ -31,24 +31,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Interfaccia extends Application {
-
-	public static void checkJavaVersion() {
-		String currentVersion = System.getProperty("java.version");
-		String[] versioneAttuale = currentVersion.split("\\.");
-		int versioneUtenteJava = Integer.parseInt(versioneAttuale[0]);
-		
-	    if (versioneUtenteJava<22) {
-	        
-	        System.err.println("======================================================");
-	        System.err.println(" Questo progetto richiede Java 22 o superiore");
-	        System.err.println(" La tua versione attuale è: " + currentVersion);
-	        System.err.println("\n Per favore scarica l'ultima versione da:");
-	        System.err.println(" https://www.oracle.com/java/technologies/downloads/");
-	        System.err.println("======================================================");
-	        System.exit(1);
-	    }
-	}
-    
 	
     // Dimensioni Finestra e UI
     private int lFinestra = 1300;
@@ -527,6 +509,22 @@ public class Interfaccia extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+    	String currentVersion = System.getProperty("java.version");
+		String[] versioneAttuale = currentVersion.split("\\.");
+		int versioneUtenteJava = Integer.parseInt(versioneAttuale[0]);
+		
+	    if (versioneUtenteJava<22) {
+	        
+	        System.err.println("======================================================");
+	        System.err.println(" Questo progetto richiede Java 22 o superiore");
+	        System.err.println(" La tua versione attuale è: " + currentVersion);
+	        System.err.println("\n Per favore scarica l'ultima versione da:");
+	        System.err.println(" https://www.oracle.com/java/technologies/downloads/");
+	        System.err.println("======================================================");
+	        System.exit(1);
+	    } else {
+	    	launch(args);
+	    }
+        
     }
 }
