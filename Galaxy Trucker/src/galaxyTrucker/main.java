@@ -18,8 +18,10 @@ public class main {
 	        System.err.println("\n Per favore scarica l'ultima versione da:");
 	        System.err.println(" https://www.oracle.com/java/technologies/downloads/");
 	        System.err.println("======================================================");
-	        
+	        System.exit(1);
 	    }
+	    
+	    
 		/*
 		Gioco gioco=new Gioco(1,Livello.I);
 		gioco.getMucchio();
