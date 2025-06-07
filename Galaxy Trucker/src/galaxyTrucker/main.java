@@ -26,7 +26,7 @@ public class main {
 		*/
 		Mazzo mazzo = new Mazzo(false);
 		mazzo.rivelaCarteMazzo();
-		javafx.application.Application.launch(Interfaccia.class, args);// Carica il main di un altra classe, una novità che non conoscevo.
+		Interfaccia.main(args);
 }
 
 }
