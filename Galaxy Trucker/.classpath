@@ -11,12 +11,7 @@
 	<classpathentry kind="lib" path="lib/jackson-annotations-3.0-rc5.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-core-2.19.0.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-databind-2.19.0.jar"/>
-	<classpathentry kind="lib" path="lib/javafx-sdk-24.0.1/bin">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/javafx-sdk-24.0.1/lib">
+	<classpathentry kind="lib" path="lib/javafx-sdk-24.0.1">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
