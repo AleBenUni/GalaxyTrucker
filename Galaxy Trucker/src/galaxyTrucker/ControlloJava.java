@@ -13,6 +13,7 @@ public class ControlloJava {
 	            System.err.println("\n Per favore scarica l'ultima versione da:");
 	            System.err.println(" https://www.oracle.com/java/technologies/downloads/");
 	            System.err.println("======================================================");
+	            System.err.println(" Per cambiare la versione di Java in Eclipse vai su Window > Preferences > Installed JREs > Seleziona la versione di Java scaricata");
 	            System.exit(1);
 	        } else {
 	            Interfaccia.main(args); // Carica il main di un altra classe, una novità che non conoscevo.
