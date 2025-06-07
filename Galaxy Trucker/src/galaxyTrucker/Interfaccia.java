@@ -507,6 +507,8 @@ public class Interfaccia extends Application {
         // javafx.application.Platform.exit();
     }
 
+    //Nota per i programmatori: Il Main di questa classe è runnabile direttamente (e solamente) dal main. 
+    //Questa modifica è necessaria per far funzionare tutte le librerie interne
     public static void main(String[] args) {
         launch(args);
     }
