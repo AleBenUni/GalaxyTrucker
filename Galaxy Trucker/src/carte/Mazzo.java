@@ -104,6 +104,8 @@ public class Mazzo {
 	public void svuotaMazzo() {
 		mazzo.clear();
 	}
+	
+	
 
 }
 
