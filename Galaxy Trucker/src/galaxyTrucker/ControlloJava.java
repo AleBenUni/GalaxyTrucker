@@ -16,7 +16,7 @@ public class ControlloJava {
 	            System.err.println(" Per cambiare la versione di Java in Eclipse vai su Window > Preferences > Installed JREs > Seleziona la versione di Java scaricata");
 	            System.exit(1);
 	        } else {
-	            Interfaccia.main(args); // Carica il main di un altra classe, una novità che non conoscevo.
+	            Interfaccia.main(args); // Carica il main di un' altra classe, una novità che non conoscevo.
 	        }
 	    }
 }

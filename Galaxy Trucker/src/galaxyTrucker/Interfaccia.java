@@ -509,6 +509,8 @@ public class Interfaccia extends Application {
     }
 
     public static void main(String[] args) {
+    	System.setProperty("javafx.allow.anonymous.module", "true"); //cercata
+        System.setProperty("javafx.verbose", "false");  //cercata
 	    	launch(args);
     }
 }
