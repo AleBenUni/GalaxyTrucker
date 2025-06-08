@@ -12,7 +12,6 @@ public class Pianeta {
 	 public Pianeta(Map<Merce, Integer> mercexPianeta) {
 	        this.mercexPianeta = mercexPianeta;
 	    }
-	 //servira un set? per le casse prese dal giocatore o semplicemente impediamo di fare la stessa scelta ad altri giocatori? 
 	 
 	public Map<Merce, Integer> getMercexPianeta() {
 		return mercexPianeta;
@@ -27,8 +26,6 @@ public class Pianeta {
 	    }
 	    return totale;
 	}
-	
-	//realizza una get del valore per ogni pianeta (in futuro)  <--- Forse non serve
 
 	@Override
 	public String toString() {

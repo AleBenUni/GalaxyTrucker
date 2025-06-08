@@ -98,7 +98,7 @@ public class CaricaCSV {
 	            	}
 	            	carta = new PioggiaMeteoriti(id, nome, livello, credito, credito, credito, credito, meteora);
 	            	break;
-                    default:
+               default:
                      carta = new Carta(id, effetto, nome , livello, ggVolo, merce, equipaggio, credito);
 	            }
 	            

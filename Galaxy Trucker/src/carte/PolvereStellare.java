@@ -6,6 +6,7 @@ import galaxyTrucker.Nave;
 import galaxyTrucker.Posizione;
 import componenti.Componente;
 import componenti.Lato;
+//Ricordati di importare tutte le librerie
 
 public class PolvereStellare extends Carta{
 
@@ -15,7 +16,7 @@ public class PolvereStellare extends Carta{
 	}
 	
 	public void appliaEffetto(Gioco gioco) {
-		List<Posizione> posizioni = gioco.getPosizioniGiocatori();
+		List<Posizione> posizioni = gioco.getPosizioniGiocatori(); 
 		
 		posizioni.sort(Comparator.comparingInt(posizione::getCasella).reversed());
 		
@@ -31,7 +32,7 @@ public class PolvereStellare extends Carta{
 		int count = 0;
 		for (Componente c : nave.getComponenti()) {
 			for (Lato lato : Lato.values()) {
-				if (c.getConnettore(lato) != null && !c.getConnettore(lato).èconnesso()) {
+				if (c.getConnettore(lato) != null && !c.getConnettore(lato).èconnesso()) { // Solitamente e' meglio evitare la è accentata
 					count++;
 				}
 			}
@@ -44,4 +45,6 @@ public class PolvereStellare extends Carta{
 		return super.toString();	
 	}
 
+	//Addisurati con dei test che il seguente file sia compilabile e runnabile
+	
 }

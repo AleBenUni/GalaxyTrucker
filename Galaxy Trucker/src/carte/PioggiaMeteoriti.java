@@ -15,8 +15,5 @@ public class PioggiaMeteoriti extends Carta{
 	public String toString() {
 		return super.toString() + " Che prevede (in ordine di arrivo) " + meteoriti;
 	}
-//questa classe ha ancora senso di esistere dopo aver creato l'enum NomeSpeciale?
-	//2,Pioggia di meteoriti,II,0,0,0,0,PIOGGIA_METEORITI
-	
-	
+
 }
