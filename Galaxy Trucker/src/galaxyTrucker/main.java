@@ -35,7 +35,7 @@ public class main {
 	        
 		Mazzo mazzo = new Mazzo(false);
 		mazzo.rivelaCarteMazzo();
-		Interfaccia.main(args);
+		Interfaccia.main(args);  //Per eseguire il main della interfaccia
 		
 }
 
