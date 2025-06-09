@@ -221,45 +221,20 @@ public class Interfaccia extends Application {
             arrayComponentiPlaceholder[i].setArcHeight(15);
             
          // --- MODIFICA PER IMMAGINI ---
-         // Sostituisci temporaneamente il blocco try-catch in popolaAreaComponentiHBox
-         // per eseguire questo test di debug con un percorso assoluto.
+         // La tua logica originale (ora dovrebbe funzionare)
+            try {
+                String imagePath = mano.getComponenteAt(i).getImagePath();
+                System.out.println(imagePath);
+                Image img = new Image(getClass().getResourceAsStream(imagePath));
+                if (img.isError()) throw new IOException("Risorsa non trovata: " + imagePath);
 
-         try {
-             // NOTA: In una stringa Java, i backslash (\) devono essere raddoppiati (\\)
-             // oppure puoi usare i forward slash (/) che funzionano anche su Windows.
-             String percorsoAssolutoTest = "C:/Users/benig/OneDrive/Scuola/Università/1. Primo Anno/Java/GalaxyTrucker/Galaxy Trucker/resources/images/Batteria/97.jpg";
+                // ... imposta l'immagine sul tuo Rectangle ...
+                arrayComponentiPlaceholder[indice].setFill(new ImagePattern(img));
 
-             System.out.println("DEBUG: Tento di caricare da percorso assoluto: " + percorsoAssolutoTest);
-
-             File fileImmagine = new File(percorsoAssolutoTest);
-
-             if (!fileImmagine.exists()) {
-                 throw new java.io.FileNotFoundException("File non trovato! Controlla il percorso assoluto e che il file esista.");
-             }
-
-             // Crea uno stream dal file fisico
-             java.io.InputStream stream = new java.io.FileInputStream(fileImmagine);
-             
-             // Crea l'immagine dallo stream
-             Image img = new Image(stream);
-
-             // Se l'immagine ha un errore di caricamento
-             if (img.isError()) {
-                 throw new IOException("JavaFX non è riuscito a caricare l'immagine dal file (file corrotto o formato non supportato?).");
-             }
-
-             System.out.println(">>>> SUCCESSO! Immagine caricata correttamente con percorso assoluto.");
-             
-             // Applica l'immagine al tuo placeholder per vederla
-             // (arrayComponentiPlaceholder[indice] deve essere accessibile qui)
-             arrayComponentiPlaceholder[indice].setFill(new ImagePattern(img));
-
-             stream.close(); // È buona norma chiudere lo stream
-
-         } catch (Exception e) {
-             System.err.println(">>>> FALLIMENTO! Errore durante il caricamento con percorso assoluto:");
-             e.printStackTrace();
-         }
+            } catch (Exception e) {
+                System.err.println("Errore caricamento immagine: " + e.getMessage());
+                arrayComponentiPlaceholder[indice].setFill(Color.DEEPPINK);
+            }
             // --- FINE MODIFICA ---
             
             arrayComponentiPlaceholder[i].setOnMouseClicked(event -> {
