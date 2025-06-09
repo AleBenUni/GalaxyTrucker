@@ -6,7 +6,20 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jackson"/>
+	<classpathentry kind="lib" path="libs/Jackson/jackson-annotations-2.19.0.jar"/>
+	<classpathentry kind="lib" path="libs/Jackson/jackson-core-2.19.0.jar"/>
+	<classpathentry kind="lib" path="libs/Jackson/jackson-databind-2.19.0.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.properties"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/jdk.jsobject.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/jfx.incubator.input.jar"/>
+	<classpathentry kind="lib" path="libs/JavaFX/lib/jfx.incubator.richtext.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
