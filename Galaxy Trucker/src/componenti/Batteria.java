@@ -3,8 +3,8 @@ package componenti;
 public class Batteria extends Componente{
 	int nEnergie;
 	int grandezzaBatteria;
-	public Batteria(int grandezzaBatteria, Connettore up, Connettore dx, Connettore sx, Connettore dw) {
-		super(up,dx,sx,dw);
+	public Batteria(int grandezzaBatteria, Connettore up, Connettore dx, Connettore sx, Connettore dw, String imagePath) {
+		super(up,dx,sx,dw,imagePath);
 		if(grandezzaBatteria<=0)
 	        throw new IllegalArgumentException("La grandezza della batteria deve essere positiva");
 		this.grandezzaBatteria=grandezzaBatteria;

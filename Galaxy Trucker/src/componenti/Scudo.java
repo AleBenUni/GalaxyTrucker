@@ -4,8 +4,8 @@ public class Scudo extends Componente {
 	
 	private Lato latoProtettoUno, latoProtettoDue;
 	
-	public Scudo(Connettore up, Connettore dx, Connettore sx, Connettore dw) {
-		super(up,dx,sx,dw);
+	public Scudo(Connettore up, Connettore dx, Connettore sx, Connettore dw, String imagePath) {
+		super(up,dx,sx,dw,imagePath);
 		latoProtettoUno=Lato.up;
 		latoProtettoDue=Lato.sx;
 	}

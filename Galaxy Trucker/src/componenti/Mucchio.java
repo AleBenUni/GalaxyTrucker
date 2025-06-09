@@ -55,27 +55,29 @@ public class Mucchio {
                 Connettore connettoreSx = Connettore.valueOf(conSxStr.toLowerCase());
                 Connettore connettoreDw = Connettore.valueOf(conDwStr.toLowerCase());
 
+                String imagePath = (String) itemData.get("imagePath");
+
                 Componente componenteCreato = null;
 
                 switch (tipo) {
                     case "Batteria":
                     	capacita = (int) itemData.get("Capacita");
-                        componenteCreato = new Batteria(capacita, connettoreUp, connettoreDx, connettoreSx, connettoreDw);
+                        componenteCreato = new Batteria(capacita, connettoreUp, connettoreDx, connettoreSx, connettoreDw, imagePath);
                         break;
                     case "Cannone":
                     	capacita = (int) itemData.get("Capacita");
-                        componenteCreato = new Cannone(capacita, connettoreUp, connettoreDx, connettoreSx, connettoreDw);
+                        componenteCreato = new Cannone(capacita, connettoreUp, connettoreDx, connettoreSx, connettoreDw, imagePath);
                         break;
                     case "Scudo":
-                        componenteCreato = new Scudo(connettoreUp, connettoreDx, connettoreSx, connettoreDw);
+                        componenteCreato = new Scudo(connettoreUp, connettoreDx, connettoreSx, connettoreDw, imagePath);
                         break;
                     case "Motore":
                     	capacita = (int) itemData.get("Capacita");
-                        componenteCreato = new Motore(capacita, connettoreUp, connettoreDx, connettoreSx, connettoreDw);
+                        componenteCreato = new Motore(capacita, connettoreUp, connettoreDx, connettoreSx, connettoreDw, imagePath);
                         break;
                     case "Cabina":
                     	capacita = (int) itemData.get("Capacita");
-                         componenteCreato = new Cabina(capacita, connettoreUp, connettoreDx, connettoreSx, connettoreDw);
+                         componenteCreato = new Cabina(capacita, connettoreUp, connettoreDx, connettoreSx, connettoreDw, imagePath);
                          break;
                     case "Stiva":
                         speciale = false;
@@ -83,7 +85,7 @@ public class Mucchio {
                         if (itemData.containsKey("Speciale") && itemData.get("Speciale") != null) {
                             speciale = (Boolean) itemData.get("Speciale");
                         }
-                        componenteCreato = new Stiva(capacita, speciale, connettoreUp, connettoreDx, connettoreSx, connettoreDw);
+                        componenteCreato = new Stiva(capacita, speciale, connettoreUp, connettoreDx, connettoreSx, connettoreDw, imagePath);
                         break;
                     default:
                         System.err.println("Tipo di componente sconosciuto nel file: " + tipo + ". Oggetto: " + itemData);

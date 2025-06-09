@@ -5,8 +5,8 @@ public class Cabina extends Componente{
 	private Equipaggio tipoEquipaggio;
 	private int postiEquipaggio;
 	
-	public Cabina(int postiEquipaggio, Connettore up, Connettore dx, Connettore sx, Connettore dw) {
-		super(up,dx,sx,dw);
+	public Cabina(int postiEquipaggio, Connettore up, Connettore dx, Connettore sx, Connettore dw, String imagePath) {
+		super(up,dx,sx,dw,imagePath);
 		this.postiEquipaggio=postiEquipaggio;
 		this.nEquipaggio=postiEquipaggio;
 		this.tipoEquipaggio=Equipaggio.umano;

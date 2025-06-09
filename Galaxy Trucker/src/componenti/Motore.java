@@ -5,8 +5,8 @@ public class Motore extends Componente{
 	private int nTubiScappamento;
 	private Lato posTubiScappamento;
 	
-	public Motore(int nTubiScappamento, Connettore up, Connettore dx, Connettore sx, Connettore dw) {
-		super(up,dx,sx,dw);
+	public Motore(int nTubiScappamento, Connettore up, Connettore dx, Connettore sx, Connettore dw, String imagePath) {
+		super(up,dx,sx,dw,imagePath);
 		this.nTubiScappamento=nTubiScappamento;
 		posTubiScappamento=Lato.dw;
 	}

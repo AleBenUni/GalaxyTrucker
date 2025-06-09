@@ -6,8 +6,8 @@ public class Stiva extends Componente{
 	private int grandezzaStiva;
 	private Merce[] carico;
 	boolean stivaSpeciale;
-	public Stiva(int grandezzaStiva, boolean stivaSpeciale, Connettore up, Connettore dx, Connettore sx, Connettore dw) {
-		super(up,dx,sx,dw);
+	public Stiva(int grandezzaStiva, boolean stivaSpeciale, Connettore up, Connettore dx, Connettore sx, Connettore dw, String imagePath) {
+		super(up,dx,sx,dw,imagePath);
 		this.grandezzaStiva=grandezzaStiva;
 		this.stivaSpeciale=stivaSpeciale;
 		this.carico=new Merce[grandezzaStiva];

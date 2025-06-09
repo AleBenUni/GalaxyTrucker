@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -18,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -25,6 +27,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -214,6 +219,48 @@ public class Interfaccia extends Application {
             arrayComponentiPlaceholder[i].setStrokeWidth(1.5);
             arrayComponentiPlaceholder[i].setArcWidth(15);
             arrayComponentiPlaceholder[i].setArcHeight(15);
+            
+         // --- MODIFICA PER IMMAGINI ---
+         // Sostituisci temporaneamente il blocco try-catch in popolaAreaComponentiHBox
+         // per eseguire questo test di debug con un percorso assoluto.
+
+         try {
+             // NOTA: In una stringa Java, i backslash (\) devono essere raddoppiati (\\)
+             // oppure puoi usare i forward slash (/) che funzionano anche su Windows.
+             String percorsoAssolutoTest = "C:/Users/benig/OneDrive/Scuola/Università/1. Primo Anno/Java/GalaxyTrucker/Galaxy Trucker/resources/images/Batteria/97.jpg";
+
+             System.out.println("DEBUG: Tento di caricare da percorso assoluto: " + percorsoAssolutoTest);
+
+             File fileImmagine = new File(percorsoAssolutoTest);
+
+             if (!fileImmagine.exists()) {
+                 throw new java.io.FileNotFoundException("File non trovato! Controlla il percorso assoluto e che il file esista.");
+             }
+
+             // Crea uno stream dal file fisico
+             java.io.InputStream stream = new java.io.FileInputStream(fileImmagine);
+             
+             // Crea l'immagine dallo stream
+             Image img = new Image(stream);
+
+             // Se l'immagine ha un errore di caricamento
+             if (img.isError()) {
+                 throw new IOException("JavaFX non è riuscito a caricare l'immagine dal file (file corrotto o formato non supportato?).");
+             }
+
+             System.out.println(">>>> SUCCESSO! Immagine caricata correttamente con percorso assoluto.");
+             
+             // Applica l'immagine al tuo placeholder per vederla
+             // (arrayComponentiPlaceholder[indice] deve essere accessibile qui)
+             arrayComponentiPlaceholder[indice].setFill(new ImagePattern(img));
+
+             stream.close(); // È buona norma chiudere lo stream
+
+         } catch (Exception e) {
+             System.err.println(">>>> FALLIMENTO! Errore durante il caricamento con percorso assoluto:");
+             e.printStackTrace();
+         }
+            // --- FINE MODIFICA ---
             
             arrayComponentiPlaceholder[i].setOnMouseClicked(event -> {
                 for (Rectangle rect : arrayComponentiPlaceholder) {

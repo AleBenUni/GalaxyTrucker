@@ -6,12 +6,14 @@ public class Componente {
 	private Connettore dx;
 	private Connettore sx;
 	private Connettore dw;
+	private String imagePath;
 	
-	public Componente(Connettore up, Connettore dx, Connettore sx, Connettore dw) {
+	public Componente(Connettore up, Connettore dx, Connettore sx, Connettore dw, String imagePath) {
 		this.up=up;
 		this.dx=dx;
 		this.sx=sx;
 		this.dw=dw;
+		this.imagePath=imagePath;
 	}
 	
 	public Connettore getConnettori(Lato pos) {
@@ -56,5 +58,9 @@ public class Componente {
 			dx=temp;
 		}
 		return true;
+	}
+	
+	public String getImagePath() {
+		return imagePath;
 	}
 }
