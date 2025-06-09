@@ -6,21 +6,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="libs/Jackson/jackson-annotations-2.19.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/Jackson/jackson-core-2.19.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/Jackson/jackson-databind-2.19.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="libs/Jackson/jackson-annotations-2.19.0.jar"/>
+	<classpathentry kind="lib" path="libs/Jackson/jackson-core-2.19.0.jar"/>
+	<classpathentry kind="lib" path="libs/Jackson/jackson-databind-2.19.0.jar"/>
 	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.base.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -42,11 +30,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.media.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/JavaFX/lib/javafx.properties">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
