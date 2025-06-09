@@ -10,6 +10,7 @@ public enum NomeSpeciale {
 	SCHIAVISTI,
 	NAVE_ABBANDONATA,
 	POLVERE_STELLARE,
-	EPIDEMIA;
+	EPIDEMIA,
+	FINE;
 	
 }

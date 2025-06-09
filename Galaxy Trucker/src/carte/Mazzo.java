@@ -7,6 +7,7 @@ import java.util.Map.Entry;  //questa mi permette di rimuovere Map da Map.Entry 
 import java.util.Random;
 
 import carte.CaricaCSV;
+import galaxyTrucker.Nave;
 
 public class Mazzo {
 	String CSV = "src\\carte\\carte.csv";
@@ -45,15 +46,24 @@ public class Mazzo {
 	
 	private int Casuale () {
 		Integer[] listaIDMazzo = mazzo.keySet().toArray(new Integer[0]); 
-		Integer idCasuale = listaIDMazzo[r.nextInt(listaIDMazzo.length)];
+		Integer idCasuale ;
+		try {
+			idCasuale = listaIDMazzo[r.nextInt(listaIDMazzo.length)];
+		} catch (IllegalArgumentException e) {
+			throw new DoveSonoFiniteLeMieCarte();
+		}
 		return idCasuale;
     }
 	
 	public Carta pescadalMazzo() {
-		if (mazzo.isEmpty()) {
-            return null;
-        }
-		 return mazzo.remove(Casuale ());
+		Carta carta;
+		try {
+			 carta= mazzo.remove(Casuale ());
+		} catch (DoveSonoFiniteLeMieCarte e) {
+			carta = e.getCartaDemergenza();
+			//carta = null;
+		}
+		return carta;
 	}
 	
 	public void aggiungiAlMazzo(Carta pescata) {
@@ -104,6 +114,15 @@ public class Mazzo {
 	public void svuotaMazzo() {
 		mazzo.clear();
 	}
+	
+	
+	
+	public void pescaAttivaEffetto(Nave lead) {
+		Carta pescata = pescadalMazzo();
+		pescata.attivaCarta(lead);
+		pescata=null;
+	}
 
+	
 }
 

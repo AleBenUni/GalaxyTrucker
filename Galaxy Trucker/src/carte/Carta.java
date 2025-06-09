@@ -3,6 +3,7 @@ package carte;
 import carte.Livello; 
 import pezzettini.Pedine;
 import carte.NomeSpeciale;
+import galaxyTrucker.Nave;
 
 public class Carta {
 	
@@ -12,15 +13,14 @@ public class Carta {
 	private final int equipaggio;
 	private int merce; //Non più final in quanto il dato sarà azzerato dalla carta Schiavisti
 	final String nome; //Rimosso private per le sottoclassi dello stesso pacchetto "Un membro senza modificatore di accesso () è accessibile solo all'interno delle classi nello stesso pacchetto"
-	
-	NomeSpeciale effetto;
-	private Livello livello;
+	private final NomeSpeciale effetto;
+	private final Livello livello;
 
 	public Carta(Integer id, NomeSpeciale effetto,String nome ,Livello livello, int ggVolo, int merce, int equipaggio, int credito) {
 		this.id = id; 
-		this.ggVolo = ggVolo;
-	    this.equipaggio = equipaggio;
-	    this.livello= livello;
+		this.ggVolo = ggVolo;// con - indico un guadagno di giorni, con numero positivo indico una perdita di giorni (fatto per ridurre i caratteri nel file Excel)
+		this.equipaggio = equipaggio;
+		this.livello= livello;
 	    this.credito= credito;
 	    this.merce= merce;
 	    this.effetto= effetto;
@@ -73,6 +73,18 @@ public class Carta {
 	    return "La Carta " + nome + ( (effetto == NomeSpeciale.NESSUNO) ? " non ha effetti speciali" : " ha effetti speciali" );
 	}
 	
-	
+    void attivaCarta(Nave naveLeader) { 
+
+    	if (this.getGiorniVolo()<0) {
+    		naveLeader.addGiorniVolo(ggVolo);
+    	} else {
+    		naveLeader.minusGiorniVolo(ggVolo);
+    	}
+    	naveLeader.setCreditoVolo(naveLeader.getCreditoVolo()+credito);
+    	//Merce ha bisogno di una logica che: Perdi merce in base al numero intero segnato sulla carta, ne guadagno invece dal campo Pianeta, prestando attenzione al rosso che ha un suo tassello (siì, c'è un limite di merce)
+    	if ( equipaggio <0 ) {
+    		naveLeader.setEquipaggioABordo(naveLeader.getEquipaggioABordo()+equipaggio);
+    	}
+	}
 	
 }

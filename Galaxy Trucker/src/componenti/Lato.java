@@ -17,4 +17,19 @@ public enum Lato {
                 throw new IllegalStateException("Lato non valido");
         }
     }
+	
+	public String stampaLato() {
+		switch (this) {
+        case up:
+            return "sopra";
+        case dx:
+        	return "destra";
+        case dw:
+        	return "sotto";
+        case sx:
+        	return "sinistra";
+        default:
+            throw new IllegalStateException("Lato non valido");
+    }
+	}
 }

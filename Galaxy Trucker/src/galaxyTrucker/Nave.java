@@ -12,7 +12,13 @@ public class Nave {
 	private int centroCol;
 	private int giorniVolo;
 	
+	//
+	private int creditoVolo;
+	private int equipaggioABordo;
+	//
 	
+	
+
 	public Nave(Livello livello) {
 		switch(livello) {
 			case I:
@@ -63,6 +69,27 @@ public class Nave {
 		
 		
 	}
+	
+	//
+	public int getCreditoVolo() {
+		return creditoVolo;
+	}
+
+	public void setCreditoVolo(int creditoVolo) {
+		this.creditoVolo = creditoVolo;
+	}
+	
+	public int getEquipaggioABordo() {
+		return equipaggioABordo;
+	}
+
+	public void setEquipaggioABordo(int equipaggioABordo) {
+		//bisognerebbe impedire di settare un equipaggio che superi il numero di cabine
+		this.equipaggioABordo = equipaggioABordo;
+	}
+
+	//
+	
 	
 	public int getNRighe() {
 		return nRighe;
