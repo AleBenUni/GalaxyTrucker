@@ -16,6 +16,8 @@ public class Nave {
 	private int centroRighe;
 	private int centroCol;
 	private int giorniVolo;
+	private String colore;
+	private String imagePath;
 	
 	//
 	private int creditoVolo;
@@ -23,13 +25,35 @@ public class Nave {
 	//
 	
 	
+	
 
-	public Nave(Livello livello) {
+	public Nave(Livello livello, String colore) {
+		
+		this.giorniVolo=-1;
+		
+		switch(colore) {
+			case "red":
+				this.colore=colore;
+				imagePath="/images/Cabina/133.jpg";
+				break;
+			case "green":
+				this.colore=colore;
+				imagePath="/images/Cabina/135.jpg";
+				break;
+			case "yellow":
+				this.colore=colore;
+				imagePath="/images/Cabina/136.jpg";
+				break;
+			case "blue":
+				this.colore=colore;
+				imagePath="/images/Cabina/134.jpg";
+				break;
+		}
+		
 		switch(livello) {
 			case I:
 				this.nRighe=5;
 				this.nColonne=5;
-				this.giorniVolo=0;
 				this.centroCol=2;
 				this.centroRighe=2;
 				this.celle=new Cella[nRighe][nColonne];
@@ -39,7 +63,7 @@ public class Nave {
 							celle[i][j]=new Cella(new Posizione(i,j));
 						else
 							celle[i][j]=new Cella(null, new Posizione(i,j));
-				celle[centroRighe][centroCol].setComponente(new Cabina(2,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo," "));
+				celle[centroRighe][centroCol].setComponente(new Cabina(2,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo,imagePath));
 						
 				break;
 			case II:
@@ -54,7 +78,7 @@ public class Nave {
 							celle[i][j]=new Cella(new Posizione(i,j));
 						else
 							celle[i][j]=new Cella(null, new Posizione(i,j));
-				celle[centroRighe][centroCol].setComponente(new Cabina(2,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo," "));
+				celle[centroRighe][centroCol].setComponente(new Cabina(2,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo,imagePath));
 				break;
 			case III:
 				this.nRighe=6;
@@ -68,7 +92,7 @@ public class Nave {
 							celle[i][j]=new Cella(new Posizione(i,j));
 						else
 							celle[i][j]=new Cella(null, new Posizione(i,j));
-				celle[centroRighe][centroCol].setComponente(new Cabina(2,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo," "));
+				celle[centroRighe][centroCol].setComponente(new Cabina(2,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo,Connettore.multiplo,imagePath));
 				break;
 		}
 		
@@ -120,6 +144,40 @@ public class Nave {
 	public void minusGiorniVolo(int giorni) {
 		if(giorni<=0)
 			giorniVolo-=giorni;
+	}
+	
+	public String getColor() {
+		return colore;
+	}
+	
+	public int getEnergiaNave() {
+		int nEnergia=0;
+		Componente tmp;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Batteria)
+					nEnergia+=((Batteria) tmp).getNEnergie();
+			}
+				
+		return nEnergia;
+	}
+	
+	public void minusEnergiaNave(int nEnergia) {
+		Componente tmp;
+		int energia;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Batteria) {
+					energia=((Batteria) tmp).getNEnergie();
+					if(energia>0) {
+						energia=nEnergia-energia>0 ? energia : nEnergia;
+						((Batteria) tmp).minusEnergia(energia);
+						nEnergia-=energia;
+					}	
+				}
+			}	
 	}
 	
 	public Cella getCella(Posizione posizione) {
@@ -321,35 +379,7 @@ public class Nave {
         }
     }*/
 	
-	public int getEnergiaNave() {
-		int nEnergia=0;
-		Componente tmp;
-		for(int i=0;i<nRighe;i++)
-			for(int j=0;j<nColonne;j++) {
-				tmp=celle[i][j].getComponente();
-				if(tmp instanceof Batteria)
-					nEnergia+=((Batteria) tmp).getNEnergie();
-			}
-				
-		return nEnergia;
-	}
-	
-	public void minusEnergiaNave(int nEnergia) {
-		Componente tmp;
-		int energia;
-		for(int i=0;i<nRighe;i++)
-			for(int j=0;j<nColonne;j++) {
-				tmp=celle[i][j].getComponente();
-				if(tmp instanceof Batteria) {
-					energia=((Batteria) tmp).getNEnergie();
-					if(energia>0) {
-						energia=nEnergia-energia>0 ? energia : nEnergia;
-						((Batteria) tmp).minusEnergia(energia);
-						nEnergia-=energia;
-					}	
-				}
-			}	
-	}
+
 	
 	public void visualizzaNave() {
 		for(int i=0;i<nRighe;i++) {

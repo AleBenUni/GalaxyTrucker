@@ -13,7 +13,7 @@ public class Gioco {
 	private Livello livello=null;
 	private int nGiocatori;
 	Mucchio mucchio;
-	
+	String colori[]= {"red","green","blue","yellow"};
 	public Gioco(int nGiocatori, Livello livello) {
 		this.nGiocatori=nGiocatori;
 		this.livello=livello;
@@ -22,7 +22,7 @@ public class Gioco {
 		nave=new Nave[nGiocatori];
 		plancia=new Plancia(livello);
 		for(int i=0;i<nGiocatori;i++)
-			nave[i]=new Nave(livello);
+			nave[i]=new Nave(livello,colori[i]);
 	}
 	
 	

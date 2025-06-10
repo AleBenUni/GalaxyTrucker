@@ -73,6 +73,10 @@ public class Plancia {
 	public int[] getStartPos() {
 		return startPos;
 	}
+	
+	public int getStartPos(int i) {
+		return startPos[i];
+	}
 
 	public void setStartPos(int startPos[]) {
 		this.startPos = startPos;

@@ -60,6 +60,7 @@ public class Interfaccia extends Application {
     private Nave nave;
     private Plancia plancia;
     private int giocatoreCorrente=0;
+    private boolean[] naveTerminata;
     
     private HBox areaComponentiHBox;
     private GridPane grigliaNave;
@@ -67,6 +68,7 @@ public class Interfaccia extends Application {
     private Componente componenteLogico=null;
     private Mucchio mano;
     private Integer indiceCorrente=null;
+    private int startPos;
 
 
     @Override
@@ -89,6 +91,10 @@ public class Interfaccia extends Application {
         this.gioco = new Gioco(nGiocatori, livello);
         this.plancia = gioco.getPlancia();
         this.nave = gioco.getNave(giocatoreCorrente);
+        this.naveTerminata=new boolean[nGiocatori];
+        startPos=0;
+        for(int i=0;i<nGiocatori;i++)
+        	naveTerminata[i]=false;
 
         if (this.nave == null || this.plancia == null) {
             mostraErroreEChiudi("Errore Inizializzazione", "Impossibile caricare i dati di gioco.");
@@ -101,7 +107,8 @@ public class Interfaccia extends Application {
         finestraLayoutPrincipale.setStyle("-fx-background-color: #2A2A2A;");
 
         // --- ZONA SUPERIORE: PLANCIA ---
-        panePlanciaGrafica = creaPanePlanciaGrafica(this.plancia, (lFinestra/5)*2 - 30, altezzaPreferitaPlanciaPane);
+        panePlanciaGrafica=new Pane();
+        creaPanePlanciaGrafica((lFinestra/5)*2 - 30, altezzaPreferitaPlanciaPane);
         BorderPane.setMargin(panePlanciaGrafica, new Insets(15, 15, 15, 15));
         BorderPane.setAlignment(panePlanciaGrafica, Pos.CENTER);
         finestraLayoutPrincipale.setLeft(panePlanciaGrafica);
@@ -130,22 +137,22 @@ public class Interfaccia extends Application {
         contenitorePulsanti.setPadding(new Insets(10));
         contenitorePulsanti.setAlignment(Pos.CENTER);
         Button passaTurno=new Button("PassaTurno");
+        Button termina=new Button("Termina");
         
         passaTurno.setOnAction(event -> {
-        	if(giocatoreCorrente+1==gioco.getNGiocatori())
-        		giocatoreCorrente=0;
-        	else
-        		giocatoreCorrente+=1;
         	
-        	while(!mano.isEmpty())
-        		gioco.getMucchio().add(mano.pesca());
+        	nextPlayer(nGiocatori);
         	
-        	nave=gioco.getNave(giocatoreCorrente);
-        	mano=generaMano();
-        	popolaAreaComponentiHBox(this.areaComponentiHBox, gComponentiDisponibili, gioco);
-        	popolaGrigliaNave(this.grigliaNave, nave, gCelleNave);
         });
-        contenitorePulsanti.getChildren().add(passaTurno);
+        
+        termina.setOnAction(event -> {
+        	naveTerminata[giocatoreCorrente]=true;
+        	nave.setGiorniVolo(plancia.getStartPos(startPos));
+        	creaPanePlanciaGrafica((lFinestra/5)*2 - 30, altezzaPreferitaPlanciaPane);
+        	startPos++;
+        	nextPlayer(nGiocatori);
+        });
+        contenitorePulsanti.getChildren().addAll(passaTurno,termina);
         
         contenitoreCentraleVBox.setAlignment(Pos.TOP_CENTER);
         contenitoreCentraleVBox.getChildren().addAll(areaComponentiHBox, grigliaNave, contenitorePulsanti);
@@ -162,6 +169,30 @@ public class Interfaccia extends Application {
     }
     
     
+	private void nextPlayer(int nGiocatori) {
+		while(!mano.isEmpty())
+    		gioco.getMucchio().add(mano.pesca());
+    	
+    	int i=0;
+    	while(i<nGiocatori) {
+    		if(giocatoreCorrente+1==nGiocatori)
+        		giocatoreCorrente=0;
+        	else
+        		giocatoreCorrente+=1;
+    		if(!naveTerminata[giocatoreCorrente])
+    			break;
+    		i++;
+    	}
+    	
+    	if(i==nGiocatori)
+    		System.out.println("Costruzione finita");
+    	else {
+    		nave=gioco.getNave(giocatoreCorrente);
+        	mano=generaMano();
+        	popolaAreaComponentiHBox(this.areaComponentiHBox, gComponentiDisponibili, gioco);
+        	popolaGrigliaNave(this.grigliaNave, nave, gCelleNave);
+    	}
+	}
     
     
     private Mucchio generaMano() {
@@ -249,6 +280,9 @@ public class Interfaccia extends Application {
         }
         
     }
+    
+    
+    
     
     
     
@@ -398,16 +432,10 @@ public class Interfaccia extends Application {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    private Pane creaPanePlanciaGrafica(Plancia planciaLogica, double larghezzaTotalePane, double altezzaTotalePane) {
+    private void creaPanePlanciaGrafica(double larghezzaTotalePane, double altezzaTotalePane) {
+    	
+    	panePlanciaGrafica.getChildren().clear();
+    	
         Pane layoutPlancia = new Pane();
         layoutPlancia.setPrefSize(larghezzaTotalePane, altezzaTotalePane);
         layoutPlancia.setStyle(
@@ -421,7 +449,11 @@ public class Interfaccia extends Application {
         double W_contenuto = larghezzaTotalePane - (2 * paddingPlanciaInterno);
         double H_contenuto = altezzaTotalePane - (2 * paddingPlanciaInterno);
 
-        int numGiorni = planciaLogica.getGiorni();
+        int numGiorni=plancia.getGiorni();
+        Nave[] tutteLeNavi=new Nave[gioco.getNGiocatori()];
+        for(int i=0;i<gioco.getNGiocatori();i++) {
+            tutteLeNavi[i]=gioco.getNave(i);
+        }
 
         if (W_contenuto <= rCerchioGiorno * 6 || H_contenuto <= rCerchioGiorno * 6 || numGiorni <= 0) {
             Label infoLabel = new Label("Plancia non visualizzabile (spazio/giorni insuff.)");
@@ -431,7 +463,8 @@ public class Interfaccia extends Application {
             placeholder.prefWidthProperty().bind(layoutPlancia.widthProperty());
             placeholder.prefHeightProperty().bind(layoutPlancia.heightProperty());
             layoutPlancia.getChildren().add(placeholder);
-            return layoutPlancia;
+            panePlanciaGrafica=layoutPlancia;
+            return;
         }
 
         double centroX_contenuto = paddingPlanciaInterno + W_contenuto / 2;
@@ -521,10 +554,16 @@ public class Interfaccia extends Application {
             Circle cerchioGiornoShape = new Circle(rCerchioGiorno);
             cerchioGiornoShape.setSmooth(true);
             cerchioGiornoShape.setFill(Color.LIGHTGRAY.deriveColor(0, 1.1, 0.9, 0.95));
+            for(int k=0;k<gioco.getNGiocatori();k++) {
+            	if(tutteLeNavi[k].getGiorniVolo()==i)
+            		cerchioGiornoShape.setFill(Color.valueOf(tutteLeNavi[k].getColor()));
+            		
+            }
+            
             cerchioGiornoShape.setStroke(Color.DARKRED.darker());
             cerchioGiornoShape.setStrokeWidth(1.5);
 
-            Text numeroGiornoText = new Text(String.valueOf(i + 1));
+            Text numeroGiornoText = new Text(String.valueOf(i+1));
             numeroGiornoText.setFont(Font.font("Arial", FontWeight.BOLD, rCerchioGiorno * 0.80));
             numeroGiornoText.setFill(Color.WHITE);
 
@@ -547,7 +586,7 @@ public class Interfaccia extends Application {
         // Mazzo Destro
         creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo E", paddingPlanciaInterno+paddingPlanciaInterno/2 + W_contenuto - mazzoVisualWidth, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
         
-        return layoutPlancia;
+        panePlanciaGrafica=layoutPlancia;
     }
 
     // Modificato per creare mazzi orizzontali
