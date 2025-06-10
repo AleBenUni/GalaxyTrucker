@@ -203,9 +203,9 @@ public class Nave {
 							if(j==pos)
 								return true;
 						}else if(lato==Lato.dw) {
-							if(j-1<pos&&j+1>pos)
+							if(j-1<=pos&&j+1>=pos)
 								return true;
-						}else if(i-1<pos&&i+1>pos)
+						}else if(i-1<=pos&&i+1>=pos)
 							return true;
 
 					}
