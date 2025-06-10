@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import componenti.Componente;
 import componenti.Lato;
 import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
@@ -28,6 +29,7 @@ public class PioggiaMeteoriti extends Carta{
 		//Avviene il lancio casuale dei dadi. Ogni giocatore viene colpito dal meteorite. Vede se si possono difendere tutti e poi si passa al prossimo meteorite
 		List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
 		Scanner scanner=new Scanner(System.in);
+		Componente comp;
 			            		
 		Random rand = new Random();
 		 for (Meteorite m : meteoriti) {
@@ -38,25 +40,46 @@ public class PioggiaMeteoriti extends Carta{
 	            	 System.out.print("Scelta (0=No, 1=Si): ");
 	            	 int scelta = scanner.nextInt();
 	    			 
-	            	if (m.getLato()==Lato.up||m.getLato()==Lato.dw) 
-	            	{if (scelta == 1) {
+	            	if (m.getLato()==Lato.up) {
+	            		if (scelta == 1) {
 	    				 //controllo se si può effettivamente difendere in quel lato con uno scudo
-	            		if (ordinate.get(i).isLatoProtetto(m.getLato())==true) {
+	            		if (ordinate.get(i).isLatoProtetto(m.getLato())==true && m.getDimensione().equals(Dimensione.piccolo)) {
 	            			if (ordinate.get(i).getEnergiaNave()>=1) {
-	            				ordinate.get(i).
+	            				ordinate.get(i).minusEnergiaNave(1);
+	            				System.out.println("Giocatore "+ordinate.get(i)  + " hai eseguito una difesa con i baffi!");
+	            			}
+	            			else {
+	            				System.out.println("Giocatore "+ordinate.get(i)  + " hai scordato di non poter usare scudi per questo attacco");
+	            				if (ordinate.get(i).isLatoProtetto(m.getLato(), tiro)) {
+	            					System.out.println("Che ciurma fortunata "+ ordinate.get(i)  + " avete un cannone a portata di tiro. Utilizzarlo?");
+	            					 System.out.print("Scelta (0=No, 1=Si): ");
+	            	            	 scelta = scanner.nextInt();
+	            	            	 if (scelta == 1) {
+	            	            		 System.out.println("Giocatore "+ordinate.get(i)  + " ma sei serio?! Non hai energie per attivare uno scudo potrai mai attivare un cannone!?");
+	            	            	 }
+	            				}
 	            			}
 	            		}
+	    			 } else if (scelta==0 ){
+	    				 if (ordinate.get(i).isLatoProtetto(m.getLato(), tiro)) {
+         					System.out.println("Che ciurma fortunata "+ ordinate.get(i)  + " avete un cannone a portata di tiro. Utilizzarlo?");
+         					 System.out.print("Scelta (0=No, 1=Si): ");
+        	            	 scelta = scanner.nextInt();
+        	            	 if (scelta == 1 ) {
+        	            		 if (ordinate.get(i).getEnergiaNave()>=1) {
+     	            				ordinate.get(i).minusEnergiaNave(1);
+     	            				System.out.println("Giocatore "+ordinate.get(i)  + " hai eseguito una difesa con i baffi!");
+     	            			} else {
+     	            				System.out.println("Giocatore "+ordinate.get(i)  + " mi dispiace, non ti puoi difendere");
+     	            			}
+        	            	 }
+	    				 }
+	    				 
 	    			 }
 	            		ordinate.get(i).getCella(new Posizione(0,tiro));
 	            	}
 	            	
 	            }
-	            
-	          //  for (Nave nave : naveLeader) {
-	                //Controllo se il lato della nave è liscia, altrimenti passa alla difesa
-	            	//se non is può difendere o si rifiuta subisce il danno e perde il componente
-	                
-	        //    }
 	        }
 	}
 	
