@@ -1,5 +1,6 @@
 package carte;
 
+import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
 
 public class Epidemia extends Carta {
@@ -15,7 +16,7 @@ public class Epidemia extends Carta {
 	}
 	
 	@Override
-	void attivaCarta(Nave naveLeader) { 
+	void attivaCarta(Gioco flotta) { 
 		//Logica che controlla se due Cabine sono adiaccenti e collegate con un if
 		
 		}

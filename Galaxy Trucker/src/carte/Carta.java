@@ -1,8 +1,14 @@
 package carte;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import carte.Livello; 
 import pezzettini.Pedine;
 import carte.NomeSpeciale;
+import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
 
 public class Carta {
@@ -73,9 +79,9 @@ public class Carta {
 	    return "La Carta " + nome + ( (effetto == NomeSpeciale.NESSUNO) ? " non ha effetti speciali" : " ha effetti speciali" );
 	}
 	
-    void attivaCarta(Nave naveLeader) { 
-
-    	if (this.getGiorniVolo()<0) {
+	void applicaEffetti(Nave naveLeader)
+	{
+		if (this.getGiorniVolo()<0) {
     		naveLeader.addGiorniVolo(ggVolo);
     	} else {
     		naveLeader.minusGiorniVolo(ggVolo);
@@ -86,5 +92,14 @@ public class Carta {
     		naveLeader.setEquipaggioABordo(naveLeader.getEquipaggioABordo()+equipaggio);
     	}
 	}
+    void attivaCarta(Gioco flotta) { 
+    	
+    	List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
+    	Nave naveLeader = ordinate.get(0);
+    	
+    	applicaEffetti(naveLeader);
+    	
+	}
+
 	
 }

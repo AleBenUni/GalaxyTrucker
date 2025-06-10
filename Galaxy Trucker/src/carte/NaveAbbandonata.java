@@ -1,7 +1,9 @@
 package carte;
 
+import java.util.List;
 import java.util.Scanner;
 
+import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
 
 public class NaveAbbandonata extends Carta {
@@ -18,16 +20,22 @@ public class NaveAbbandonata extends Carta {
 	
 	
 	@Override
-	void attivaCarta(Nave naveLeader) {
+	void attivaCarta(Gioco flotta) {
+		List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
+
+		
 		Scanner scanner=new Scanner(System.in);
-		System.out.println("Giocatore"+naveLeader +"vuoi in cambio di " + this.getEquipaggio() + " pedine equipagio e " + this.getGiorniVolo() + " di viaggio in meno guadagnare " + this.getCredito() + " crediti?");
+		
 		int scelta = scanner.nextInt();
-		if (scelta == 0) {
-			super.attivaCarta(naveLeader);
-		} else {
-			//Si passa al prossimo giocatore dopo il Leader, calcolarlo dai giorni di volo che una nave possiede fino al quarto
-		}
+		for (int i=0; i<flotta.getNGiocatori(); i++) {
+			System.out.println("Giocatore"+ordinate.get(i)  +"vuoi, in cambio di " + this.getEquipaggio() + " pedine equipaggio e " + this.getGiorniVolo() + " giorni di viaggio in meno, guadagnare " + this.getCredito() + " crediti?");
+			 System.out.print("Scelta (0=No, 1=Si): ");
+			 if (scelta == 0) {
+				 applicaEffetti(ordinate.get(i));
+				 i=flotta.getNGiocatori();
+		} 
 		scanner.close();
+	}
 	}
 	
 }

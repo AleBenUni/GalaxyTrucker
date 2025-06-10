@@ -23,4 +23,4 @@ empty.unisciMazzi(mazzo); -> Sposta tutte le carte di mazzo in empty
 
 mazzo.svuotaMazzo(); -> Libera il mazzo dalle carte
 
-*New* mazzo.pescaAttivaEffetto(naveLeader); -> Passata la nave in testa, viene pescata una carta e immediatamente ne viene attivato l'effetto.
+*New* mazzo.pescaAttivaEffetto(gioco); -> Passata il gioco, viene pescata una carta e immediatamente ne viene attivato l'effetto.

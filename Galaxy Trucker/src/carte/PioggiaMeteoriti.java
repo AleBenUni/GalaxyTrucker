@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
 
 public class PioggiaMeteoriti extends Carta{
@@ -21,10 +22,8 @@ public class PioggiaMeteoriti extends Carta{
 	}
 	
 	@Override
-	void attivaCarta(Nave naveLeader) {
+	void attivaCarta(Gioco flotta) {
 		//Avviene il lancio casuale dei dadi. Ogni giocatore viene colpito dal meteorite. Vede se si possono difendere tutti e poi si passa al prossimo meteorite
-		
-		//Al posto di passare il Leader servirebbe passare l'intera flotta
 		 Random rand = new Random();
 		 for (Meteorite m : meteoriti) {
 	            int tiro = rand.nextInt(13);
