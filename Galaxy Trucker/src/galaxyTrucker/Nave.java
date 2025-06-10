@@ -180,6 +180,19 @@ public class Nave {
 			}	
 	}
 	
+	public boolean isLatoProtetto(Lato lato) {
+		Componente tmp;
+		int energia;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Scudo)
+					if(((Scudo) tmp).getLatoProtetto(1)==lato||((Scudo) tmp).getLatoProtetto(2)==lato)
+						return true;
+			}
+		return false;
+	}
+	
 	public Cella getCella(Posizione posizione) {
 		return celle[posizione.getRiga()][posizione.getColonna()];
 	}

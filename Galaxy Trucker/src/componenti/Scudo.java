@@ -24,4 +24,13 @@ public class Scudo extends Componente {
 		return false;
 	}
 	
+	public Lato getLatoProtetto(int nLato) {
+		if(nLato==1)
+			return latoProtettoUno;
+		else if(nLato==2)
+			return latoProtettoDue;
+		else
+			return null;
+	}
+	
 }
