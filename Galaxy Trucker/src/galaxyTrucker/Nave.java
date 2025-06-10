@@ -182,13 +182,33 @@ public class Nave {
 	
 	public boolean isLatoProtetto(Lato lato) {
 		Componente tmp;
-		int energia;
 		for(int i=0;i<nRighe;i++)
 			for(int j=0;j<nColonne;j++) {
 				tmp=celle[i][j].getComponente();
 				if(tmp instanceof Scudo)
 					if(((Scudo) tmp).getLatoProtetto(1)==lato||((Scudo) tmp).getLatoProtetto(2)==lato)
 						return true;
+			}
+		return false;
+	}
+	
+	public boolean isLatoProtetto(Lato lato, int pos) {
+		Componente tmp;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Cannone)
+					if(((Cannone) tmp).getPosCannoni()==lato) {
+						if(lato==Lato.up) {
+							if(j==pos)
+								return true;
+						}else if(lato==Lato.dw) {
+							if(j-1<pos&&j+1>pos)
+								return true;
+						}else if(i-1<pos&&i+1>pos)
+							return true;
+
+					}
 			}
 		return false;
 	}
