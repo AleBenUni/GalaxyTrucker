@@ -2,6 +2,7 @@ package galaxyTrucker;
 
 import carte.Livello;
 import componenti.Componente;
+import componenti.Lato;
 import componenti.Mucchio;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -220,22 +221,17 @@ public class Interfaccia extends Application {
             arrayComponentiPlaceholder[i].setArcWidth(15);
             arrayComponentiPlaceholder[i].setArcHeight(15);
             
-         // --- MODIFICA PER IMMAGINI ---
-         // La tua logica originale (ora dovrebbe funzionare)
             try {
-                String imagePath = mano.getComponenteAt(i).getImagePath();
-                System.out.println(imagePath);
+                String imagePath=mano.getComponenteAt(i).getImagePath();
                 Image img = new Image(getClass().getResourceAsStream(imagePath));
-                if (img.isError()) throw new IOException("Risorsa non trovata: " + imagePath);
-
-                // ... imposta l'immagine sul tuo Rectangle ...
-                arrayComponentiPlaceholder[indice].setFill(new ImagePattern(img));
+                if(img.isError())
+                	throw new IOException("Risorsa non trovata: " + imagePath);
+                arrayComponentiPlaceholder[i].setFill(new ImagePattern(img));
 
             } catch (Exception e) {
                 System.err.println("Errore caricamento immagine: " + e.getMessage());
-                arrayComponentiPlaceholder[indice].setFill(Color.DEEPPINK);
+                arrayComponentiPlaceholder[i].setFill(Color.DEEPPINK);
             }
-            // --- FINE MODIFICA ---
             
             arrayComponentiPlaceholder[i].setOnMouseClicked(event -> {
                 for (Rectangle rect : arrayComponentiPlaceholder) {
@@ -273,49 +269,55 @@ public class Interfaccia extends Application {
                 cellaGrafica.setArcHeight(12);
                 Cella cellaLogica = nave.getCella(new Posizione(i, j));
 
-                if(cellaLogica != null)
-	                /*if(cellaLogica.isUtilizzabile() && cellaLogica.getComponente()==null) {
-	                    cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1, 1, 0.75));
-	                    cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1, 1, 0.5));
-	                    cellaGrafica.setStrokeWidth(1);
-	                } else if(cellaLogica.isUtilizzabile() && cellaLogica.getComponente()!=null){
-	                	cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1, 1, 0.75));
-	                    cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1, 1, 0.5));
-	                }else if(!cellaLogica.isUtilizzabile() && cellaLogica.getComponente()!=null) {
-	                	cellaGrafica.setFill(Color.RED);
-	                    cellaGrafica.setStroke(Color.valueOf("#202020"));
-	                }else {
-		                	cellaGrafica.setFill(Color.valueOf("#2E2E2E"));
-		                    cellaGrafica.setStroke(Color.valueOf("#202020"));
-	                }*/
+                if(cellaLogica != null) {
+       
                 	if (cellaLogica.isUtilizzabile()) {
                         if (cellaLogica.getComponente() == null) {
-                            // 4. SPAZIO DISPONIBILE: Utilizzabile e senza componente
-                            cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1.0, 0.9, 0.6)); // Un po' più trasparente/chiaro
+
+                            cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1.0, 0.9, 0.6));
                             cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1.0, 0.8, 0.7));
                             cellaGrafica.setStrokeWidth(1.0);
                         } else {
-                            // 3. UTILIZZABILE CON COMPONENTE: Lo vuoi VERDE
-                            cellaGrafica.setFill(Color.LIMEGREEN.deriveColor(0, 1.0, 0.85, 0.75)); // Un verde brillante ma non troppo acceso
-                            cellaGrafica.setStroke(Color.DARKGREEN.deriveColor(0, 1.0, 0.6, 0.8));
-                            cellaGrafica.setStrokeWidth(1.5); // Magari un bordo più evidente per i componenti piazzati
-                            // Qui potresti anche voler disegnare qualcosa che rappresenti il componente (testo, icona)
-                            // sopra la cellaGrafica, magari usando uno StackPane per cellaPane.
+                            if(cellaLogica.isConnesso()) {
+                            	try {
+                                String imagePath=cellaLogica.getComponente().getImagePath();
+                                Image img = new Image(getClass().getResourceAsStream(imagePath));
+                                if(img.isError())
+                                	throw new IOException("Risorsa non trovata: " + imagePath);
+                                cellaGrafica.setFill(new ImagePattern(img));
+
+	                            } catch (Exception e) {
+	                                System.err.println("Errore caricamento immagine: " + e.getMessage());
+	                                cellaGrafica.setFill(Color.GREEN);
+	                            }
+	                            cellaGrafica.setStroke(Color.GREEN);
+	                            cellaGrafica.setStrokeWidth(1.5);
+                            }else {
+                            	try {
+                                    String imagePath=cellaLogica.getComponente().getImagePath();
+                                    Image img = new Image(getClass().getResourceAsStream(imagePath));
+                                    if(img.isError())
+                                    	throw new IOException("Risorsa non trovata: " + imagePath);
+                                    cellaGrafica.setFill(new ImagePattern(img));
+
+                                } catch (Exception e) {
+                                    System.err.println("Errore caricamento immagine: " + e.getMessage());
+                                    cellaGrafica.setFill(Color.RED);
+                                }
+                            	
+                                cellaGrafica.setStroke(Color.RED);
+                                cellaGrafica.setStrokeWidth(1.5);
+                            }
+                        	
                         }
                     } else { // Cella NON è utilizzabile
-                        if (cellaLogica.getComponente() != null) {
-                            // 2. NON UTILIZZABILE MA CON COMPONENTE: Lo vuoi ROSSO (indica un problema?)
-                            cellaGrafica.setFill(Color.INDIANRED.deriveColor(0, 1.0, 0.9, 0.75)); // Un rosso non troppo aggressivo
-                            cellaGrafica.setStroke(Color.FIREBRICK.deriveColor(0, 1.0, 0.7, 0.8));
-                            cellaGrafica.setStrokeWidth(1.5);
-                            // Anche qui, potresti voler visualizzare il componente problematico.
-                        } else {
-                            // 1. FUORI DALLA NAVE (NON UTILIZZABILE e SENZA COMPONENTE)
-                            cellaGrafica.setFill(Color.valueOf("#2E2E2E")); // Grigio scuro, come avevi
-                            cellaGrafica.setStroke(Color.valueOf("#202020")); // Bordo ancora più scuro
+                       
+                            cellaGrafica.setFill(Color.valueOf("#2E2E2E"));
+                            cellaGrafica.setStroke(Color.valueOf("#202020"));
                             cellaGrafica.setStrokeWidth(0.5);
-                        }
                     }
+                }
+                	
                 final int r = i;
                 final int c = j;
                 cellaGrafica.setOnMouseClicked(event -> {

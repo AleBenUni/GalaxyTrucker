@@ -1,5 +1,10 @@
 package galaxyTrucker;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+
 import carte.Livello;
 import componenti.*;
 
@@ -121,15 +126,14 @@ public class Nave {
 		return celle[posizione.getRiga()][posizione.getColonna()];
 	}
 	
-	public boolean setCella(Posizione pos, Componente componente) {
+	/*public boolean setCella(Posizione pos, Componente componente) {
 		int riga=pos.getRiga();
 		int col=pos.getColonna();
 		if(celle[riga][col].isUtilizzabile()&&celle[riga][col].getComponente()==null) {
 			celle[riga][col].setComponente(componente);
-			if(!verificaConnessioni(pos)) {
-				celle[riga][col].setNotUtilizzabile();
+			
+			celle[riga][col].setConnesso(verificaConnessioni(pos));
 				
-			}
 			return true;
 		}else
 			return false;
@@ -148,35 +152,55 @@ public class Nave {
 		if(componente==null)
 			return false;
 
-		if(col-1>=0&&celle[riga][col-1].getComponente()!=null)
-			if(celle[riga][col-1].isUtilizzabile() && componente.getConnettori(Lato.sx).connection(celle[riga][col-1].getComponente().getConnettori(Lato.dx))) {
-				if(riga!=centroRighe&&col-1!=centroCol)
-					celle[riga][col-1].setNotUtilizzabile();
+		if(col-1>=0&&celle[riga][col-1].getComponente()!=null) {
+			if(celle[riga][col-1].isUtilizzabile() && !componente.getConnettori(Lato.sx).connection(celle[riga][col-1].getComponente().getConnettori(Lato.dx))) {
+				if(riga!=centroRighe||col-1!=centroCol)
+					celle[riga][col-1].setConnesso(false);
 				connesso=false;
+				System.out.println("A");
 			}
+			if(!celle[riga][col-1].isConnesso())
+				connesso=false;
+		}
+			
 			
 				
-		if(col+1<nColonne&&celle[riga][col+1].getComponente()!=null)
-			if(celle[riga][col+1].isUtilizzabile() && componente.getConnettori(Lato.dx).connection(celle[riga][col+1].getComponente().getConnettori(Lato.sx))) {
-				if(riga!=centroRighe&&col+1!=centroCol)
-					celle[riga][col+1].setNotUtilizzabile();
+		if(col+1<nColonne&&celle[riga][col+1].getComponente()!=null) {
+			if(celle[riga][col+1].isUtilizzabile() && !componente.getConnettori(Lato.dx).connection(celle[riga][col+1].getComponente().getConnettori(Lato.sx))) {
+				if(riga!=centroRighe||col+1!=centroCol)
+					celle[riga][col+1].setConnesso(false);
 				connesso=false;
+				System.out.println("B");
 			}
-
-		if(riga-1>=0&&celle[riga-1][col].getComponente()!=null)
-			if(celle[riga-1][col].isUtilizzabile() && componente.getConnettori(Lato.up).connection(celle[riga-1][col].getComponente().getConnettori(Lato.dw))) {
-				if(riga-1!=centroRighe&&col!=centroCol)
-					celle[riga-1][col].setNotUtilizzabile();
+			if(!celle[riga][col+1].isConnesso())
 				connesso=false;
-			}
+		}
+			
 
-
-		if(riga+1<nRighe&&celle[riga+1][col].getComponente()!=null)
-			if(celle[riga+1][col].isUtilizzabile() && componente.getConnettori(Lato.dw).connection(celle[riga+1][col].getComponente().getConnettori(Lato.up))) {
-				if(riga+1!=centroRighe&&col!=centroCol)
-					celle[riga+1][col].setNotUtilizzabile();
+		if(riga-1>=0&&celle[riga-1][col].getComponente()!=null) {
+			if(celle[riga-1][col].isUtilizzabile() && !componente.getConnettori(Lato.up).connection(celle[riga-1][col].getComponente().getConnettori(Lato.dw))) {
+				if(riga-1!=centroRighe||col!=centroCol)
+					celle[riga-1][col].setConnesso(false);
 				connesso=false;
+				System.out.println("C");
 			}
+			if(!celle[riga-1][col].isConnesso())
+				connesso=false;
+		}
+			
+
+
+		if(riga+1<nRighe&&celle[riga+1][col].getComponente()!=null) {
+			if(celle[riga+1][col].isUtilizzabile() && !componente.getConnettori(Lato.dw).connection(celle[riga+1][col].getComponente().getConnettori(Lato.up))) {
+				if(riga+1!=centroRighe||col!=centroCol)
+					celle[riga+1][col].setConnesso(false);
+				connesso=false;
+				System.out.println("D");
+			}
+			if(!celle[riga+1][col].isConnesso())
+				connesso=false;
+		}
+			
 		
 		return connesso;
 			
@@ -188,19 +212,118 @@ public class Nave {
 			celle[riga][col].setComponente(null);
 			if(riga+1<nRighe)
 				if(verificaConnessioni(new Posizione(riga+1,col))==false)
-				celle[riga+1][col].setNotUtilizzabile();
+				celle[riga+1][col].setConnesso(false);
 			if(riga-1>=0)
 				if(verificaConnessioni(new Posizione(riga-1,col))==false)
-					celle[riga-1][col].setNotUtilizzabile();
+					celle[riga-1][col].setConnesso(false);
 			if(col+1<nColonne)
 				if(verificaConnessioni(new Posizione(riga,col+1))==false)
-					celle[riga][col+1].setNotUtilizzabile();
+					celle[riga][col+1].setConnesso(false);
 			if(col-1>=0)
 				if(verificaConnessioni(new Posizione(riga,col-1))==false)
-					celle[riga][col-1].setNotUtilizzabile();
+					celle[riga][col-1].setConnesso(false);
 			
 		}
-	}
+	}*/
+	
+	public void aggiornaStatoConnessioni() {
+        //1. Resetta tutte le celle con componenti a "non utilizzabile" (tranne la cabina principale)
+        for (int riga=0;riga<nRighe;riga++) {
+            for (int col=0;col<nColonne;col++) {
+                if(celle[riga][col].getComponente()!=null && (riga!=centroRighe&&col!=centroCol)) {
+                    celle[riga][col].setNotUtilizzabile();
+                }else if(riga==centroRighe||col==centroCol) {
+                    celle[riga][col].setUtilizzabile();
+                }
+            }
+        }
+
+        // 2. Avvia una ricerca a partire dalla cabina (BFS - Breadth-First Search)
+        Queue<Posizione> daVisitare=new LinkedList<>();
+        Set<Posizione> giaVisitati=new HashSet<>(); // Per evitare cicli infiniti
+
+        Posizione posCabina=new Posizione(centroRighe, centroCol);
+        daVisitare.add(posCabina);
+        giaVisitati.add(posCabina);
+
+        while(!daVisitare.isEmpty()) {
+            Posizione posCorrente=daVisitare.poll();
+            Componente compCorrente=getCella(posCorrente).getComponente();
+
+            if(compCorrente==null)
+                continue;
+
+            // Il componente corrente è raggiungibile, quindi è utilizzabile
+            getCella(posCorrente).setUtilizzabile();
+
+            // 3. Controlla i vicini del componente corrente
+            Posizione[] posizioniVicini = {
+                new Posizione(posCorrente.getRiga(), posCorrente.getColonna() - 1), // Sinistra
+                new Posizione(posCorrente.getRiga(), posCorrente.getColonna() + 1), // Destra
+                new Posizione(posCorrente.getRiga() - 1, posCorrente.getColonna()), // Su
+                new Posizione(posCorrente.getRiga() + 1, posCorrente.getColonna())  // Giù
+            };
+            Lato[] latiComponenteCorrente = {Lato.sx, Lato.dx, Lato.up, Lato.dw};
+            Lato[] latiOppostiVicini = {Lato.dx, Lato.sx, Lato.dw, Lato.up};
+
+            for(int i=0;i<4;i++) {
+                Posizione posVicino=posizioniVicini[i];
+                if(posVicino.getRiga()>=0 && posVicino.getRiga()<nRighe && posVicino.getColonna()>=0 && posVicino.getColonna()<nColonne) {
+                    
+                    Componente compVicino=getCella(posVicino).getComponente();
+                    
+                    // Se il vicino non è stato ancora visitato, ha un componente ed è connesso correttamente...
+                    if(compVicino!=null && !giaVisitati.contains(posVicino) && compCorrente.getConnettori(latiComponenteCorrente[i]).connection(compVicino.getConnettori(latiOppostiVicini[i]))) {
+                        // ...allora aggiungilo alla coda da visitare e marcalo come già in coda.
+                        daVisitare.add(posVicino);
+                        giaVisitati.add(posVicino);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Metodo setCella AGGIORNATO
+     */
+    public boolean setCella(Posizione pos, Componente componente) {
+        int riga = pos.getRiga();
+        int col = pos.getColonna();
+        if (riga<0 || riga>=nRighe || col<0 || col>=nColonne)
+            return false;
+
+        Cella cellaTarget=celle[riga][col];
+        if(cellaTarget.getComponente()==null) { // Permetti di piazzare anche su celle non utilizzabili per "agganciarsi" 
+            cellaTarget.setComponente(componente); // Piazza il componente
+            aggiornaStatoConnessioni(); // Ricalcola lo stato di tutta la nave
+            return cellaTarget.isUtilizzabile();
+        }else {
+            // Cella già occupata
+            return false;
+        }
+    }
+    
+    /**
+     * Metodo eliminaComponente AGGIORNATO
+     */
+    public void eliminaComponente(int riga, int col) {
+        if (riga<0 || riga>=nRighe || col<0 || col>=nColonne)
+            return;
+
+        Cella cellaTarget=celle[riga][col];
+        if(cellaTarget.getComponente()!=null && (riga!=centroRighe&&col!=centroCol)) {
+            cellaTarget.setComponente(null); // Rimuovi il componente
+            
+            // La cella ora è vuota. Se prima era bloccata/rossa, ora dovrebbe tornare
+            // ad essere uno spazio vuoto utilizzabile (azzurrino).
+            // Potremmo voler resettare il suo stato a "utilizzabile" (ma vuota).
+            // Questo dipende dalle tue regole (se una cella invalidata può essere riutilizzata).
+            // Per ora, assumiamo che diventi una cella vuota normale.
+            cellaTarget.setUtilizzabile();
+            
+            aggiornaStatoConnessioni(); // Ricalcola lo stato di tutta la nave
+        }
+    }
 	
 	public int getEnergiaNave() {
 		int nEnergia=0;
@@ -251,13 +374,14 @@ public class Nave {
 	}
 	
 	public void visualizzaUtilizzabileNave() {
+		System.out.print("\n");	
 		for(int i=0;i<nRighe;i++) {
 			for(int j=0;j<nColonne;j++)
-				if(celle[i][j].isUtilizzabile()) {
-					System.out.print("O");
+				if(celle[i][j].isConnesso()) {
+					System.out.print("1");
 				}
 				else
-					System.out.print(" ");
+					System.out.print("0");
 			System.out.print("\n");	
 		}
 	}

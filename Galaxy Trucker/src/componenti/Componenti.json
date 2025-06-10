@@ -103,8 +103,8 @@
         "Tipo": "Batteria",
         "ConnettoreUp": "assente",
         "ConnettoreDx": "assente",
-        "ConnettoreSx": "assente",
-        "ConnettoreDw": "doppio",
+        "ConnettoreSx": "doppio",
+        "ConnettoreDw": "assente",
         "Capacita": 3,
         "imagePath": "/images/Batteria/99.jpg"
     },
