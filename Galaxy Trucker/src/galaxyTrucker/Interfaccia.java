@@ -73,8 +73,8 @@ public class Interfaccia extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-    	int nGiocatori=1;
-    	Livello livello=Livello.I;
+    	int nGiocatori=2;
+    	Livello livello=Livello.II;
     	/*Scanner scanner=new Scanner(System.in);
 		do {
 			//scanner.nextLine();
@@ -436,9 +436,8 @@ public class Interfaccia extends Application {
     	
     	panePlanciaGrafica.getChildren().clear();
     	
-        Pane layoutPlancia = new Pane();
-        layoutPlancia.setPrefSize(larghezzaTotalePane, altezzaTotalePane);
-        layoutPlancia.setStyle(
+        panePlanciaGrafica.setPrefSize(larghezzaTotalePane, altezzaTotalePane);
+        panePlanciaGrafica.setStyle(
             "-fx-background-color: #383838; " +
             "-fx-border-color: #585858; " +
             "-fx-border-width: 2; " +
@@ -460,10 +459,9 @@ public class Interfaccia extends Application {
             infoLabel.setTextFill(Color.WHITE);
             infoLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
             StackPane placeholder = new StackPane(infoLabel);
-            placeholder.prefWidthProperty().bind(layoutPlancia.widthProperty());
-            placeholder.prefHeightProperty().bind(layoutPlancia.heightProperty());
-            layoutPlancia.getChildren().add(placeholder);
-            panePlanciaGrafica=layoutPlancia;
+            placeholder.prefWidthProperty().bind(panePlanciaGrafica.widthProperty());
+            placeholder.prefHeightProperty().bind(panePlanciaGrafica.heightProperty());
+            panePlanciaGrafica.getChildren().add(placeholder);
             return;
         }
 
@@ -570,7 +568,7 @@ public class Interfaccia extends Application {
             StackPane cerchioConTesto = new StackPane(cerchioGiornoShape, numeroGiornoText);
             cerchioConTesto.setLayoutX(p.getX() - rCerchioGiorno);
             cerchioConTesto.setLayoutY(p.getY() - rCerchioGiorno);
-            layoutPlancia.getChildren().add(cerchioConTesto);
+            panePlanciaGrafica.getChildren().add(cerchioConTesto);
         }
         
         Color coloreMazzoFill = Color.SADDLEBROWN.deriveColor(0, 0.7, 0.6, 0.9);
@@ -578,15 +576,15 @@ public class Interfaccia extends Application {
 
         // Posizionamento dei Mazzi Orizzontali
         // Mazzo Superiore
-        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo N", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno/2, coloreMazzoFill, coloreMazzoStroke);
+        creaMazzoGraficoOrizzontale(panePlanciaGrafica, "Mazzo N", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno/2, coloreMazzoFill, coloreMazzoStroke);
         // Mazzo Inferiore
-        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo S", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno+paddingPlanciaInterno/2 + H_contenuto - mazzoVisualHeight, coloreMazzoFill, coloreMazzoStroke);
+        creaMazzoGraficoOrizzontale(panePlanciaGrafica, "Mazzo S", centroX_contenuto - mazzoVisualWidth / 2, paddingPlanciaInterno+paddingPlanciaInterno/2 + H_contenuto - mazzoVisualHeight, coloreMazzoFill, coloreMazzoStroke);
         // Mazzo Sinistro
-        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo O", paddingPlanciaInterno/2, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
+        creaMazzoGraficoOrizzontale(panePlanciaGrafica, "Mazzo O", paddingPlanciaInterno/2, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
         // Mazzo Destro
-        creaMazzoGraficoOrizzontale(layoutPlancia, "Mazzo E", paddingPlanciaInterno+paddingPlanciaInterno/2 + W_contenuto - mazzoVisualWidth, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
+        creaMazzoGraficoOrizzontale(panePlanciaGrafica, "Mazzo E", paddingPlanciaInterno+paddingPlanciaInterno/2 + W_contenuto - mazzoVisualWidth, centroY_contenuto - mazzoVisualHeight / 2, coloreMazzoFill, coloreMazzoStroke);
         
-        panePlanciaGrafica=layoutPlancia;
+
     }
 
     // Modificato per creare mazzi orizzontali
