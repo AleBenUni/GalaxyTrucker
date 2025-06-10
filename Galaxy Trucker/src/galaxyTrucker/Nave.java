@@ -126,7 +126,7 @@ public class Nave {
 		return celle[posizione.getRiga()][posizione.getColonna()];
 	}
 	
-	/*public boolean setCella(Posizione pos, Componente componente) {
+	public boolean setCella(Posizione pos, Componente componente) {
 		int riga=pos.getRiga();
 		int col=pos.getColonna();
 		if(celle[riga][col].isUtilizzabile()&&celle[riga][col].getComponente()==null) {
@@ -224,9 +224,9 @@ public class Nave {
 					celle[riga][col-1].setConnesso(false);
 			
 		}
-	}*/
+	}
 	
-	public void aggiornaStatoConnessioni() {
+	/*public void aggiornaStatoConnessioni() {
 	    // 1. Resetta correttamente tutti i componenti tranne la cabina
 	    for (int riga = 0; riga < nRighe; riga++) {
 	        for (int col = 0; col < nColonne; col++) {
@@ -281,9 +281,7 @@ public class Nave {
 	    }
 	}
 
-    /**
-     * Metodo setCella AGGIORNATO
-     */
+    //Metodo setCella AGGIORNATO
     public boolean setCella(Posizione pos, Componente componente) {
         int riga = pos.getRiga();
         int col = pos.getColonna();
@@ -301,9 +299,9 @@ public class Nave {
         }
     }
     
-    /**
-     * Metodo eliminaComponente AGGIORNATO
-     */
+
+     //Metodo eliminaComponente AGGIORNATO
+
     public void eliminaComponente(int riga, int col) {
         if (riga<0 || riga>=nRighe || col<0 || col>=nColonne)
             return;
@@ -321,7 +319,7 @@ public class Nave {
             
             aggiornaStatoConnessioni(); // Ricalcola lo stato di tutta la nave
         }
-    }
+    }*/
 	
 	public int getEnergiaNave() {
 		int nEnergia=0;

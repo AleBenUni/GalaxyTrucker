@@ -269,23 +269,20 @@ public class Interfaccia extends Application {
                 cellaGrafica.setArcHeight(12);
                 Cella cellaLogica = nave.getCella(new Posizione(i, j));
 
-                if(cellaLogica != null) {
-       
-                	if (cellaLogica.isUtilizzabile()) {
-                        if (cellaLogica.getComponente() == null) {
-
+                if(cellaLogica!=null) {
+                	if(cellaLogica.isUtilizzabile()) {
+                        if(cellaLogica.getComponente()==null) {
                             cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1.0, 0.9, 0.6));
                             cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1.0, 0.8, 0.7));
                             cellaGrafica.setStrokeWidth(1.0);
                         } else {
                             if(cellaLogica.isConnesso()) {
                             	try {
-                                String imagePath=cellaLogica.getComponente().getImagePath();
-                                Image img = new Image(getClass().getResourceAsStream(imagePath));
-                                if(img.isError())
-                                	throw new IOException("Risorsa non trovata: " + imagePath);
-                                cellaGrafica.setFill(new ImagePattern(img));
-
+	                                String imagePath=cellaLogica.getComponente().getImagePath();
+	                                Image img = new Image(getClass().getResourceAsStream(imagePath));
+	                                if(img.isError())
+	                                	throw new IOException("Risorsa non trovata: " + imagePath);
+	                                cellaGrafica.setFill(new ImagePattern(img));
 	                            } catch (Exception e) {
 	                                System.err.println("Errore caricamento immagine: " + e.getMessage());
 	                                cellaGrafica.setFill(Color.GREEN);
@@ -299,7 +296,6 @@ public class Interfaccia extends Application {
                                     if(img.isError())
                                     	throw new IOException("Risorsa non trovata: " + imagePath);
                                     cellaGrafica.setFill(new ImagePattern(img));
-
                                 } catch (Exception e) {
                                     System.err.println("Errore caricamento immagine: " + e.getMessage());
                                     cellaGrafica.setFill(Color.RED);
@@ -308,15 +304,70 @@ public class Interfaccia extends Application {
                                 cellaGrafica.setStroke(Color.RED);
                                 cellaGrafica.setStrokeWidth(1.5);
                             }
+                            cellaGrafica.setRotate(cellaLogica.getComponente().getRotations());
                         	
                         }
-                    } else { // Cella NON è utilizzabile
+                    } else {	//Cella non utilizzabile
                        
                             cellaGrafica.setFill(Color.valueOf("#2E2E2E"));
                             cellaGrafica.setStroke(Color.valueOf("#202020"));
                             cellaGrafica.setStrokeWidth(0.5);
                     }
-                }
+                }/*
+                
+                Cella cellaLogica = nave.getCella(new Posizione(i, j));
+                if(cellaLogica!=null) {
+                    Componente compInCella=cellaLogica.getComponente();
+                    // --- CASO 1: LA CELLA CONTIENE UN COMPONENTE ---
+                    if(compInCella!=null) {
+                        try {
+                            String imagePath = compInCella.getImagePath();
+                            if(imagePath==null || imagePath.isBlank()) {
+                                throw new Exception("Percorso immagine nullo per " + compInCella.getClass().getSimpleName());
+                            }
+                            Image img=new Image(getClass().getResourceAsStream(imagePath));
+                            if(img.isError()) {
+                                throw new IOException("Risorsa immagine non trovata o corrotta: " + imagePath);
+                            }
+                            cellaGrafica.setFill(new ImagePattern(img));
+
+                        }catch (Exception e) {
+                            System.err.println("Errore caricamento immagine per cella ("+i+","+j+"): " + e.getMessage());
+                            // Se l'immagine non carica, usa un colore di errore come riempimento
+                            cellaGrafica.setFill(Color.DEEPPINK);
+                        }
+                        
+                        // Ora decidiamo il colore del BORDO in base allo stato
+                        if(cellaLogica.isUtilizzabile() && cellaLogica.isConnesso()) {
+                            // BORDO VERDE: Componente funzionante e ben connesso
+                            cellaGrafica.setStroke(Color.LIMEGREEN);
+                            cellaGrafica.setStrokeWidth(2.5);
+                        }else {
+                            // BORDO ROSSO: Componente piazzato ma con problemi (non utilizzabile o non connesso)
+                            cellaGrafica.setStroke(Color.RED);
+                            cellaGrafica.setStrokeWidth(2.5);
+                        }
+                        
+                        cellaGrafica.setRotate(cellaLogica.getComponente().getRotations());
+
+                    }else {
+                        // --- CASO 2: LA CELLA È VUOTA ---
+                        if(cellaLogica.isUtilizzabile()) {
+                            // Spazio disponibile per il piazzamento
+                            cellaGrafica.setFill(Color.LIGHTCYAN.deriveColor(0, 1.0, 0.9, 0.20));
+                            cellaGrafica.setStroke(Color.CADETBLUE.deriveColor(0, 1.0, 0.8, 0.7));
+                            cellaGrafica.setStrokeWidth(1.0);
+                        }else {
+                            // Spazio non utilizzabile (fuori dalla nave)
+                            cellaGrafica.setFill(Color.valueOf("#2E2E2E"));
+                            cellaGrafica.setStroke(Color.valueOf("#202020"));
+                            cellaGrafica.setStrokeWidth(0.5);
+                        }
+                    }
+                } else {
+                    // Caso di sicurezza se getCella potesse mai restituire null
+                    cellaGrafica.setFill(Color.BLACK);
+                }*/
                 	
                 final int r = i;
                 final int c = j;

@@ -7,6 +7,7 @@ public class Componente {
 	private Connettore sx;
 	private Connettore dw;
 	private String imagePath;
+	private int rotations=0;
 	
 	public Componente(Connettore up, Connettore dx, Connettore sx, Connettore dw, String imagePath) {
 		this.up=up;
@@ -14,6 +15,7 @@ public class Componente {
 		this.sx=sx;
 		this.dw=dw;
 		this.imagePath=imagePath;
+		this.rotations=0;
 	}
 	
 	public Connettore getConnettori(Lato pos) {
@@ -47,9 +49,10 @@ public class Componente {
 	public boolean ruotaComponenteOrario(int gradi) {
 		Connettore temp;
 		int nRotazioni=gradiToRotazioni(gradi);
+		
 		if(nRotazioni==-1)
 			return false;
-
+		rotations=(rotations+nRotazioni)%4;
 		for(int i=0;i<nRotazioni;i++) {
 			temp=up;
 			up=sx;
@@ -62,5 +65,9 @@ public class Componente {
 	
 	public String getImagePath() {
 		return imagePath;
+	}
+	
+	public int getRotations() {
+		return rotations*90;
 	}
 }
