@@ -7,7 +7,7 @@ public class Cannone extends Componente{
 	public Cannone(int nCannoni, Connettore up, Connettore dx, Connettore sx, Connettore dw, String imagePath) {
 		super(up,dx,sx,dw,imagePath);
 		this.nCannoni=nCannoni;
-		posCannoni=Lato.dw;	//Da controllare
+		posCannoni=Lato.up;	//Da controllare
 	}
 	
 	public int getNCannoni() {
