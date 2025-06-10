@@ -26,11 +26,12 @@ public class NaveAbbandonata extends Carta {
 		
 		Scanner scanner=new Scanner(System.in);
 		
-		int scelta = scanner.nextInt();
+		
 		for (int i=0; i<flotta.getNGiocatori(); i++) {
 			System.out.println("Giocatore"+ordinate.get(i)  +"vuoi, in cambio di " + this.getEquipaggio() + " pedine equipaggio e " + this.getGiorniVolo() + " giorni di viaggio in meno, guadagnare " + this.getCredito() + " crediti?");
 			 System.out.print("Scelta (0=No, 1=Si): ");
-			 if (scelta == 0) {
+			 int scelta = scanner.nextInt();
+			 if (scelta == 1) {
 				 applicaEffetti(ordinate.get(i));
 				 i=flotta.getNGiocatori();
 		} 
