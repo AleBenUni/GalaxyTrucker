@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import componenti.Lato;
 import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
 
@@ -24,11 +25,15 @@ public class PioggiaMeteoriti extends Carta{
 	@Override
 	void attivaCarta(Gioco flotta) {
 		//Avviene il lancio casuale dei dadi. Ogni giocatore viene colpito dal meteorite. Vede se si possono difendere tutti e poi si passa al prossimo meteorite
-		 Random rand = new Random();
+		List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
+		Random rand = new Random();
 		 for (Meteorite m : meteoriti) {
-	            int tiro = rand.nextInt(13);
-	            System.out.println("Lancio del dado per meteorite " + m + ": " + tiro);
-
+				 int tiro = rand.nextInt(6) + rand.nextInt(6) + 2; //Magari mi sbaglio, ma rand.nextInt(12)+2; non lo posso fare perchè non simula la reale probabilità dei dadi
+	            System.out.println("Lancio dei dadi per meteorite " + m + ", risultato: " + tiro);
+	            for (int i=0; i<flotta.getNGiocatori(); i++) {
+	            	
+	            }
+	            
 	          //  for (Nave nave : naveLeader) {
 	                //Controllo se il lato della nave è liscia, altrimenti passa alla difesa
 	            	//se non is può difendere o si rifiuta subisce il danno e perde il componente
