@@ -1,165 +1,264 @@
 [
-    {
-        "Tipo": "Batteria",
-        "ConnettoreUp": "singolo",
-        "ConnettoreDx": "doppio",
-        "ConnettoreSx": "multiplo",
-        "ConnettoreDw": "assente",
-        "Capacita": 2,
-        "imagePath": "/images/Batteria/97.jpg"
-    },
-    {
-        "Tipo": "Stiva",
-        "ConnettoreUp": "multiplo",
-        "ConnettoreDx": "doppio",
-        "ConnettoreSx": "singolo",
-        "ConnettoreDw": "assente",
-        "Capacita": 4,
-        "Speciale": true,
-        "imagePath": "/images/components/stiva_speciale.png"
-    },
-    {
-        "Tipo": "Cannone",
-        "ConnettoreUp": "singolo",
-        "ConnettoreDx": "multiplo",
-        "ConnettoreSx": "assente",
-        "ConnettoreDw": "doppio",
-        "Capacita": 3,
-        "imagePath": "/images/components/cannone.png"
-    },
-    {
-        "Tipo": "Motore",
-        "ConnettoreUp": "multiplo",
-        "ConnettoreDx": "assente",
-        "ConnettoreSx": "doppio",
-        "ConnettoreDw": "singolo",
-        "Capacita": 3,
-        "imagePath": "/images/components/motore.png"
-    },
-    {
-        "Tipo": "Scudo",
-        "ConnettoreUp": "doppio",
-        "ConnettoreDx": "singolo",
-        "ConnettoreSx": "multiplo",
-        "ConnettoreDw": "assente",
-        "imagePath": "/images/components/scudo.png"
-    },
-    {
-        "Tipo": "Stiva",
-        "ConnettoreUp": "doppio",
-        "ConnettoreDx": "assente",
-        "ConnettoreSx": "multiplo",
-        "ConnettoreDw": "singolo",
-        "Capacita": 3,
-        "Speciale": false,
-        "imagePath": "/images/components/stiva.png"
-    },
-    {
-        "Tipo": "Batteria",
-        "ConnettoreUp": "doppio",
-        "ConnettoreDx": "assente",
-        "ConnettoreSx": "multiplo",
-        "ConnettoreDw": "assente",
-        "Capacita": 2,
-        "imagePath": "/images/Batteria/98.jpg"
-    },
-    {
-        "Tipo": "Cannone",
-        "ConnettoreUp": "doppio",
-        "ConnettoreDx": "assente",
-        "ConnettoreSx": "singolo",
-        "ConnettoreDw": "multiplo",
-        "Capacita": 2,
-        "imagePath": "/images/components/cannone.png"
-    },
-    {
-        "Tipo": "Scudo",
-        "ConnettoreUp": "singolo",
-        "ConnettoreDx": "multiplo",
-        "ConnettoreSx": "doppio",
-        "ConnettoreDw": "assente",
-        "imagePath": "/images/components/scudo.png"
-    },
-    {
-        "Tipo": "Motore",
-        "ConnettoreUp": "assente",
-        "ConnettoreDx": "doppio",
-        "ConnettoreSx": "multiplo",
-        "ConnettoreDw": "singolo",
-        "Capacita": 4,
-        "imagePath": "/images/components/motore.png"
-    },
-    {
-        "Tipo": "Stiva",
-        "ConnettoreUp": "multiplo",
-        "ConnettoreDx": "singolo",
-        "ConnettoreSx": "assente",
-        "ConnettoreDw": "doppio",
-        "Capacita": 2,
-        "Speciale": true,
-        "imagePath": "/images/components/stiva_speciale.png"
-    },
-    {
-        "Tipo": "Batteria",
-        "ConnettoreUp": "assente",
-        "ConnettoreDx": "assente",
-        "ConnettoreSx": "doppio",
-        "ConnettoreDw": "assente",
-        "Capacita": 3,
-        "imagePath": "/images/Batteria/99.jpg"
-    },
-    {
-        "Tipo": "Cannone",
-        "ConnettoreUp": "assente",
-        "ConnettoreDx": "singolo",
-        "ConnettoreSx": "multiplo",
-        "ConnettoreDw": "doppio",
-        "Capacita": 4,
-        "imagePath": "/images/components/cannone.png"
-    },
-    {
-        "Tipo": "Scudo",
-        "ConnettoreUp": "multiplo",
-        "ConnettoreDx": "doppio",
-        "ConnettoreSx": "assente",
-        "ConnettoreDw": "singolo",
-        "imagePath": "/images/components/scudo.png"
-    },
-    {
-        "Tipo": "Motore",
-        "ConnettoreUp": "singolo",
-        "ConnettoreDx": "assente",
-        "ConnettoreSx": "doppio",
-        "ConnettoreDw": "multiplo",
-        "Capacita": 3,
-        "imagePath": "/images/components/motore.png"
-    },
-    {
-        "Tipo": "Stiva",
-        "ConnettoreUp": "doppio",
-        "ConnettoreDx": "multiplo",
-        "ConnettoreSx": "singolo",
-        "ConnettoreDw": "assente",
-        "Capacita": 4,
-        "Speciale": false,
-        "imagePath": "/images/components/stiva.png"
-    },
-    {
-        "Tipo": "Batteria",
-        "ConnettoreUp": "singolo",
-        "ConnettoreDx": "assente",
-        "ConnettoreSx": "doppio",
-        "ConnettoreDw": "assente",
-        "Capacita": 3,
-        "imagePath": "/images/Batteria/100.jpg"
-    },
-    {
-        "Tipo": "Cannone",
-        "ConnettoreUp": "multiplo",
-        "ConnettoreDx": "singolo",
-        "ConnettoreSx": "doppio",
-        "ConnettoreDw": "assente",
-        "Capacita": 3,
-        "imagePath": "/images/components/cannone.png"
-    }
+   {
+      "Tipo":"Batteria",
+      "ConnettoreUp":"singolo",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"assente",
+      "Capacita":2,
+      "imagePath":"/images/Batteria/97.jpg"
+   },
+   {
+      "Tipo":"Batteria",
+      "ConnettoreUp":"doppio",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"assente",
+      "Capacita":2,
+      "imagePath":"/images/Batteria/98.jpg"
+   },
+   {
+      "Tipo":"Batteria",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"assente",
+      "Capacita":3,
+      "imagePath":"/images/Batteria/99.jpg"
+   },
+   {
+      "Tipo":"Batteria",
+      "ConnettoreUp":"singolo",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"assente",
+      "Capacita":3,
+      "imagePath":"/images/Batteria/100.jpg"
+   },
+   {
+      "Tipo":"Cannone",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"singolo",
+      "ConnettoreDw":"assente",
+      "Capacita":1,
+      "imagePath":"/images/Cannone/25.jpg"
+   },
+   {
+      "Tipo":"Cannone",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"singolo",
+      "ConnettoreDw":"doppio",
+      "Capacita":1,
+      "imagePath":"/images/Cannone/26.jpg"
+   },
+   {
+      "Tipo":"Cannone",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"singolo",
+      "ConnettoreDw":"multiplo",
+      "Capacita":1,
+      "imagePath":"/images/Cannone/27.jpg"
+   },
+   {
+      "Tipo":"Cannone",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"singolo",
+      "Capacita":2,
+      "imagePath":"/images/Cannone/1.jpg"
+   },
+   {
+      "Tipo":"Cannone",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"assente",
+      "ConnettoreDw":"doppio",
+      "Capacita":2,
+      "imagePath":"/images/Cannone/4.jpg"
+   },
+   {
+      "Tipo":"Motore",
+      "ConnettoreUp":"doppio",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"assente",
+      "Capacita":2,
+      "imagePath":"/images/Motore/2.jpg"
+   },
+   {
+      "Tipo":"Motore",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"multiplo",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"assente",
+      "Capacita":2,
+      "imagePath":"/images/Motore/3.jpg"
+   },
+   {
+      "Tipo":"Motore",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"assente",
+      "Capacita":1,
+      "imagePath":"/images/Motore/45.jpg"
+   },
+   {
+      "Tipo":"Motore",
+      "ConnettoreUp":"singolo",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"assente",
+      "Capacita":1,
+      "imagePath":"/images/Motore/54.jpg"
+   },
+   {
+      "Tipo":"Motore",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"assente",
+      "Capacita":1,
+      "imagePath":"/images/Motore/79.jpg"
+   },
+   {
+      "Tipo":"Motore",
+      "ConnettoreUp":"doppio",
+      "ConnettoreDx":"singolo",
+      "ConnettoreSx":"singolo",
+      "ConnettoreDw":"assente",
+      "Capacita":1,
+      "imagePath":"/images/Motore/81.jpg"
+   },
+   {
+      "Tipo":"Motore",
+      "ConnettoreUp":"multiplo",
+      "ConnettoreDx":"singolo",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"assente",
+      "Capacita":1,
+      "imagePath":"/images/Motore/85.jpg"
+   },
+   {
+      "Tipo":"Scudo",
+      "ConnettoreUp":"doppio",
+      "ConnettoreDx":"singolo",
+      "ConnettoreSx":"singolo",
+      "ConnettoreDw":"doppio",
+      "imagePath":"/images/Scudo/5.jpg"
+   },
+   {
+      "Tipo":"Scudo",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"singolo",
+      "ConnettoreSx":"singolo",
+      "ConnettoreDw":"multiplo",
+      "imagePath":"/images/Scudo/6.jpg"
+   },
+   {
+      "Tipo":"Scudo",
+      "ConnettoreUp":"singolo",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"singolo",
+      "ConnettoreDw":"singolo",
+      "imagePath":"/images/Scudo/11.jpg"
+   },
+   {
+      "Tipo":"Scudo",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"doppio",
+      "imagePath":"/images/Scudo/14.jpg"
+   },
+   {
+      "Tipo":"Scudo",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"singolo",
+      "imagePath":"/images/Scudo/15.jpg"
+   },
+   {
+      "Tipo":"Scudo",
+      "ConnettoreUp":"singolo",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"singolo",
+      "imagePath":"/images/Scudo/16.jpg"
+   },
+   {
+      "Tipo":"Stiva",
+      "ConnettoreUp":"doppio",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"assente",
+      "ConnettoreDw":"multiplo",
+      "Capacita":2,
+      "Speciale":false,
+      "imagePath":"/images/Stiva/61.jpg"
+   },
+   {
+      "Tipo":"Stiva",
+      "ConnettoreUp":"singolo",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"multiplo",
+      "Capacita":2,
+      "Speciale":false,
+      "imagePath":"/images/Stiva/62.jpg"
+   },
+   {
+      "Tipo":"Stiva",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"multiplo",
+      "Capacita":2,
+      "Speciale":false,
+      "imagePath":"/images/Stiva/63.jpg"
+   },
+   {
+      "Tipo":"Stiva",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"assente",
+      "ConnettoreDw":"singolo",
+      "Capacita":3,
+      "Speciale":false,
+      "imagePath":"/images/Stiva/64.jpg"
+   },
+   {
+      "Tipo":"Stiva",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"singolo",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"doppio",
+      "Capacita":3,
+      "Speciale":false,
+      "imagePath":"/images/Stiva/69.jpg"
+   },
+   {
+      "Tipo":"Stiva",
+      "ConnettoreUp":"doppio",
+      "ConnettoreDx":"singolo",
+      "ConnettoreSx":"assente",
+      "ConnettoreDw":"multiplo",
+      "Capacita":1,
+      "Speciale":true,
+      "imagePath":"/images/Stiva/70.jpg"
+   },
+   {
+      "Tipo":"Stiva",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"assente",
+      "ConnettoreDw":"singolo",
+      "Capacita":2,
+      "Speciale":true,
+      "imagePath":"/images/Stiva/76.jpg"
+   }
 ]
