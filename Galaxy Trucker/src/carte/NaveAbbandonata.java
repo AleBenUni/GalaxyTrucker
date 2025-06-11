@@ -26,7 +26,7 @@ public class NaveAbbandonata extends Carta {
 	    Scanner scanner = new Scanner(System.in);
 	    
 	    for (int i = 0; i < flotta.getNGiocatori(); i++) {
-	    	System.out.println("Giocatore"+ordinate.get(i).getColor()  +" vuoi, in cambio di " + this.getEquipaggio() + " pedine equipaggio e " + this.getGiorniVolo() + " giorni di viaggio in meno, guadagnare " + this.getCredito() + " crediti?");
+	    	System.out.println("Giocatore "+ordinate.get(i).getColor()  +" vuoi, in cambio di " + this.getEquipaggio() + " pedine equipaggio e " + this.getGiorniVolo() + " giorni di viaggio in meno, guadagnare " + this.getCredito() + " crediti?");
 	        
 	        boolean controllo = false;
 	        do {
