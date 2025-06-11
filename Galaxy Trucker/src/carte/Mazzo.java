@@ -62,7 +62,6 @@ public class Mazzo {
 			 carta= mazzo.remove(Casuale ());
 		} catch (DoveSonoFiniteLeMieCarte e) {
 			carta = e.getCartaDemergenza();
-			//carta = null;
 		}
 		return carta;
 	}
