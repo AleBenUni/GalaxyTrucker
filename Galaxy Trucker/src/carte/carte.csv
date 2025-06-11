@@ -1,4 +1,4 @@
-id,nome,livello,ggVolo,merce,equipaggio,credito,effetto,pianeti <--- per tutte le carte (tranne Pioggia di Meteoriti)
+id,nome,livello,ggVolo,mercePersa,equipaggio,credito,effetto,pianeti <--- per tutte le carte (tranne Pioggia di Meteoriti)
 id,nome,livello,0,0,0,0,":up,:dx,:sx,:dw" <--- (precedere ad ogni : piccolo o grande) <---- meteoriti
 151,Oratrice Mecanique d'Analyse Cardinale,III,1000,0,200202,0,FINE
 2,Pioggia di meteoriti,I,0,0,0,0,PIOGGIA_METEORITI,"piccolo:up,piccolo:up,piccolo:dx,piccolo:sx,piccolo:dw"

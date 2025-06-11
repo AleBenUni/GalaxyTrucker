@@ -87,6 +87,14 @@ public class Carta {
     		naveLeader.minusGiorniVolo(ggVolo);
     	}
     	naveLeader.setCreditoVolo(naveLeader.getCreditoVolo()+credito);
+    	
+    	if ( merce>0) {
+    		for (int i=1; i<=merce; i++) {
+    			if (naveLeader.minusStiva()==false) {
+    				naveLeader.minusEnergiaNave(1);
+    			}
+    		}
+    	}
     	//Merce ha bisogno di una logica che: Perdi merce in base al numero intero segnato sulla carta, ne guadagno invece dal campo Pianeta, prestando attenzione al rosso che ha un suo tassello (siì, c'è un limite di merce)
     	if ( equipaggio <0 ) {
     		naveLeader.setEquipaggioABordo(naveLeader.getEquipaggioABordo()+equipaggio);

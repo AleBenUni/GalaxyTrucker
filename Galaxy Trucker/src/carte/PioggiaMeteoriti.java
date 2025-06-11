@@ -34,7 +34,7 @@ public class PioggiaMeteoriti extends Carta{
 	    Random rand = new Random();
 
 	    for (Meteorite m : meteoriti) {
-	        int tiro = rand.nextInt(6) + 1 + rand.nextInt(6) + 1;
+	        int tiro = (rand.nextInt(6) + 1) + (rand.nextInt(6) + 1);
 	        System.out.println("Lancio dei dadi per meteorite " + m + ", risultato: " + tiro);
 
 	        for (int i = 0; i < flotta.getNGiocatori(); i++) {

@@ -1,8 +1,10 @@
 package carte;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
+import componenti.Merce;
 import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
 
@@ -26,21 +28,44 @@ public class Pianeti extends Carta{
 	
 	@Override
 	void attivaCarta(Gioco flotta) {
-		List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
-    	
-		Scanner scanner=new Scanner(System.in);
-		int scelta = scanner.nextInt();
-		for (int i=0; i<flotta.getNGiocatori(); i++) {
-			System.out.println("Giocatore"+ordinate.get(i) +"vuoi atterare su un pianeta e perdere così " + this.getGiorniVolo() + " giorni di viaggio ");
-			 System.out.print("Scelta (0=No, 1=Si): ");
-			 if (scelta == 0) {
-					System.out.print("Scegli un pianeta (1,2,3,4: ");
-					int sceltaPianeta = scanner.nextInt() - 1;
-					//La merce viene caricata a bordo, manca la possibilità di vedere se il giocatore può portare a bordo della merce
-					//Se il giocatore può portare a bordo la merce il pianeta viene disintegrato (modo carino per dire che viene eliminata la scelta)
-					Pianeta pianetaScelto = pianeti.remove(sceltaPianeta);
-		} 
-		scanner.close();
-		}
+	    List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
+	    Scanner scanner = new Scanner(System.in);
+
+	    for (int i = 0; i < flotta.getNGiocatori(); i++) {
+	        Nave nave = ordinate.get(i);
+	        System.out.print("Giocatore " + nave.getColor() +
+	            ", vuoi atterrare su un pianeta e perdere " + this.getGiorniVolo() + " giorni? (0=No, 1=Si): ");
+	        int scelta = scanner.nextInt();
+	        if (scelta == 1 && !pianeti.isEmpty()) {
+	            nave.addGiorniVolo(-this.getGiorniVolo());
+
+	            int merceDaPerdere = Math.abs(this.getMerce());
+	            for (int k = 0; k < merceDaPerdere; k++) {
+	                if (!nave.minusStiva()) break;
+	            }
+
+	            Pianeta pianetaScelto;
+	            do {
+	                System.out.print("Scegli un pianeta (1–" + pianeti.size() + "): ");
+	                int idx = scanner.nextInt() - 1;
+	                if (idx >= 0 && idx < pianeti.size()) {
+	                    pianetaScelto = pianeti.remove(idx);
+	                    break;
+	                }
+	                System.out.println("Indice non valido.");
+	            } while (true);
+
+	            Map<Merce, Integer> risorse = pianetaScelto.getMercexPianeta();
+	            for (Map.Entry<Merce, Integer> e : risorse.entrySet()) {
+	                Merce tipo = e.getKey();
+	                int quantita = e.getValue();
+	                for (int q = 0; q < quantita; q++) {
+	                    if (!nave.setStiva(tipo)) break;
+	                }
+	            }
+	        }
+	    }
+
+	    scanner.close();
 	}
 }

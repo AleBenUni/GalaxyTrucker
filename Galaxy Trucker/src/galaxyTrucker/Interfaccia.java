@@ -649,7 +649,7 @@ public class Interfaccia extends Application {
     	System.out.println("--- BENVENUTO IN GALAXY TRUCKER (SETUP CONSOLE) ---\n");
 		do {
 			//scanner.nextLine();
-			System.out.println("Inserire numero giocatori (1-4)");
+			System.out.println("Inserire numero giocatori (2-4)");
 			nGiocatori = scanner.nextInt();
 		}while(nGiocatori<=1||nGiocatori>4);
 		
