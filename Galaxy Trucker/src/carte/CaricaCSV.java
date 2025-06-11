@@ -82,9 +82,10 @@ public class CaricaCSV {
 	            case SABOTAGGIO:
 	            	carta = new Sabotaggio(id, nome, livello, ggVolo, merce, equipaggio, credito);
 	            	break;
-	            case EPIDEMIA:
+	/*            case EPIDEMIA:
 	            	carta = new Epidemia(id, nome, livello, ggVolo, merce, equipaggio, credito);
 	            	break;
+	*/
 	            case PIOGGIA_METEORITI:      	
 	            	String raw3 = p[8];
 	            	raw3 = raw3.replace("\"", "");

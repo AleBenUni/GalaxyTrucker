@@ -1,3 +1,7 @@
+//IL supporto per questa classe termina 11/06/2025. Da riprendere in data non definita
+
+
+
 package carte;
 
 import galaxyTrucker.Gioco;

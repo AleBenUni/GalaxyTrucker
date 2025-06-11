@@ -16,7 +16,7 @@ public class OratriceMecaniquedAnalyseCardinale extends Carta{
 	void attivaCarta(Gioco flotta) { 
 		System.out.println("E' tempo di giudicare il tuo viaggio, abbi fede nel tuo viaggio e sarai giustamente giustiziato!");
 		//Avverranno i diversi calcoli sui punteggi
-		
+		//Manca settare e prendere il credito della nave di ogni giocatore
 		}
 
 }

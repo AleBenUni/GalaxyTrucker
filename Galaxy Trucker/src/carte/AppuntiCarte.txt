@@ -8,7 +8,7 @@
 	 *    - Modificatore (+/- giorni) 
 	 *    - Eccezioni (0 giorni):
 	 *      a) Pioggia di Meteoriti 
-	 *      b) Epidemia 
+	 *      b) Epidemia <--- Rimossa
 	 *      c) Sabotaggio
 	 * 
 	 * 3. Merci: 

@@ -7,6 +7,7 @@ import java.util.Map.Entry;  //questa mi permette di rimuovere Map da Map.Entry 
 import java.util.Random;
 
 import carte.CaricaCSV;
+import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
 
 public class Mazzo {
@@ -117,9 +118,9 @@ public class Mazzo {
 	
 	
 	
-	public void pescaAttivaEffetto(Nave lead) {
+	public void pescaAttivaEffetto(Gioco flotta) {
 		Carta pescata = pescadalMazzo();
-		pescata.attivaCarta(lead);
+		pescata.attivaCarta(flotta);
 		pescata=null;
 	}
 
