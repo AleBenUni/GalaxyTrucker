@@ -260,5 +260,100 @@
       "Capacita":2,
       "Speciale":true,
       "imagePath":"/images/Stiva/76.jpg"
+   },
+   {
+      "Tipo":"Cabina",
+      "ConnettoreUp":"doppio",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"assente",
+      "ConnettoreDw":"multiplo",
+      "Capacita":1,
+      "imagePath":"/images/Cabina/121.jpg"
+   },
+   {
+      "Tipo":"Cabina",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"multiplo",
+      "Capacita":1,
+      "imagePath":"/images/Cabina/124.jpg"
+   },
+   {
+      "Tipo":"Cabina",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"singolo",
+      "ConnettoreDw":"multiplo",
+      "Capacita":1,
+      "imagePath":"/images/Cabina/125.jpg"
+   },
+   {
+      "Tipo":"Cabina",
+      "ConnettoreUp":"singolo",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"singolo",
+      "Capacita":1,
+      "imagePath":"/images/Cabina/126.jpg"
+   },
+   {
+      "Tipo":"Cabina",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"singolo",
+      "Capacita":1,
+      "imagePath":"/images/Cabina/127.jpg"
+   },
+   {
+      "Tipo":"Cabina",
+      "ConnettoreUp":"doppio",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"doppio",
+      "ConnettoreDw":"multiplo",
+      "Capacita":1,
+      "imagePath":"/images/Cabina/132.jpg"
+   },
+   {
+      "Tipo":"Cabina",
+      "ConnettoreUp":"assente",
+      "ConnettoreDx":"multiplo",
+      "ConnettoreSx":"assente",
+      "ConnettoreDw":"singolo",
+      "Capacita":1,
+      "imagePath":"/images/Cabina/137.jpg"
+   },
+   {
+      "Tipo":"Modulo Strutturale",
+      "ConnettoreUp":"multiplo",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"doppio",
+      "imagePath":"/images/Modulo Strutturale/84.jpg"
+   },
+   {
+      "Tipo":"Modulo Strutturale",
+      "ConnettoreUp":"multiplo",
+      "ConnettoreDx":"doppio",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"assente",
+      "imagePath":"/images/Modulo Strutturale/88.jpg"
+   },
+   {
+      "Tipo":"Modulo Strutturale",
+      "ConnettoreUp":"multiplo",
+      "ConnettoreDx":"singolo",
+      "ConnettoreSx":"singolo",
+      "ConnettoreDw":"multiplo",
+      "imagePath":"/images/Modulo Strutturale/122.jpg"
+   },
+   {
+      "Tipo":"Modulo Strutturale",
+      "ConnettoreUp":"multiplo",
+      "ConnettoreDx":"assente",
+      "ConnettoreSx":"multiplo",
+      "ConnettoreDw":"singolo",
+      "imagePath":"/images/Modulo Strutturale/123.jpg"
    }
 ]

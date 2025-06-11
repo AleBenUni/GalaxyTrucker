@@ -71,6 +71,9 @@ public class Mucchio {
                     case "Scudo":
                         componenteCreato = new Scudo(connettoreUp, connettoreDx, connettoreSx, connettoreDw, imagePath);
                         break;
+                    case "Modulo Strutturale":
+                        componenteCreato = new ModuloStrutturale(connettoreUp, connettoreDx, connettoreSx, connettoreDw, imagePath);
+                        break;
                     case "Motore":
                     	capacita = (int) itemData.get("Capacita");
                         componenteCreato = new Motore(capacita, connettoreUp, connettoreDx, connettoreSx, connettoreDw, imagePath);
