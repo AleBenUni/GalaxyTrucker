@@ -274,6 +274,7 @@ public class Interfaccia extends Application {
                 if(img.isError())
                 	throw new IOException("Risorsa non trovata: " + imagePath);
                 arrayComponentiPlaceholder[i].setFill(new ImagePattern(img));
+                arrayComponentiPlaceholder[i].setRotate(mano.getComponenteAt(i).getRotations());
 
             } catch (Exception e) {
                 System.err.println("Errore caricamento immagine: " + e.getMessage());
