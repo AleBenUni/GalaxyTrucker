@@ -2,11 +2,11 @@ package galaxyTrucker;
 
 import carte.Livello;
 import componenti.Componente;
-import componenti.Lato;
 import componenti.Mucchio;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
-import javafx.geometry.Point2D; // Per gestire coordinate
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
@@ -22,19 +22,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
 
 public class Interfaccia extends Application {
     // Dimensioni Finestra e UI
@@ -69,26 +67,21 @@ public class Interfaccia extends Application {
     private Mucchio mano;
     private Integer indiceCorrente=null;
     private int startPos;
+    
+    private static Gioco giocoDaUsare;
+    private static CountDownLatch latchFineCostruzione;
 
+    public static void setParametriDiAvvio(Gioco gioco, CountDownLatch latch) {
+        giocoDaUsare=gioco;
+        latchFineCostruzione=latch;
+    }
 
     @Override
     public void start(Stage primaryStage) {
-    	int nGiocatori=2;
-    	Livello livello=Livello.II;
-    	/*Scanner scanner=new Scanner(System.in);
-		do {
-			//scanner.nextLine();
-			System.out.println("Inserire numero giocatori");
-			nGiocatori = scanner.nextInt();
-		}while(nGiocatori<=1||nGiocatori>4);
+    	int nGiocatori;
 		
-		do {
-			scanner.nextLine();
-			System.out.println("Inserire Livello");
-			livello=Livello.toLivello(scanner.nextLine());
-		}while(livello==null);*/
-		
-        this.gioco = new Gioco(nGiocatori, livello);
+        this.gioco = giocoDaUsare;
+        nGiocatori=gioco.getNGiocatori();
         this.plancia = gioco.getPlancia();
         this.nave = gioco.getNave(giocatoreCorrente);
         this.naveTerminata=new boolean[nGiocatori];
@@ -139,9 +132,11 @@ public class Interfaccia extends Application {
         Button passaTurno=new Button("PassaTurno");
         Button termina=new Button("Termina");
         
+        final int giocatori= nGiocatori;
+        
         passaTurno.setOnAction(event -> {
         	
-        	nextPlayer(nGiocatori);
+        	nextPlayer(giocatori);
         	
         });
         
@@ -150,7 +145,7 @@ public class Interfaccia extends Application {
         	nave.setGiorniVolo(plancia.getStartPos(startPos));
         	creaPanePlanciaGrafica((lFinestra/5)*2 - 30, altezzaPreferitaPlanciaPane);
         	startPos++;
-        	nextPlayer(nGiocatori);
+        	nextPlayer(giocatori);
         });
         contenitorePulsanti.getChildren().addAll(passaTurno,termina);
         
@@ -165,7 +160,26 @@ public class Interfaccia extends Application {
         primaryStage.setScene(scena);
         primaryStage.setMinWidth(lFinestra * 0.85);
         primaryStage.setMinHeight(aFinestra * 0.85);
+        primaryStage.setOnCloseRequest(event -> { // Se l'utente chiude la finestra con la X
+            terminaFaseCostruzioneUI(); // Termina la fase e sblocca il thread console
+       });
         primaryStage.show();
+    }
+    
+    private void terminaFaseCostruzioneUI() {
+        
+        System.out.println("INTERFACCIA: Fase costruzione terminata. Sblocco la logica console.");
+        if (latchFineCostruzione != null && latchFineCostruzione.getCount() > 0) {
+            latchFineCostruzione.countDown();
+        }
+        
+        // Chiudi la finestra grafica
+        Platform.runLater(() -> {
+            Stage stage = (Stage) grigliaNave.getScene().getWindow();
+            if (stage != null) {
+                stage.close();
+            }
+        });
     }
     
     
@@ -184,8 +198,10 @@ public class Interfaccia extends Application {
     		i++;
     	}
     	
-    	if(i==nGiocatori)
+    	if(i==nGiocatori) {
     		System.out.println("Costruzione finita");
+    		terminaFaseCostruzioneUI();
+    	}
     	else {
     		nave=gioco.getNave(giocatoreCorrente);
         	mano=generaMano();
@@ -219,7 +235,7 @@ public class Interfaccia extends Application {
         HBox areaScarti=new HBox(15);
         areaScarti.setPadding(new Insets(10));
         areaScarti.setAlignment(Pos.CENTER);
-        Rectangle[] arrayScarti = new Rectangle[2];
+        //Rectangle[] arrayScarti = new Rectangle[2];
         
         
         Button[] arrayPulsantiRuota = new Button[nComponentiDisponibili];
@@ -619,10 +635,67 @@ public class Interfaccia extends Application {
         // javafx.application.Platform.exit();
     }
 
-    //Nota per i programmatori: Il Main di questa classe è runnabile direttamente (e solamente) dal main. 
-    //Questa modifica è necessaria per far funzionare tutte le librerie interne
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         launch(args);
+    }*/
+    
+    public static void main(String[] args) {
+    	
+    	Scanner scanner=new Scanner(System.in);
+    	int nGiocatori;
+    	Livello livello;
+    	
+    	System.out.println("--- BENVENUTO IN GALAXY TRUCKER (SETUP CONSOLE) ---\n");
+		do {
+			//scanner.nextLine();
+			System.out.println("Inserire numero giocatori (1-4)");
+			nGiocatori = scanner.nextInt();
+		}while(nGiocatori<=1||nGiocatori>4);
+		
+		do {
+			scanner.nextLine();
+			System.out.println("Inserire Livello (1, 2 o 3)");
+			livello=Livello.toLivello(scanner.nextLine());
+		}while(livello==null);
+        
+        // 2. CREA L'OGGETTO GIOCO
+        Gioco gioco = new Gioco(nGiocatori, livello);
+
+        // 3. PREPARA LA SINCRONIZZAZIONE
+        CountDownLatch latch = new CountDownLatch(1);
+        
+        // Passa l'istanza di gioco e il latch all'Interfaccia prima di avviarla
+        Interfaccia.setParametriDiAvvio(gioco, latch);
+        
+        // 4. AVVIA IL THREAD PER LA LOGICA DI GIOCO POST-UI
+        Thread giocoPostUIThread = new Thread(() -> {
+            try {
+                System.out.println("THREAD GIOCO: In attesa che la fase di costruzione grafica termini...");
+                latch.await(); // Questo thread si blocca qui finché l'UI non ha finito
+                
+                System.out.println("\nTHREAD GIOCO: Ricevuto segnale dall'UI. Avvio FASE DI VOLO su console.");
+                
+                // Chiama il metodo di Gioco per la fase di volo (che userà lo stesso scanner)
+                //TODO eseguiFaseVoloConsole;
+                
+                gioco.getNave(1).visualizzaNave();
+
+            } catch (InterruptedException e) {
+                System.err.println("Thread di gioco interrotto.");
+            } finally {
+                System.out.println("THREAD GIOCO: Partita terminata. Chiusura applicazione.");
+                scanner.close();
+                Platform.exit(); // Chiude l'applicazione JavaFX se è ancora attiva
+                System.exit(0); // Uscita di sicurezza
+            }
+        });
+        giocoPostUIThread.setDaemon(false); // Non daemon, così tiene viva l'app
+        giocoPostUIThread.start();
+        
+        // 5. AVVIA L'INTERFACCIA GRAFICA
+        // Questa chiamata bloccherà il thread 'main' finché la finestra non si chiude
+        System.out.println("LAUNCHER: Avvio interfaccia grafica...");
+        Application.launch(Interfaccia.class, args);
     }
     
 }
