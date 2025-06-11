@@ -88,7 +88,9 @@ public class Plancia {
 	}
 	
 	public Mazzo getMazzoCompleto() {
-		Mazzo mazzo
-		return null;
+		Mazzo mazzo=new Mazzo(true);
+		for(int i=0;i<4;i++)
+			mazzo.unisciMazzi(this.mazzo[i]);
+		return mazzo;
 	}
 }
