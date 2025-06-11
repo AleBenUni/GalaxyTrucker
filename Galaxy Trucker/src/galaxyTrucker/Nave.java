@@ -517,19 +517,38 @@ public class Nave {
 
 	
 	public void visualizzaNave() {
+		Componente comp;
 		for(int i=0;i<nRighe;i++) {
 			for(int j=0;j<nColonne;j++)
 				if(celle[i][j].isUtilizzabile()) {
-					if(celle[i][j].getComponente() instanceof Cabina)
-						System.out.print("C");
-					else if(celle[i][j].getComponente()!=null)
-						System.out.print("X");
-					else
-						System.out.print("O");
+					comp=celle[i][j].getComponente();
+					 if (comp instanceof Cabina) {
+		                    // Esempio: "C(2)"
+		                    System.out.printf("%-5s", "C(" + ((Cabina) comp).getNEquipaggio() + ")");
+		                } else if (comp instanceof Batteria) {
+		                    // Esempio: "B(2)"
+		                	System.out.printf("%-5s", "B(" + ((Batteria) comp).getNEnergie() + ")");
+		                } else if (comp instanceof Cannone) {
+		                    // Esempio: "Cn(3)"
+		                	System.out.printf("%-5s", "Cn(" + ((Cannone) comp).getNCannoni() + ")");
+		                } else if (comp instanceof Motore) {
+		                    // Esempio: "M(3)"
+		                	System.out.printf("%-5s", "M(" + ((Motore) comp).getNTubiScappamento() + ")");
+		                } else if (comp instanceof Stiva) {
+		                	System.out.printf("%-5s", "S(" + ((Stiva) comp).getGrandezzaStiva() + ")");
+		                } else if (comp instanceof Scudo) {
+		                    // Esempio: "Sc" (non ha capacità)
+		                	System.out.printf("%-5s", "Sc");
+		                } else if (comp instanceof ModuloStrutturale) {
+		                    // Esempio: "Sc" (non ha capacità)
+		                	System.out.printf("%-5s", "+");
+		                } else {
+		                	System.out.printf("%-5s", "o");
+		                }
 				}
 					
 				else
-					System.out.print(" ");
+					System.out.printf("%-5s"," ");
 			System.out.print("\n");	
 		}
 	}
