@@ -213,6 +213,56 @@ public class Nave {
 		return false;
 	}
 	
+	public int getSpazioStiva() {
+		Componente tmp;
+		int cont=0;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Stiva)
+					if(!((Stiva) tmp).isStivaSpeciale())
+						cont+=((Stiva) tmp).getStivaUtilizzabile();
+			}
+
+		return cont;
+	}
+	
+	public int getSpazioStivaSpeciale() {
+		Componente tmp;
+		int cont=0;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Stiva)
+					if(((Stiva) tmp).isStivaSpeciale())
+						cont+=((Stiva) tmp).getStivaUtilizzabile();
+			}
+
+		return cont;
+	}
+	
+	public boolean setStiva(Merce merce) {
+		Componente tmp;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Stiva)
+					if(merce==Merce.rosso)
+						if(((Stiva) tmp).isStivaSpeciale() && ((Stiva) tmp).getStivaUtilizzabile()>0)
+							return ((Stiva) tmp).addCarico(merce);
+							
+						else
+							return false;
+					else
+						if(((Stiva) tmp).getStivaUtilizzabile()>0)
+							return ((Stiva) tmp).addCarico(merce);
+						else
+							return false;
+						
+			}
+		return false;
+	}
+	
 	public Cella getCella(Posizione posizione) {
 		return celle[posizione.getRiga()][posizione.getColonna()];
 	}

@@ -17,6 +17,14 @@ public class Stiva extends Componente{
 		return grandezzaStiva;
 	}
 	
+	public int getStivaUtilizzabile() {
+		int cont=0;
+		for(int i=0;i<grandezzaStiva;i++)
+			if(carico[i]==null)
+				cont++;
+		return cont;
+	}
+	
 	public boolean isStivaSpeciale() {
 		return stivaSpeciale;
 	}
