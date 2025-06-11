@@ -32,4 +32,14 @@ public enum Lato {
             throw new IllegalStateException("Lato non valido");
     }
 	}
+	
+	public Lato opposto() {
+        switch (this) {
+            case up:  return dw;
+            case dw:  return up;
+            case sx:  return dx;
+            case dx:  return sx;
+            default:  throw new IllegalStateException("Lato sconosciuto: " + this);
+        }
+    }
 }
