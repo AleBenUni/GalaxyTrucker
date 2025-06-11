@@ -45,8 +45,6 @@ public class Interfaccia extends Application {
     // Dimensioni e Stile Plancia
     private double altezzaPreferitaPlanciaPane = 700;
     private double rCerchioGiorno = 12;
-    // Queste ora rappresentano le dimensioni LOGICHE di un mazzo "in piedi"
-    // Per la visualizzazione orizzontale, le useremo scambiate.
     private double laMazzoLogica = 75; // Larghezza logica (se verticale)
     private double aMazzoLogica = 105; // Altezza logica (se verticale)
     private double paddingPlanciaInterno = 30;
@@ -169,7 +167,7 @@ public class Interfaccia extends Application {
     
     private void terminaFaseCostruzioneUI() {
         
-        System.out.println("INTERFACCIA: Fase costruzione terminata. Sblocco la logica console.");
+        //System.out.println("INTERFACCIA: Fase costruzione terminata. Sblocco la logica console.");
         if (latchFineCostruzione != null && latchFineCostruzione.getCount() > 0) {
             latchFineCostruzione.countDown();
         }
@@ -200,7 +198,7 @@ public class Interfaccia extends Application {
     	}
     	
     	if(i==nGiocatori) {
-    		System.out.println("Costruzione finita");
+    		//System.out.println("Costruzione finita");
     		terminaFaseCostruzioneUI();
     	}
     	else {
@@ -430,8 +428,8 @@ public class Interfaccia extends Application {
                 			mano.removeComponenteAt(indiceCorrente);
                 			popolaAreaComponentiHBox(this.areaComponentiHBox, gComponentiDisponibili, gioco);
                 			popolaGrigliaNave(grigliaNave, nave, gCelleNave);
-                			nave.visualizzaNave();
-                			nave.visualizzaUtilizzabileNave();
+                			//nave.visualizzaNave();
+                			//nave.visualizzaUtilizzabileNave();
                 			componenteLogico=null;
                 			indiceCorrente=null;
                 		//}
@@ -439,7 +437,7 @@ public class Interfaccia extends Application {
                 		
                 	}
                 		
-                    System.out.println("Click su cella nave (" + r + "," + c + ")");
+                    //System.out.println("Click su cella nave (" + r + "," + c + ")");
                 });
                 grigliaNave.add(cellaGrafica, j, i);
             }
