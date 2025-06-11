@@ -99,6 +99,7 @@ public class Mucchio {
                     this.mucchio.add(componenteCreato);
                 }
             }
+            Collections.shuffle(mucchio);
         } catch (IOException e) {
             System.err.println("Errore durante la lettura o il parsing del file JSON '" + e.getMessage());
             e.printStackTrace();
