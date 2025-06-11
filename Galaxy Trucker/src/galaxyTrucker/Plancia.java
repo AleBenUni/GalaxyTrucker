@@ -86,4 +86,9 @@ public class Plancia {
 			return mazzo[nMazzo];
 		return null;
 	}
+	
+	public Mazzo getMazzoCompleto() {
+		Mazzo mazzo
+		return null;
+	}
 }

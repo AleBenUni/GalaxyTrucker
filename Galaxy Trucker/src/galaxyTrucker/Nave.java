@@ -259,6 +259,27 @@ public class Nave {
 		return false;
 	}
 	
+	public boolean minusStiva(Merce merce) {
+		Componente tmp;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Stiva)
+					if(merce==Merce.rosso) {
+						if(((Stiva) tmp).isStivaSpeciale() && !((Stiva) tmp).isStivaEmpty())
+							if(((Stiva) tmp).minusCarico(merce))
+								return true;
+								
+					}	
+					else
+						if(!((Stiva) tmp).isStivaSpeciale() && !((Stiva) tmp).isStivaEmpty())
+							if(((Stiva) tmp).minusCarico(merce))
+								return true;
+						
+			}
+		return false;
+	}
+	
 	public Cella getCella(Posizione posizione) {
 		return celle[posizione.getRiga()][posizione.getColonna()];
 	}
