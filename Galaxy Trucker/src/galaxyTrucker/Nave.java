@@ -292,6 +292,30 @@ public class Nave {
 				
 	}
 	
+	public int getPotenzaMotrice() {
+		Componente tmp;
+		int cont=0;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Motore)
+					cont+=((Motore) tmp).getNTubiScappamento();
+			}
+		return cont;		
+	}
+	
+	public float getPotenzaFuoco() {
+		Componente tmp;
+		float cont=0;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Cannone)
+					cont+=((Cannone) tmp).getPotenzaFuoco();
+			}
+		return cont;		
+	}
+	
 	public Cella getCella(Posizione posizione) {
 		return celle[posizione.getRiga()][posizione.getColonna()];
 	}
