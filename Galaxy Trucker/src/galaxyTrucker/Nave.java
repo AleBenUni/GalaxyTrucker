@@ -274,6 +274,24 @@ public class Nave {
 		return false;
 	}
 	
+	public int calcolaPunteggio() {
+		Componente tmp;
+		int cont=0;
+		for(int i=0;i<nRighe;i++)
+			for(int j=0;j<nColonne;j++) {
+				tmp=celle[i][j].getComponente();
+				if(tmp instanceof Stiva)
+					if(!((Stiva) tmp).isStivaEmpty()) {
+						Merce[] carico=((Stiva) tmp).getCarico();
+						for(int k=0;k<carico.length;k++)
+							cont+=carico[k].getValore();
+					}
+	
+			}
+		return cont;
+				
+	}
+	
 	public Cella getCella(Posizione posizione) {
 		return celle[posizione.getRiga()][posizione.getColonna()];
 	}
@@ -290,7 +308,6 @@ public class Nave {
 		}else
 			return false;
 			
-		
 			
 	}
 	
