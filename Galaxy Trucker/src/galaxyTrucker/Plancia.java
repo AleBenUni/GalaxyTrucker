@@ -1,6 +1,5 @@
 package galaxyTrucker;
 
-import carte.Carta;
 import carte.Livello;
 import carte.Mazzo;
 

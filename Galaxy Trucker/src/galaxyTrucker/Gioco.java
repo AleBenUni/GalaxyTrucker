@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
-import java.util.concurrent.CountDownLatch;
 
 
 public class Gioco {
@@ -34,7 +32,7 @@ public class Gioco {
 	}
 	
 	public Nave getNave(int nave) {
-		if(nave>=0||nave<nGiocatori)
+		if(nave>=0 || nave<nGiocatori)
 			return this.nave[nave];
 		else
 			return null;
@@ -61,8 +59,12 @@ public class Gioco {
 		return plancia;
 	}
 	
-	 public Mucchio getMucchio() { return this.mucchio; }
+	 public Mucchio getMucchio() {
+		 return this.mucchio;
+	}
 	 
-	 public int getNGiocatori() { return this.nGiocatori; }
+	 public int getNGiocatori() {
+		 return this.nGiocatori;
+	}
 	
 }
