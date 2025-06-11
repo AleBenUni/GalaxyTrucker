@@ -259,7 +259,7 @@ public class Nave {
 		return false;
 	}
 	
-	public boolean minusStiva(Merce merce) {
+	public boolean minusStiva() {
 		Componente tmp;
 		for(int i=0;i<nRighe;i++)
 			for(int j=0;j<nColonne;j++) {
