@@ -52,6 +52,15 @@ public class Stiva extends Componente{
 		return false;	
 	}
 	
+	public boolean minusCarico() {
+		for(int i=0;i<carico.length;i++)
+			if(carico[i]!=null) {
+				carico[i]=null;
+				return true;
+			}
+		return false;	
+	}
+	
 	public boolean isStivaEmpty() {
 		for(int i=0;i<carico.length;i++)
 			if(carico[i]!=null)

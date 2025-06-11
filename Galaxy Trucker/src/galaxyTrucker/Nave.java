@@ -265,16 +265,10 @@ public class Nave {
 			for(int j=0;j<nColonne;j++) {
 				tmp=celle[i][j].getComponente();
 				if(tmp instanceof Stiva)
-					if(merce==Merce.rosso) {
-						if(((Stiva) tmp).isStivaSpeciale() && !((Stiva) tmp).isStivaEmpty())
-							if(((Stiva) tmp).minusCarico(merce))
-								return true;
-								
-					}	
-					else
-						if(!((Stiva) tmp).isStivaSpeciale() && !((Stiva) tmp).isStivaEmpty())
-							if(((Stiva) tmp).minusCarico(merce))
-								return true;
+					if(!((Stiva) tmp).isStivaEmpty())
+						if(((Stiva) tmp).minusCarico())
+							return true;
+				
 						
 			}
 		return false;
