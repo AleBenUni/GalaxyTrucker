@@ -33,34 +33,54 @@ public class Pianeti extends Carta{
 
 	    for (int i = 0; i < flotta.getNGiocatori(); i++) {
 	        Nave nave = ordinate.get(i);
-	        System.out.print("Giocatore " + nave.getColor() +
-	            ", vuoi atterrare su un pianeta e perdere " + this.getGiorniVolo() + " giorni? (0=No, 1=Si): ");
-	        int scelta = scanner.nextInt();
+	        int scelta;
+	        while (true) {
+	            System.out.print(this.toString() + "\nGiocatore " + nave.getColor()
+	                + ", vuoi atterrare su un pianeta e perdere " + this.getGiorniVolo() + " giorni? (0=No, 1=Si): ");
+	            try {
+	                scelta = Integer.parseInt(scanner.nextLine().trim());
+	                if (scelta == 0 || scelta == 1) break;
+	            } catch (NumberFormatException e) { }
+	            System.out.println("Input non valido! Inserisci 0 o 1.");
+	        }
 	        if (scelta == 1 && !pianeti.isEmpty()) {
-	            nave.addGiorniVolo(-this.getGiorniVolo());
-
-	            int merceDaPerdere = Math.abs(this.getMerce());
-	            for (int k = 0; k < merceDaPerdere; k++) {
-	                if (!nave.minusStiva()) break;
-	            }
-
-	            Pianeta pianetaScelto;
-	            do {
-	                System.out.print("Scegli un pianeta (1–" + pianeti.size() + "): ");
-	                int idx = scanner.nextInt() - 1;
-	                if (idx >= 0 && idx < pianeti.size()) {
-	                    pianetaScelto = pianeti.remove(idx);
-	                    break;
+	            nave.minusGiorniVolo(this.getGiorniVolo());
+	            int merceCarta = this.getMerce();
+	            if (merceCarta < 0) {
+	                int daPerdere = -merceCarta;
+	                for (int k = 0; k < daPerdere; k++) {
+	                    if (!nave.minusStiva()) break;
 	                }
-	                System.out.println("Indice non valido.");
-	            } while (true);
-
-	            Map<Merce, Integer> risorse = pianetaScelto.getMercexPianeta();
-	            for (Map.Entry<Merce, Integer> e : risorse.entrySet()) {
+	            }
+	            Pianeta pianetaScelto;
+	            while (true) {
+	                System.out.print("Scegli un pianeta (1–" + pianeti.size() + "): ");
+	                String line = scanner.nextLine().trim();
+	                try {
+	                    int idx = Integer.parseInt(line) - 1;
+	                    if (idx >= 0 && idx < pianeti.size()) {
+	                        pianetaScelto = pianeti.remove(idx);
+	                        break;
+	                    }
+	                } catch (NumberFormatException e) { }
+	                System.out.println("Indice non valido! Inserisci un numero tra 1 e " + pianeti.size() + ".");
+	            }
+	            for (Map.Entry<Merce, Integer> e : pianetaScelto.getMercexPianeta().entrySet()) {
 	                Merce tipo = e.getKey();
 	                int quantita = e.getValue();
+	                int caricate = 0;
 	                for (int q = 0; q < quantita; q++) {
-	                    if (!nave.setStiva(tipo)) break;
+	                    if (nave.setStiva(tipo)) {
+	                        caricate++;
+	                    } else {
+	                        System.out.println("Caricate " + caricate + " di " + quantita
+	                            + " merci " + tipo + " sulla nave " + nave.getColor() + ".");
+	                        break;
+	                    }
+	                }
+	                if (caricate == quantita) {
+	                    System.out.println("Caricate tutte e " + quantita
+	                        + " merci " + tipo + " sulla nave " + nave.getColor() + ".");
 	                }
 	            }
 	        }
@@ -68,4 +88,7 @@ public class Pianeti extends Carta{
 
 	    scanner.close();
 	}
+
+
+
 }
