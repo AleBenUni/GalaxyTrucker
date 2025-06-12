@@ -11,6 +11,19 @@ import carte.CaricaCSV;
 import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
 
+
+/**
+ * Rappresenta un mazzo di carte giocabili, gestendo operazioni come pesca, trasferimento e attivazione.
+ * <p>
+ * Il mazzo può essere inizializzato in due modi:
+ * <ul>
+ *   <li><b>Mazzo completo</b>: Carica 50 carte da file CSV (simulando il gioco base)</li>
+ *   <li><b>Mazzo vuoto</b>: Contenitore inizialmente vuoto per gestione dinamica delle carte</li>
+ * </ul>
+ * 
+ * @see carte.Carta
+ * @see galaxyTrucker.Gioco
+ */
 public class Mazzo {
 	String CSV = "src\\carte\\carte.csv";
 	Map<Integer, Carta> mazzo;
@@ -34,6 +47,15 @@ public class Mazzo {
         }
 	}
 	 
+	/**
+	 * 
+     * Costruisce un mazzo di carte.
+     * 
+     * @param vuoto Se true, crea un mazzo vuoto. Se false, carica 150 carte da CSV
+     * @implNote Per il gioco base usare {@code new Mazzo(false)}
+     *
+	 * @param vuoto
+	 */
 	public Mazzo(boolean vuoto) {
 		if(vuoto==true)
 			Empty();
@@ -101,9 +123,9 @@ public class Mazzo {
 		Carta inMovimento  = dacuiTrasferire.pescaPerLivello(carta);
 		if (inMovimento != null) {
 			this.mazzo.put(inMovimento.getId(), inMovimento);
-			System.out.println(" Trasferimento avvenuto con successo");
+		//	System.out.println(" Trasferimento avvenuto con successo");
 		} else {
-			System.out.println(" Sono terminate le carte del Livello "+carta+". Trasferimento annullato");
+			System.err.println(" Sono terminate le carte del Livello "+carta+". Trasferimento annullato");
 		}
 	}
 	

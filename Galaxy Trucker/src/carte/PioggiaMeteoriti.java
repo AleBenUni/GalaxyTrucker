@@ -102,10 +102,14 @@ public class PioggiaMeteoriti extends Carta{
 	                                System.out.println("Meteorite piccolo rimbalza sul lato liscio.");
 	                            else {
 	                                nave.eliminaComponente(r, idx);
+	                               nave.aggiornaStatoConnessioni();
+	                               nave.eliminaDisconnessi();
 	                                System.out.println("Meteorite piccolo distrugge componente in (" + r + "," + idx + ").");
 	                            }
 	                        } else {
 	                            nave.eliminaComponente(r, idx);
+	                            nave.aggiornaStatoConnessioni();
+	                               nave.eliminaDisconnessi();
 	                            System.out.println("Meteorite grande distrugge componente in (" + r + "," + idx + ").");
 	                        }
 	                        break;
@@ -121,10 +125,14 @@ public class PioggiaMeteoriti extends Carta{
 	                                System.out.println("Meteorite piccolo rimbalza sul lato liscio.");
 	                            else {
 	                                nave.eliminaComponente(r, idx);
+	                                nave.aggiornaStatoConnessioni();
+		                               nave.eliminaDisconnessi();
 	                                System.out.println("Meteorite piccolo distrugge componente in (" + r + "," + idx + ").");
 	                            }
 	                        } else {
 	                            nave.eliminaComponente(r, idx);
+	                            nave.aggiornaStatoConnessioni();
+	                               nave.eliminaDisconnessi();
 	                            System.out.println("Meteorite grande distrugge componente in (" + r + "," + idx + ").");
 	                        }
 	                        break;
@@ -140,10 +148,14 @@ public class PioggiaMeteoriti extends Carta{
 	                                System.out.println("Meteorite piccolo rimbalza sul lato liscio.");
 	                            else {
 	                                nave.eliminaComponente(idx, c);
+	                                nave.aggiornaStatoConnessioni();
+		                               nave.eliminaDisconnessi();
 	                                System.out.println("Meteorite piccolo distrugge componente in (" + idx + "," + c + ").");
 	                            }
 	                        } else {
 	                            nave.eliminaComponente(idx, c);
+	                            nave.aggiornaStatoConnessioni();
+	                               nave.eliminaDisconnessi();
 	                            System.out.println("Meteorite grande distrugge componente in (" + idx + "," + c + ").");
 	                        }
 	                        break;
@@ -159,10 +171,14 @@ public class PioggiaMeteoriti extends Carta{
 	                                System.out.println("Meteorite piccolo rimbalza sul lato liscio.");
 	                            else {
 	                                nave.eliminaComponente(idx, c);
+	                                nave.aggiornaStatoConnessioni();
+		                               nave.eliminaDisconnessi();
 	                                System.out.println("Meteorite piccolo distrugge componente in (" + idx + "," + c + ").");
 	                            }
 	                        } else {
 	                            nave.eliminaComponente(idx, c);
+	                            nave.aggiornaStatoConnessioni();
+	                               nave.eliminaDisconnessi();
 	                            System.out.println("Meteorite grande distrugge componente in (" + idx + "," + c + ").");
 	                        }
 	                        break;
