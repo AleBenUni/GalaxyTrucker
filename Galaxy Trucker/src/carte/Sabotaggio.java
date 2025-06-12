@@ -53,6 +53,7 @@ public class Sabotaggio extends Carta {
 	    		break;
 	    	}
     	}
+    	System.out.println("Debug = "+i);
     	if (i!=4) {
     		System.out.println("Falso allarme, non sembrano arrivare colpi alla tua nave Player" + ordinate.get(naveBersaglio).getColor() + "\n");
     	}
