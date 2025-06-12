@@ -37,13 +37,13 @@ public class Mazzo {
             	Empty();
             } else { 
             	mazzo = CaricaCSV.loadMap(CSV);
-            System.out.printf("Il mazzo di 50 carte è pronto\n");
+   //         System.out.printf("Il mazzo di 50 carte è pronto\n");
             }
             
            
         } catch (IOException e) {
         	 e.printStackTrace();
-        	 System.out.printf("Il mazzo di 0 carte è pronto\n");
+        	 System.err.printf("Il mazzo di 0 carte è pronto\n");
         }
 	}
 	 
@@ -65,7 +65,7 @@ public class Mazzo {
 	
 	private void Empty() {
 		mazzo = new HashMap<>();
-		System.out.printf("Il mazzo di 0 carte è pronto\n");
+	//	System.out.printf("Il mazzo di 0 carte è pronto\n");
 	}
 	
 	private int Casuale () {
