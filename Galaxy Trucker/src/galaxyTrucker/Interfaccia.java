@@ -679,6 +679,7 @@ public class Interfaccia extends Application {
                 //TODO eseguiFaseVoloConsole;
                 Mazzo mazzo = new Mazzo(false);
                 
+                for (int i=0; i<10; i++)
     	        mazzo.pescaAttivaEffetto(gioco);
                 
                 gioco.getNave(1).visualizzaNave();

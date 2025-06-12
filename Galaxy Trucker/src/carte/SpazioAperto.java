@@ -1,6 +1,7 @@
 package carte;
 
 import java.util.List;
+import java.util.Scanner;
 
 import galaxyTrucker.Gioco;
 import galaxyTrucker.Nave;
@@ -19,7 +20,15 @@ public class SpazioAperto extends Carta{
 	
 	@Override 
 	 void attivaCarta(Gioco flotta) { 
-		
+		System.out.println("Spazio Aperto: \n");
+		List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
+	    Scanner scanner = new Scanner(System.in);
+	    
+	   for (int i = 0; i < flotta.getNGiocatori(); i++) {
+		   Nave nave = ordinate.get(i);
+		   nave.setGiorniVolo(nave.getGiorniVolo() + nave.getPotenzaMotrice());
+		   System.out.println("Giocatore: " + nave.getColor() + " ti sei spostato di " + (nave.getGiorniVolo() + nave.getPotenzaMotrice()) + " giorni in avanti.\n");
+	   }
 	}
 	
 

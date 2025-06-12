@@ -23,7 +23,7 @@ public class Mazzo {
             	Empty();
             } else { 
             	mazzo = CaricaCSV.loadMap(CSV);
-            System.out.printf("Il mazzo di 150 carte è pronto\n");
+            System.out.printf("Il mazzo di 50 carte è pronto\n");
             }
             
            
