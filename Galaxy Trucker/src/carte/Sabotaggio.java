@@ -41,16 +41,17 @@ public class Sabotaggio extends Carta {
     	
     	int i=0;
     	for (i=0; i<3; i++) {
-    	System.out.print("Player: " + ordinate.get(naveBersaglio).getColor() 
-    			+ " sei sfortunato. Riceverai un colpo casuale da cui non ti puoi difendere\n" ); 
-    	tiroRiga = rand.nextInt(6) + 1 + rand.nextInt(6) + 1 - 3; 
-    	tiroColonna = rand.nextInt(6) + 1 + rand.nextInt(6) + 1 - 3; 
-    	Componente comp = naveLeader.getCella(new Posizione(tiroRiga, tiroColonna)).getComponente();
-    	if (comp != null ) {
-    		naveLeader.eliminaComponente(tiroRiga, tiroColonna);
-    		i = 4;
-    		System.out.println("Meteorite innarestabile distrugge (" + tiroRiga + "," + tiroColonna + ").\n");
-    	}
+	    	System.out.print("Player: " + ordinate.get(naveBersaglio).getColor() 
+	    			+ " sei sfortunato. Riceverai un colpo casuale da cui non ti puoi difendere\n" ); 
+	    	tiroRiga = rand.nextInt(6) + 1 + rand.nextInt(6) + 1 - 3; 
+	    	tiroColonna = rand.nextInt(6) + 1 + rand.nextInt(6) + 1 - 3; 
+	    	Componente comp = naveLeader.getCella(new Posizione(tiroRiga, tiroColonna)).getComponente();
+	    	if (comp != null ) {
+	    		naveLeader.eliminaComponente(tiroRiga, tiroColonna);
+	    		i = 4;
+	    		System.out.println("Meteorite innarestabile distrugge (" + tiroRiga + "," + tiroColonna + ").\n");
+	    		break;
+	    	}
     	}
     	if (i!=4) {
     		System.out.println("Falso allarme, non sembrano arrivare colpi alla tua nave Player" + ordinate.get(naveBersaglio).getColor() + "\n");
