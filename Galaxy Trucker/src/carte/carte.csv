@@ -1,3 +1,51 @@
 id,nome,livello,ggVolo,mercePersa,equipaggio,credito,effetto,pianeti <--- per tutte le carte (tranne Pioggia di Meteoriti)
 id,nome,livello,0,0,0,0,":up,:dx,:sx,:dw" <--- (precedere ad ogni : piccolo o grande) <---- meteoriti
-9,Sabotaggio,I,0,0,0,0,SABOTAGGIO
+2,Pioggia di meteoriti,I,0,0,0,0,PIOGGIA_METEORITI,"piccolo:up,piccolo:up,piccolo:dx,piccolo:sx,piccolo:dw"
+3,Pianeti,I,3,0,0,0,PIANETI,"rosso:1,verde:1,blu:1;rosso:1,giallo:1,blu:1;rosso:1,blu:1;rosso:1,verde:1"
+6,Nave Abbandonata,I,1,0,-2,3,NAVE_ABBANDONATA
+7,Nave Abbandonata,I,1,0,-3,4,NAVE_ABBANDONATA
+5,Schiavisti,I,1,6,-3,5,SCHIAVISTI
+1,Spazio Aperto,I,0,0,0,0,SPAZIO_APERTO
+8,Pianeti,I,2,0,0,0,PIANETI,"giallo:1,rosso:1;rosso:1,blu:1;verde:1,blu:1;rosso:1,verde:1"
+9,Spazio Aperto,I,0,0,0,0,SPAZIO_APERTO
+10,Pioggia di meteoriti,I,0,0,0,0,PIOGGIA_METEORITI,"piccolo:dw,piccolo:dw,piccolo:dx"
+11,Nave Abbandonata,I,1,0,-1,2,NAVE_ABBANDONATA
+12,Spazio Aperto,I,0,0,0,0,SPAZIO_APERTO
+13,Pianeti,I,2,0,0,0,PIANETI,"rosso:1,blu:1;verde:1,blu:1;giallo:1,verde:1;rosso:1,giallo:1"
+14,Spazio Aperto,I,0,0,0,0,SPAZIO_APERTO
+15,Schiavisti,I,1,5,-2,3,SCHIAVISTI
+16,Pioggia di meteoriti,I,0,0,0,0,PIOGGIA_METEORITI,"piccolo:sx,piccolo:dx,piccolo:up"
+17,Nave Abbandonata,I,1,0,-2,4,NAVE_ABBANDONATA
+18,Pianeti,I,3,0,0,0,PIANETI,"verde:1,blu:1;rosso:1,giallo:1;verde:1,giallo:1;rosso:1,blu:1"
+19,Spazio Aperto,I,0,0,0,0,SPAZIO_APERTO
+20,Spazio Aperto,I,0,0,0,0,SPAZIO_APERTO
+21,Pioggia di meteoriti,II,0,0,0,0,PIOGGIA_METEORITI,"grande:dw,piccolo:dx,grande:up"
+22,Pianeti,II,4,0,0,0,PIANETI,"rosso:2,blu:1;giallo:1,verde:1;rosso:1,giallo:1;blu:1,verde:1"
+23,Nave Abbandonata,II,2,0,-2,4,NAVE_ABBANDONATA
+24,Schiavisti,II,2,7,-3,6,SCHIAVISTI
+25,Spazio Aperto,II,0,0,0,0,SPAZIO_APERTO
+26,Pianeti,II,3,0,0,0,PIANETI,"giallo:2,rosso:1;rosso:1,verde:1;blu:1,verde:1;giallo:1,blu:1"
+27,Nave Abbandonata,II,1,0,-3,5,NAVE_ABBANDONATA
+28,Pioggia di meteoriti,II,0,0,0,0,PIOGGIA_METEORITI,"piccolo:up,grande:dx,grande:sx"
+29,Spazio Aperto,II,0,0,0,0,SPAZIO_APERTO
+30,Schiavisti,II,2,8,-2,7,SCHIAVISTI
+31,Pianeti,III,5,0,0,0,PIANETI,"rosso:2,blu:2;giallo:2,rosso:1;verde:1,blu:2;rosso:1,verde:2"
+32,Pioggia di meteoriti,III,0,0,0,0,PIOGGIA_METEORITI,"grande:dw,grande:dw,grande:up,piccolo:up,grande:sx"
+33,Nave Abbandonata,III,2,0,-3,6,NAVE_ABBANDONATA
+34,Schiavisti,III,3,9,-4,8,SCHIAVISTI
+35,Spazio Aperto,III,0,0,0,0,SPAZIO_APERTO
+36,Pianeti,III,6,0,0,0,PIANETI,"verde:2,giallo:2;rosso:2,blu:1;giallo:2,blu:1;verde:2,rosso:1"
+37,Nave Abbandonata,III,2,0,-4,7,NAVE_ABBANDONATA
+38,Pioggia di meteoriti,III,0,0,0,0,PIOGGIA_METEORITI,"grande:up,grande:dx,grande:dw,piccolo:up,grande:dw,piccolo:dw"
+39,Spazio Aperto,III,0,0,0,0,SPAZIO_APERTO
+40,Schiavisti,III,3,10,-3,9,SCHIAVISTI
+41,Spazio Aperto,I,0,0,0,0,SPAZIO_APERTO
+42,Pianeti,I,3,0,0,0,PIANETI,"rosso:1,verde:1;rosso:1,blu:1;giallo:1,verde:1;blu:1,giallo:1"
+43,Pioggia di meteoriti,I,0,0,0,0,PIOGGIA_METEORITI,"piccolo:dx,piccolo:sx,piccolo:dw"
+44,Nave Abbandonata,I,1,0,-2,3,NAVE_ABBANDONATA
+45,Schiavisti,I,1,6,-2,5,SCHIAVISTI
+46,Spazio Aperto,I,0,0,0,0,SPAZIO_APERTO
+47,Pianeti,II,4,0,0,0,PIANETI,"giallo:2,blu:2;rosso:2,giallo:1;verde:2,rosso:1;blu:1,verde:2"
+48,Pioggia di meteoriti,II,0,0,0,0,PIOGGIA_METEORITI,"piccolo:dw,piccolo:dx,grande:up"
+49,Nave Abbandonata,II,2,0,-3,4,NAVE_ABBANDONATA
+50,Spazio Aperto,II,0,0,0,0,SPAZIO_APERTO

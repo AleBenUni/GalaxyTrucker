@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;  //questa mi permette di rimuovere Map da Map.Entry nei cicli che interessano le Mappe 
 import java.util.Random;
+import java.util.Scanner;
 
 import carte.CaricaCSV;
 import galaxyTrucker.Gioco;
@@ -23,7 +24,7 @@ public class Mazzo {
             	Empty();
             } else { 
             	mazzo = CaricaCSV.loadMap(CSV);
-            System.out.printf("Il mazzo di 150 carte è pronto\n");
+            System.out.printf("Il mazzo di 50 carte è pronto\n");
             }
             
            

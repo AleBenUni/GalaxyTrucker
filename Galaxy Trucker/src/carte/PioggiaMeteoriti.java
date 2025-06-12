@@ -175,6 +175,5 @@ public class PioggiaMeteoriti extends Carta{
 	            }
 	        }
 	    }
-	    scanner.close();
 	}
 }

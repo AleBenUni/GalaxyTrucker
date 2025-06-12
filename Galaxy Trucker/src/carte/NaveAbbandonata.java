@@ -50,6 +50,6 @@ public class NaveAbbandonata extends Carta {
 	            }
 	        } while (!controllo);
 	    }
-	    scanner.close();
+
 	}
 }
