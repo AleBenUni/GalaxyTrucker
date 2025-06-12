@@ -1,4 +1,4 @@
-Richihesto JDK 22 o superiore
+Richiesto JDK 22 o superiore
 Le librerie sono già configurate e presenti in libs.
 Bisogna solo aggiungere la seguente stringa in VM arguments di interfaccia da Run Configurations
 
