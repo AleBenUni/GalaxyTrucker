@@ -326,7 +326,9 @@ public class Nave {
 		if(celle[riga][col].isUtilizzabile()&&celle[riga][col].getComponente()==null) {
 			celle[riga][col].setComponente(componente);
 			
-			celle[riga][col].setConnesso(verificaConnessioni(pos));
+			//celle[riga][col].setConnesso(verificaConnessioni(pos));
+			aggiornaStatoConnessioni();
+			
 				
 			return true;
 		}else
@@ -399,7 +401,7 @@ public class Nave {
 			
 	}
 	
-	public void eliminaComponente(int riga, int col) {
+	/*public void eliminaComponente(int riga, int col) {
 		if(celle[riga][col].isUtilizzabile()&&celle[riga][col].getComponente()!=null) {
 			celle[riga][col].setNotUtilizzabile();
 			celle[riga][col].setComponente(null);
@@ -417,26 +419,39 @@ public class Nave {
 					celle[riga][col-1].setConnesso(false);
 			
 		}
-	}
+	}*/
 	
-	/*public void aggiornaStatoConnessioni() {
-	    // 1. Resetta correttamente tutti i componenti tranne la cabina
+	public void eliminaComponente(int riga, int col) {
+		if(celle[riga][col].isUtilizzabile()&&celle[riga][col].getComponente()!=null) {
+			celle[riga][col].setComponente(null);
+			
+		}
+	}
+
+	public void aggiornaStatoConnessioni() {
+	    // 1. Resetta lo stato di connessione di tutti i componenti.
 	    for (int riga = 0; riga < nRighe; riga++) {
 	        for (int col = 0; col < nColonne; col++) {
-	            Componente comp = celle[riga][col].getComponente();
-	            if (comp != null && !(comp instanceof Cabina)) {
-	                celle[riga][col].setNotUtilizzabile();
-	            } else if (comp instanceof Cabina) {
-	                celle[riga][col].setUtilizzabile();
+	            if (celle[riga][col].getComponente() != null) {
+	                celle[riga][col].setConnesso(false);
 	            }
 	        }
 	    }
 
-	    // 2. Avvia una ricerca a partire dalla cabina (BFS)
-	    Queue<Posizione> daVisitare = new LinkedList<>();
-	    Set<Posizione> giaVisitati = new HashSet<>(); // <-- QUESTO ORA FUNZIONERÀ CORRETTAMENTE
-
+	    // Controlla se la cabina esiste al centro. Se non c'è, esce.
 	    Posizione posCabina = new Posizione(centroRighe, centroCol);
+	    Componente compCabina = getCella(posCabina).getComponente();
+	    if (compCabina == null || !(compCabina instanceof Cabina)) {
+	        return; 
+	    }
+	    
+	    // La cabina è sempre connessa a se stessa.
+	    getCella(posCabina).setConnesso(true);
+
+	    // 2. Avvia una ricerca a partire dalla cabina (BFS).
+	    Queue<Posizione> daVisitare = new LinkedList<>();
+	    Set<Posizione> giaVisitati = new HashSet<>(); 
+
 	    daVisitare.add(posCabina);
 	    giaVisitati.add(posCabina);
 
@@ -445,36 +460,65 @@ public class Nave {
 	        Componente compCorrente = getCella(posCorrente).getComponente();
 	        if (compCorrente == null) continue;
 
-	        getCella(posCorrente).setUtilizzabile();
+	        getCella(posCorrente).setConnesso(true);
 
-	        // 3. Controlla i vicini
+	        // 3. Controlla i vicini.
 	        Posizione[] posizioniVicini = {
-	            new Posizione(posCorrente.getRiga(), posCorrente.getColonna() - 1), new Posizione(posCorrente.getRiga(), posCorrente.getColonna() + 1),
-	            new Posizione(posCorrente.getRiga() - 1, posCorrente.getColonna()), new Posizione(posCorrente.getRiga() + 1, posCorrente.getColonna())
+	            new Posizione(posCorrente.getRiga() - 1, posCorrente.getColonna()), // up
+	            new Posizione(posCorrente.getRiga(), posCorrente.getColonna() + 1), // dx
+	            new Posizione(posCorrente.getRiga(), posCorrente.getColonna() - 1), // sx
+	            new Posizione(posCorrente.getRiga() + 1, posCorrente.getColonna())  // dw
 	        };
-	        Lato[] latiComponenteCorrente = {Lato.sx, Lato.dx, Lato.up, Lato.dw};
-	        Lato[] latiOppostiVicini = {Lato.dx, Lato.sx, Lato.dw, Lato.up};
+	        
+	        Lato[] latiComponenteCorrente = {Lato.up, Lato.dx, Lato.sx, Lato.dw};
 
 	        for (int i = 0; i < 4; i++) {
 	            Posizione posVicino = posizioniVicini[i];
+	            
+	            // Controlla che il vicino sia dentro la griglia
 	            if (posVicino.getRiga() >= 0 && posVicino.getRiga() < nRighe && 
 	                posVicino.getColonna() >= 0 && posVicino.getColonna() < nColonne) {
 	                
 	                Componente compVicino = getCella(posVicino).getComponente();
 	                
-	                // Ora giaVisitati.contains() funziona correttamente!
-	                if (compVicino != null && !giaVisitati.contains(posVicino) && 
-	                    compCorrente.getConnettori(latiComponenteCorrente[i]).connection(compVicino.getConnettori(latiOppostiVicini[i]))) {
+	                // Se il vicino esiste e non è stato già visitato...
+	                if (compVicino != null && !giaVisitati.contains(posVicino)) {
 	                    
-	                    daVisitare.add(posVicino);
-	                    giaVisitati.add(posVicino);
+	                    Lato latoCorrente = latiComponenteCorrente[i];
+	                    Lato latoOppostoVicino = latoCorrente.opposto();
+
+	                    Connettore connCorrente = compCorrente.getConnettori(latoCorrente);
+	                    Connettore connVicino = compVicino.getConnettori(latoOppostoVicino);
+	                    
+	                    // --- REGOLA DI CONNESSIONE FINALE ---
+	                    // Un collegamento è valido se NESSUNO dei due connettori è 'assente'
+	                    // e se sono compatibili tra loro secondo le regole del gioco.
+	                    boolean sonoConnessi = (connCorrente != Connettore.assente &&
+	                                           connVicino != Connettore.assente &&
+	                                           connCorrente.connection(connVicino));
+
+	                    if (sonoConnessi) {
+	                        daVisitare.add(posVicino);
+	                        giaVisitati.add(posVicino);
+	                    }
 	                }
 	            }
 	        }
 	    }
 	}
+	
+	public void eliminaDisconnessi() {
+		for (int riga = 0; riga < nRighe; riga++) {
+	        for (int col = 0; col < nColonne; col++) {
+	            if (celle[riga][col].getComponente() != null) {
+	                if(!celle[riga][col].isConnesso())
+	                	celle[riga][col].setComponente(null);
+	            }
+	        }
+	    }
+	}
 
-    //Metodo setCella AGGIORNATO
+   /* //Metodo setCella AGGIORNATO
     public boolean setCella(Posizione pos, Componente componente) {
         int riga = pos.getRiga();
         int col = pos.getColonna();
