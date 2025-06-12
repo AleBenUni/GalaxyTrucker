@@ -423,8 +423,8 @@ public class Interfaccia extends Application {
                 final int c = j;
                 cellaGrafica.setOnMouseClicked(event -> {
                 	if(componenteLogico!=null) {
-                		//if(nave.setCella(new Posizione(r,c), componenteLogico)) {
-                		nave.setCella(new Posizione(r,c), componenteLogico);
+                		if(nave.setCella(new Posizione(r,c), componenteLogico)) {
+                		//nave.setCella(new Posizione(r,c), componenteLogico);
                 			mano.removeComponenteAt(indiceCorrente);
                 			popolaAreaComponentiHBox(this.areaComponentiHBox, gComponentiDisponibili, gioco);
                 			popolaGrigliaNave(grigliaNave, nave, gCelleNave);
@@ -432,7 +432,7 @@ public class Interfaccia extends Application {
                 			//nave.visualizzaUtilizzabileNave();
                 			componenteLogico=null;
                 			indiceCorrente=null;
-                		//}
+                		}
                 		
                 		
                 	}
