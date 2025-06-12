@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;  //questa mi permette di rimuovere Map da Map.Entry nei cicli che interessano le Mappe 
 import java.util.Random;
+import java.util.Scanner;
 
 import carte.CaricaCSV;
 import galaxyTrucker.Gioco;
