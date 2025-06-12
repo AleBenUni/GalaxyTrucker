@@ -28,11 +28,6 @@ public class Posizione {
         return riga == posizione.riga && colonna == posizione.colonna;
     }
 
-    /**
-     * Metodo FONDAMENTALE, va sempre insieme a equals().
-     * Fornisce un codice numerico (hash code) basato sul contenuto dell'oggetto.
-     * Le collezioni come HashSet lo usano per memorizzare e trovare oggetti in modo efficiente.
-     */
     @Override
     public int hashCode() {
         // Genera un codice hash usando i valori di riga e colonna
