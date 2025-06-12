@@ -13,6 +13,7 @@ import galaxyTrucker.Nave;
 
 public class Carta {
 	
+	
 	private final int id; 
 	int ggVolo; //Spazio Aperto puo cambiare questo attributo. Non più final 
 	private final int credito; 
@@ -22,6 +23,18 @@ public class Carta {
 	private final NomeSpeciale effetto;
 	private final Livello livello;
 
+	/**
+	 * Costruttore della carta.
+	 * 
+	 * @param id
+	 * @param effetto
+	 * @param nome
+	 * @param livello
+	 * @param ggVolo
+	 * @param merce
+	 * @param equipaggio
+	 * @param credito
+	 */
 	public Carta(Integer id, NomeSpeciale effetto,String nome ,Livello livello, int ggVolo, int merce, int equipaggio, int credito) {
 		this.id = id; 
 		this.ggVolo = ggVolo;// con - indico un guadagno di giorni, con numero positivo indico una perdita di giorni (fatto per ridurre i caratteri nel file Excel)
@@ -79,6 +92,20 @@ public class Carta {
 	    return "La Carta " + nome + ( (effetto == NomeSpeciale.NESSUNO) ? " non ha effetti speciali" : " ha effetti speciali" );
 	}
 	
+	
+	/**
+     * Applica gli effetti della carta sulla nave leader.
+     * <p>
+     * Effetti applicati:
+     * <ul>
+     *   <li>Modifica giorni di volo (valori negativi riducono il volo)</li>
+     *   <li>Aggiunge/rimuove crediti</li>
+     *   <li>Gestisce merce (perdita o consumo energia)</li>
+     *   <li>Modifica equipaggio (valori negativi riducono l'equipaggio)</li>
+     * </ul>
+     * 
+     * @param naveLeader Nave su cui applicare gli effetti
+     */
 	void applicaEffetti(Nave naveLeader)
 	{
 		if (this.getGiorniVolo()<0) {
@@ -95,7 +122,6 @@ public class Carta {
     			}
     		}
     	}
-    	//Merce ha bisogno di una logica che: Perdi merce in base al numero intero segnato sulla carta, ne guadagno invece dal campo Pianeta, prestando attenzione al rosso che ha un suo tassello (siì, c'è un limite di merce)
     	if ( equipaggio <0 ) {
     		naveLeader.setEquipaggioABordo(naveLeader.getEquipaggioABordo()+equipaggio);
     	}
