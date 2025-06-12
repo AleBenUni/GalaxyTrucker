@@ -27,16 +27,40 @@ public class Schiavista extends Carta{
 	}
 	
 	@Override 
-	 void attivaCarta(Gioco flotta) { 
-		List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
+	void attivaCarta(Gioco flotta) { 
+	    List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
 	    Scanner scanner = new Scanner(System.in);
-	    System.out.print(toString() + "\nSarete attaccati in ordine di rotta, vittoria o sconfitta saranno automatici. (Una situazione in cui essere primi non giova sulla propria nave\n");
+	    
+	    System.out.println(toString() + 
+	        "\nSarete attaccati in ordine di rotta. Sconfiggere il nemico vi darà crediti ma vi rallenterà. Rinunciare vi fa evitare lo scontro, ma niente ricompensa.\n");
+
 	    for (int i = 0; i < flotta.getNGiocatori(); i++) {
-	    	//Mi serve conoscere la forza totle dei cannoni installati su una nave
-	    	System.out.print("Player: " + ordinate.get(i).getColor() + "" ); 
+	        Nave nave = ordinate.get(i);
+	        System.out.println("È il turno di: " + nave.getColor());
+
+	        if (nave.getPotenzaFuoco() >= this.cannonateRichieste) {
+	            System.out.println("Hai abbastanza potenza di fuoco (" + nave.getPotenzaFuoco() + 
+	                ") per combattere. Vuoi affrontare il nemico? (s/n)");
+	            String scelta = scanner.nextLine();
+
+	            if (scelta.equalsIgnoreCase("s")) { // volevo testare una versione con la lettera e non il numero
+	                System.out.println("Hai sconfitto il nemico! Guadagni " + this.getCredito() + " crediti.");
+	                nave.setCreditoVolo(nave.getCreditoVolo()+this.getCredito());
+	                nave.minusGiorniVolo(this.getGiorniVolo());
+	            } else {
+	                System.out.println("Hai scelto di non combattere. Non ottieni nulla, ma non perdi tempo.");
+	            }
+	        } else {
+	            System.out.println("Non hai abbastanza potenza di fuoco per combattere (" + nave.getPotenzaFuoco() + 
+	                "). Gli Schiavisti ti costringono a rinunciare a parte del tuo equipaggio.");
+
+	            nave.setEquipaggioABordo(nave.getEquipaggioABordo()-this.getEquipaggio());
+	        }
+
+	        System.out.println();
 	    }
 	}
-	
+
 }
 
 
