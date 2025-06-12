@@ -85,7 +85,6 @@ public class Pianeti extends Carta{
 	            }
 	        }
 	    }
-
 	}
 
 

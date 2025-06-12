@@ -677,6 +677,10 @@ public class Interfaccia extends Application {
                 
                 // Chiama il metodo di Gioco per la fase di volo (che userà lo stesso scanner)
                 //TODO eseguiFaseVoloConsole;
+                Mazzo mazzo = gioco.getPlancia().getMazzoCompleto();
+                
+                for (int i=0; i<= mazzo.dimensioneMazzo(); i++)
+    	        mazzo.pescaAttivaEffetto(gioco);
                 
                 gioco.getNave(1).visualizzaNave();
 

@@ -122,8 +122,13 @@ public class Mazzo {
 		Carta pescata = pescadalMazzo();
 		pescata.attivaCarta(flotta);
 		pescata=null;
+		
 	}
-
+	
+	public int dimensioneMazzo()
+	{
+		return mazzo.size();
+	}
 	
 }
 

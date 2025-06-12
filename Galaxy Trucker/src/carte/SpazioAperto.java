@@ -22,7 +22,6 @@ public class SpazioAperto extends Carta{
 	 void attivaCarta(Gioco flotta) { 
 		System.out.println("Spazio Aperto: \n");
 		List<Nave> ordinate = flotta.getFlottaNaveOrdinata();
-	    Scanner scanner = new Scanner(System.in);
 	    
 	   for (int i = 0; i < flotta.getNGiocatori(); i++) {
 		   Nave nave = ordinate.get(i);
